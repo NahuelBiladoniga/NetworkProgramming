@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstaPhoto", "InstaPhoto.csproj", "{2A59B675-7265-4430-B0A2-076A67D7AADB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{C112F89E-03A6-4FCA-B843-CE0CFBFACF92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "..\Domain\Domain.csproj", "{C112F89E-03A6-4FCA-B843-CE0CFBFACF92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Service\Service.csproj", "{1D2D03E5-9DBE-4553-B6FF-5F7AAC9E5CDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "..\Service\Service.csproj", "{1D2D03E5-9DBE-4553-B6FF-5F7AAC9E5CDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Controller", "Controller\Controller.csproj", "{BAE57976-D178-41AB-9F5E-5D64DCE328B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controller", "..\Controller\Controller.csproj", "{BAE57976-D178-41AB-9F5E-5D64DCE328B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TCPComm", "TCPComm\TCPComm.csproj", "{053AB616-0C75-4C06-9423-A5C29D2A88D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCPComm", "..\TCPComm\TCPComm.csproj", "{053AB616-0C75-4C06-9423-A5C29D2A88D3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "..\DataAccess\DataAccess.csproj", "{A1B7287C-27F3-451F-8967-EB8C04955C55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2A59B675-7265-4430-B0A2-076A67D7AADB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2A59B675-7265-4430-B0A2-076A67D7AADB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2A59B675-7265-4430-B0A2-076A67D7AADB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2A59B675-7265-4430-B0A2-076A67D7AADB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C112F89E-03A6-4FCA-B843-CE0CFBFACF92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C112F89E-03A6-4FCA-B843-CE0CFBFACF92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C112F89E-03A6-4FCA-B843-CE0CFBFACF92}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{053AB616-0C75-4C06-9423-A5C29D2A88D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{053AB616-0C75-4C06-9423-A5C29D2A88D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{053AB616-0C75-4C06-9423-A5C29D2A88D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1B7287C-27F3-451F-8967-EB8C04955C55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1B7287C-27F3-451F-8967-EB8C04955C55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1B7287C-27F3-451F-8967-EB8C04955C55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1B7287C-27F3-451F-8967-EB8C04955C55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
