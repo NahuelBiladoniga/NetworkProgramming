@@ -10,22 +10,31 @@ namespace Controller.FileServer
 {
     public class FileServer
     {
+        static TcpListener server;
+
         static async Task Main(string[] args)
         {
             Console.WriteLine("Starting server");
             var ipEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 6000);
-            TcpListener server = new TcpListener(ipEndPoint);
+            server = new TcpListener(ipEndPoint);
             server.Start(100);
 
+            while (true)
+            {
+                await WaitForClientConnection();
+            }
+        }
+
+        static async Task WaitForClientConnection()
+        {
             TcpClient client = await server.AcceptTcpClientAsync();
-            server.Stop();
             NetworkStream stream = client.GetStream();
             var communication = new NetworkCommunication(stream);
             var readTask = Task.Run(async () => await ReadAsync(communication));
             await WriteAsync(communication);
         }
 
-        static async Task WriteAsync(NetworkCommunication communication)
+        static async Task WriteAsync(NetworkCommunication communication, ProtocolResponse response)
         {
             while (true)
             {

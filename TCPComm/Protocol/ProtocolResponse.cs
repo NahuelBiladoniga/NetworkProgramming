@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TCPComm
+namespace TCPComm.Protocol
 {
-    public class Commands
+    public class ProtocolResponse
     {
+
     }
 }

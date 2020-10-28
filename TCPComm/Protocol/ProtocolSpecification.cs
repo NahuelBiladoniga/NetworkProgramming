@@ -4,7 +4,9 @@ using System.Text;
 
 namespace Domain.Protocol
 {
-    class ProtocolSpecification
+    public class ProtocolSpecification
     {
+        public const int FixedDataSize = 4;
+        public const string CommandType
     }
 }
