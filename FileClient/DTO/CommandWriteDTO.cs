@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Domain
+namespace FileClient.DTO
 {
-    public class Photo
+    class CommandWriteDTO
     {
-
     }
 }

@@ -6,7 +6,15 @@ namespace TCPComm.Protocol
 {
     public static class ProtocolConstants
     {
-        public const int FixedDataSize = 4;
+        public const int COMMAND_SIZE = 3;
+        public const int REQUEST_SIZE = 4;
+        public const int MESSAGE_SIZE = 20;
+        public const int USER_NAME = 20;
+        public const int USER_EMAIL = 20;
+        public const int LAST_CONNECTION = 20;
+        public const int PHOTO_ID = 20;
+        public const int PHOTO_NAME = 20;
+        public const int PHOTO_LENGTH = 8;
 
         public enum COMMANDS{
             RESPONSE,

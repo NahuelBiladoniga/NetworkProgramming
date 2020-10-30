@@ -6,7 +6,10 @@
 
   <ItemGroup>
     <Folder Include="FileServer\" />
-    <Folder Include="FileClient\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
 </Project>
