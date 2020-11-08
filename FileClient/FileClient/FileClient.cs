@@ -31,41 +31,49 @@ namespace Controller.FileClient
 
         static async Task WriteAsync(NetworkCommunication communication)
         {
-            var data = parseWrite(Console.ReadLine());
-            byte[] dataLength = BitConverter.GetBytes(data.Length);
-            await communication.WriteAsync(Encoding.UTF8.GetBytes("REQ"));
-            await communication.WriteAsync(dataLength);
+            var data = (byte[])Encoding.UTF8.GetBytes("REQ").Concat(ParseWrite(Console.ReadLine()));
             await communication.WriteAsync(data);
         }
 
-        static byte[] parseWrite(string commandConsole)
+        static byte[] ParseWrite(string commandConsole)
         {
             var splitedCommand = commandConsole.Split(',');
-            var result = new byte[0];
-            
-            switch (Int32.Parse(splitedCommand[0]))
+            byte[] result = new byte[0];
+            result = AddCommandResult(result, splitedCommand[0]);
+            switch (int.Parse(splitedCommand[0]))
             {
-                case (int)ProtocolConstants.REQUEST_COMMANDS.LOGIN:
-                    result = Encoding.UTF8.GetBytes(splitedCommand[1]);
+                case (int)ProtocolConstants.RequestCommands.LOGIN:
+                    result = AddLengthResult(result, Client.EmailSize);
+                    result = MergeArrays(result,FillToSize(splitedCommand[1], Client.EmailSize));
                     break;
-                case (int)ProtocolConstants.REQUEST_COMMANDS.USER_CREATE:
-                    result = (byte[])Encoding.UTF8.GetBytes(splitedCommand[1]).Concat(Encoding.UTF8.GetBytes(splitedCommand[2]));
+                case (int)ProtocolConstants.RequestCommands.USER_CREATE:
+                    result = AddLengthResult(result, Client.EmailSize+Client.NameSize);
+                    result = MergeArrays(result,FillToSize(splitedCommand[1], Client.EmailSize));
+                    var userData = MergeArrays(FillToSize(splitedCommand[1], Client.NameSize),
+                        FillToSize(splitedCommand[2], Client.NameSize));
+                    result = MergeArrays(result,userData);
                     break;
-                case (int)ProtocolConstants.REQUEST_COMMANDS.USER_DELETE:
-                    result = Encoding.UTF8.GetBytes(splitedCommand[1]);
+                case (int)ProtocolConstants.RequestCommands.USER_DELETE:
+                    result = AddLengthResult(result, Client.EmailSize);
+                    result = MergeArrays(result,FillToSize(splitedCommand[1], Client.EmailSize));
                     break;
-                case (int)ProtocolConstants.REQUEST_COMMANDS.PHOTO_GET:
-                    result = Encoding.UTF8.GetBytes(splitedCommand[1]);
+                case (int)ProtocolConstants.RequestCommands.PHOTO_GET:
+                    result = AddLengthResult(result, Client.EmailSize);
+                    result = MergeArrays(result,FillToSize(splitedCommand[1], Client.EmailSize));
                     break;
-                case (int)ProtocolConstants.REQUEST_COMMANDS.PHOTO_LOAD:
-                    result = getFileFromFS(splitedCommand[1]);
+                case (int)ProtocolConstants.RequestCommands.PHOTO_LOAD:
+                    result = GetFileFromFs(splitedCommand[1]);
                     //TODO
                     //OBTENER LOS ARCHIVOS DE LA RUTA
                     break;
-                case (int)ProtocolConstants.REQUEST_COMMANDS.COMMENT_PHOTO:
-                    result = (byte[])Encoding.UTF8.GetBytes(splitedCommand[1]).Concat(Encoding.UTF8.GetBytes(splitedCommand[2]));
+                case (int)ProtocolConstants.RequestCommands.COMMENT_PHOTO:
+                    result = AddLengthResult(result, Client.EmailSize+Client.NameSize);
+                    result = MergeArrays(result,FillToSize(splitedCommand[1], Client.EmailSize));
+                    var commentData = MergeArrays(FillToSize(splitedCommand[1], Client.EmailSize),
+                        FillToSize(splitedCommand[2], Client.NameSize));
+                    result = MergeArrays(result,commentData);
                     break;
-                case (int)ProtocolConstants.REQUEST_COMMANDS.PHOTO_COMMENTS:
+                case (int)ProtocolConstants.RequestCommands.PHOTO_COMMENTS:
                     result = Encoding.UTF8.GetBytes(splitedCommand[1]);
                     break;
                 default:
@@ -76,67 +84,67 @@ namespace Controller.FileClient
             return result;
         }
 
-        private static byte[] getFileFromFS(string v)
+        private static byte[] AddCommandResult(byte[] result, string cmd)
         {
-            throw new NotImplementedException();
+            return MergeArrays(result,FillToSize(cmd, ProtocolConstants.CommandSize));
+        }
+
+        private static byte[] AddLengthResult(byte[] result, int size)
+        {
+            return MergeArrays(result,FillToSize(size.ToString(), ProtocolConstants.CommandSize));
         }
 
         static async Task ReadAsync(NetworkCommunication communication)
         {
-            _ = await communication.ReadAsync(ProtocolConstants.COMMAND_SIZE);
-            var responseCode = BitConverter.ToInt32(await communication.ReadAsync(ProtocolConstants.REQUEST_SIZE));
+            await communication.ReadAsync(ProtocolConstants.CommandSize);
+            var responseCode = BitConverter.ToInt32(await communication.ReadAsync(ProtocolConstants.RequestSize));
             var msg = "";
-            var dataLength = ByteToInt(await communication.ReadAsync(ProtocolConstants.COMMAND_SIZE));
+            var dataLength = ByteToInt(await communication.ReadAsync(ProtocolConstants.CommandSize));
 
             switch (responseCode)
             {
-                case 0:
-                    msg = ByteToString(await communication.ReadAsync(ProtocolConstants.MESSAGE_SIZE));
+                case (int)ProtocolConstants.RESPONSE_COMMANDS.OK:
+                    msg = ByteToString(await communication.ReadAsync(ProtocolConstants.MessageSize));
                     break;
-                case 1:
-                    msg = ByteToString(await communication.ReadAsync(ProtocolConstants.MESSAGE_SIZE));
+                case (int)ProtocolConstants.RESPONSE_COMMANDS.ERROR:
+                    msg = ByteToString(await communication.ReadAsync(ProtocolConstants.MessageSize));
                     break;
-                case 2:
-                    dataLength = ByteToInt(await communication.ReadAsync(ProtocolConstants.COMMAND_SIZE));
+                case (int)ProtocolConstants.RESPONSE_COMMANDS.LIST_USERS:
                     var users = await GetClientsAsync(communication, dataLength);
-                    msg = UsersToString(users);
+                    msg = users.ToString();
                     break;
-                case 3:
-                    dataLength = ByteToInt(await communication.ReadAsync(ProtocolConstants.COMMAND_SIZE));
+                case (int)ProtocolConstants.RESPONSE_COMMANDS.LIST_PHOTOS:
                     var photos = await GetPhotosAsync(communication, dataLength);
-                    msg = PhotosToString(photos);
+                    msg = photos.ToString();
                     break;
-                case 4:
-                    //dataLength = ByteToInt(await communication.ReadAsync(ProtocolConstants.COMMAND_SIZE));
-                    //var users = await ParseUserListAsync(communication, dataLength);
-                    //msg = UsersToString(users);
+                case (int)ProtocolConstants.RESPONSE_COMMANDS.LIST_COMMENTS:
+                    var comments = await GetPhotosAsync(communication, dataLength);
+                    msg = comments.ToString();
                     break;
             }
-            //int dataSize = BitConverter.ToInt32(dataLength, 0);
-            //byte[] data = await communication.ReadAsync(dataSize);
+
             Console.WriteLine(msg);
         }
 
-        private static string UsersToString(List<Client> clients)
+        private static string UsersToString(IEnumerable<Client> clients)
+        {
+            return clients.Aggregate("",(acc, x) => acc + x.Email+','+x.Name+','+x.LastConnection+'\n');
+        }
+
+        private static string PhotosToString(IEnumerable<Photo> photos)
         {
             throw new NotImplementedException();
         }
 
-        private static string PhotosToString(List<Photo> photos)
-        {
-            throw new NotImplementedException();
-        }
-
-
-        private static async Task<List<Client>> GetClientsAsync(NetworkCommunication communication, int dataLength)
+        private static async Task<IEnumerable<Client>> GetClientsAsync(NetworkCommunication communication, int dataLength)
         {
             var users = new List<Client>();
 
             while (dataLength!=0)
             {
-                var name = ByteToString(await communication.ReadAsync(ProtocolConstants.USER_NAME));
-                var email = ByteToString(await communication.ReadAsync(ProtocolConstants.USER_EMAIL));
-                var lastConnection = ByteToDateTime(await communication.ReadAsync(ProtocolConstants.LAST_CONNECTION));
+                var name = ByteToString(await communication.ReadAsync(Client.NameSize));
+                var email = ByteToString(await communication.ReadAsync(Client.EmailSize));
+                var lastConnection = ByteToDateTime(await communication.ReadAsync(Client.LastConnectionSize));
                 var user = new Client()
                 {
                     Name = name,
@@ -146,36 +154,70 @@ namespace Controller.FileClient
 
                 users.Add(user);
 
-                dataLength -= ProtocolConstants.USER_NAME + ProtocolConstants.USER_EMAIL + ProtocolConstants.LAST_CONNECTION;
+                dataLength -= Client.NameSize + Client.EmailSize + Client.LastConnectionSize;
             }
 
             return users;
         }
 
-        //private static async Task<List<Photo>> GetPhotosAsync(NetworkCommunication communication, int dataLength)
-        //{
-        //    var users = new List<Client>();
+        private static async Task<IEnumerable<Photo>> GetPhotosAsync(NetworkCommunication communication, int dataLength)
+        {
+            var photos = new List<Photo>();
+        
+            while (dataLength != 0)
+            {
+                var id = ByteToString(await communication.ReadAsync(Photo.IdSize));
+                var name = ByteToString(await communication.ReadAsync(Photo.NameSize));
+                var lengthFile = ByteToInt(await communication.ReadAsync(Photo.LengthSize));
+                var email = ByteToString(await communication.ReadAsync(Client.EmailSize));
+                //TODO
+                //Como hacer fotos???
+                var user = new Photo()
+                {
+                    Id = id,
+                    Name = name,
+                    LengthFile = lengthFile,
+                    Client = new Client()
+                    {
+                        Email = email
+                    }
+                };
+        
+                photos.Add(user);
+        
+                dataLength -= Photo.IdSize + Photo.NameSize + Photo.LengthSize + Client.EmailSize;
+            }
+        
+            return photos;
+        }
 
-        //    while (dataLength != 0)
-        //    {
-        //        var id = ByteToString(await communication.ReadAsync(ProtocolConstants.USER_NAME));
-        //        var email = ByteToString(await communication.ReadAsync(ProtocolConstants.USER_EMAIL));
-        //        var lastConnection = ByteToDateTime(await communication.ReadAsync(ProtocolConstants.LAST_CONNECTION));
-        //        var user = new Photo()
-        //        {
-        //            Name = name,
-        //            Email = email,
-        //            LastConnection = lastConnection,
-        //        };
+        private static byte[] FillToSize(string v, int size)
+        {
+            var data = Encoding.UTF8.GetBytes(v);
+            
+            if (data.Length < size)
+            {
+                var fill = new byte[size - data.Length];
+                for (int i = 0; i < fill.Length; i++)
+                {
+                    fill[i] = 0x0;
+                }
 
-        //        users.Add(user);
+                data = (byte[])fill.Concat(data);
+            }
+            
+            return data;
+        }
+        
+        private static byte[] GetFileFromFs(string v)
+        {
+            throw new NotImplementedException();
+        }
 
-        //        dataLength -= ProtocolConstants.USER_NAME + ProtocolConstants.USER_EMAIL + ProtocolConstants.LAST_CONNECTION;
-        //    }
-
-        //    return users;
-        //}
-
+        static byte[] MergeArrays(byte[] arr1,byte[]arr2)
+        {
+            return (byte[])arr1.Concat(arr2);
+        }
 
         static string ByteToString(byte[] data)
         {

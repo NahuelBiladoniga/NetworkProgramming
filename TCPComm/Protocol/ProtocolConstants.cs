@@ -6,39 +6,35 @@ namespace TCPComm.Protocol
 {
     public static class ProtocolConstants
     {
-        public const int COMMAND_SIZE = 3;
-        public const int REQUEST_SIZE = 4;
-        public const int MESSAGE_SIZE = 20;
-        public const int USER_NAME = 20;
-        public const int USER_EMAIL = 20;
-        public const int LAST_CONNECTION = 20;
-        public const int PHOTO_ID = 20;
-        public const int PHOTO_NAME = 20;
-        public const int PHOTO_LENGTH = 8;
-
-        public enum COMMANDS{
+        public const int CommandSize = 3;
+        public const int RequestSize = 4;
+        public const int MessageSize = 20;
+        public const int IntegerSize = 4;
+        public const int LongSize = 8;
+        
+        public enum Commands{
             RESPONSE,
             REQUEST
         }
-
-        public enum REQUEST_COMMANDS
+        
+        public enum RequestCommands
         {
-            LOGIN,
-            USER_CREATE,
-            USER_DELETE,
-            PHOTO_GET,
-            PHOTO_LOAD,
-            COMMENT_PHOTO,
-            PHOTO_COMMENTS
+            LOGIN= 1,
+            USER_CREATE=2,
+            USER_DELETE=3,
+            PHOTO_GET=4,
+            PHOTO_LOAD=5,
+            COMMENT_PHOTO=6,
+            PHOTO_COMMENTS=7
         }
 
         public enum RESPONSE_COMMANDS
         {
-            OK,
-            ERROR,
-            LIST_USERS,
-            LIST_PHOTOS,
-            LIST_COMMENTS
+            OK = 1,
+            ERROR = 2,
+            LIST_USERS = 3,
+            LIST_PHOTOS = 4,
+            LIST_COMMENTS = 5
         }
     }
 }
