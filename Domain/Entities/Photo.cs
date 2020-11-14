@@ -13,6 +13,6 @@ namespace Domain
         public string Id { get; set; }
         public object Name { get; set; }
         public int LengthFile { get; set; }
-        public Client Client { get; set; }
+        public User User { get; set; }
     }
 }

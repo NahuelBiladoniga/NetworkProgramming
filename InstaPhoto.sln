@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileClient", "FileClient\Fi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileServer", "FileServer\FileServer.csproj", "{E487946E-32A2-42D0-994A-CEB391CFF20E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminServer", "AdminServer\AdminServer.csproj", "{A935C70E-CAA0-4A0D-8A89-76A78D14DBD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminClient", "AdminClient\AdminClient.csproj", "{50EF7BB8-6571-4DDC-953C-32EE316B182A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{E487946E-32A2-42D0-994A-CEB391CFF20E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E487946E-32A2-42D0-994A-CEB391CFF20E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E487946E-32A2-42D0-994A-CEB391CFF20E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A935C70E-CAA0-4A0D-8A89-76A78D14DBD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A935C70E-CAA0-4A0D-8A89-76A78D14DBD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A935C70E-CAA0-4A0D-8A89-76A78D14DBD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A935C70E-CAA0-4A0D-8A89-76A78D14DBD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50EF7BB8-6571-4DDC-953C-32EE316B182A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50EF7BB8-6571-4DDC-953C-32EE316B182A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50EF7BB8-6571-4DDC-953C-32EE316B182A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50EF7BB8-6571-4DDC-953C-32EE316B182A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

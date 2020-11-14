@@ -2,7 +2,7 @@
 
 namespace Domain
 {
-    public class Client
+    public class User
     {
         public const int NameSize = 20;
         public const int EmailSize = 20;

@@ -19,22 +19,23 @@ namespace TCPComm.Protocol
         
         public enum RequestCommands
         {
-            LOGIN= 1,
-            USER_CREATE=2,
-            USER_DELETE=3,
-            PHOTO_GET=4,
-            PHOTO_LOAD=5,
-            COMMENT_PHOTO=6,
-            PHOTO_COMMENTS=7
+            LOGIN,
+            USER_CREATE,
+            USER_DELETE,
+            USER_MODIFIY,
+            PHOTO_GET,
+            PHOTO_LOAD,
+            COMMENT_PHOTO,
+            PHOTO_COMMENTS
         }
 
-        public enum RESPONSE_COMMANDS
+        public enum ResponseCommands
         {
-            OK = 1,
-            ERROR = 2,
-            LIST_USERS = 3,
-            LIST_PHOTOS = 4,
-            LIST_COMMENTS = 5
+            OK,
+            ERROR,
+            LIST_USERS,
+            LIST_PHOTOS,
+            LIST_COMMENTS
         }
     }
 }

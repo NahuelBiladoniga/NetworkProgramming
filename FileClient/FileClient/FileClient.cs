@@ -43,23 +43,23 @@ namespace Controller.FileClient
             switch (int.Parse(splitedCommand[0]))
             {
                 case (int)ProtocolConstants.RequestCommands.LOGIN:
-                    result = AddLengthResult(result, Client.EmailSize);
-                    result = MergeArrays(result,FillToSize(splitedCommand[1], Client.EmailSize));
+                    result = AddLengthResult(result, User.EmailSize);
+                    result = MergeArrays(result,FillToSize(splitedCommand[1], User.EmailSize));
                     break;
                 case (int)ProtocolConstants.RequestCommands.USER_CREATE:
-                    result = AddLengthResult(result, Client.EmailSize+Client.NameSize);
-                    result = MergeArrays(result,FillToSize(splitedCommand[1], Client.EmailSize));
-                    var userData = MergeArrays(FillToSize(splitedCommand[1], Client.NameSize),
-                        FillToSize(splitedCommand[2], Client.NameSize));
+                    result = AddLengthResult(result, User.EmailSize+User.NameSize);
+                    result = MergeArrays(result,FillToSize(splitedCommand[1], User.EmailSize));
+                    var userData = MergeArrays(FillToSize(splitedCommand[1], User.NameSize),
+                        FillToSize(splitedCommand[2], User.NameSize));
                     result = MergeArrays(result,userData);
                     break;
                 case (int)ProtocolConstants.RequestCommands.USER_DELETE:
-                    result = AddLengthResult(result, Client.EmailSize);
-                    result = MergeArrays(result,FillToSize(splitedCommand[1], Client.EmailSize));
+                    result = AddLengthResult(result, User.EmailSize);
+                    result = MergeArrays(result,FillToSize(splitedCommand[1], User.EmailSize));
                     break;
                 case (int)ProtocolConstants.RequestCommands.PHOTO_GET:
-                    result = AddLengthResult(result, Client.EmailSize);
-                    result = MergeArrays(result,FillToSize(splitedCommand[1], Client.EmailSize));
+                    result = AddLengthResult(result, User.EmailSize);
+                    result = MergeArrays(result,FillToSize(splitedCommand[1], User.EmailSize));
                     break;
                 case (int)ProtocolConstants.RequestCommands.PHOTO_LOAD:
                     result = GetFileFromFs(splitedCommand[1]);
@@ -67,10 +67,10 @@ namespace Controller.FileClient
                     //OBTENER LOS ARCHIVOS DE LA RUTA
                     break;
                 case (int)ProtocolConstants.RequestCommands.COMMENT_PHOTO:
-                    result = AddLengthResult(result, Client.EmailSize+Client.NameSize);
-                    result = MergeArrays(result,FillToSize(splitedCommand[1], Client.EmailSize));
-                    var commentData = MergeArrays(FillToSize(splitedCommand[1], Client.EmailSize),
-                        FillToSize(splitedCommand[2], Client.NameSize));
+                    result = AddLengthResult(result, User.EmailSize+User.NameSize);
+                    result = MergeArrays(result,FillToSize(splitedCommand[1], User.EmailSize));
+                    var commentData = MergeArrays(FillToSize(splitedCommand[1], User.EmailSize),
+                        FillToSize(splitedCommand[2], User.NameSize));
                     result = MergeArrays(result,commentData);
                     break;
                 case (int)ProtocolConstants.RequestCommands.PHOTO_COMMENTS:
@@ -103,21 +103,21 @@ namespace Controller.FileClient
 
             switch (responseCode)
             {
-                case (int)ProtocolConstants.RESPONSE_COMMANDS.OK:
+                case (int)ProtocolConstants.ResponseCommands.OK:
                     msg = ByteToString(await communication.ReadAsync(ProtocolConstants.MessageSize));
                     break;
-                case (int)ProtocolConstants.RESPONSE_COMMANDS.ERROR:
+                case (int)ProtocolConstants.ResponseCommands.ERROR:
                     msg = ByteToString(await communication.ReadAsync(ProtocolConstants.MessageSize));
                     break;
-                case (int)ProtocolConstants.RESPONSE_COMMANDS.LIST_USERS:
+                case (int)ProtocolConstants.ResponseCommands.LIST_USERS:
                     var users = await GetClientsAsync(communication, dataLength);
                     msg = users.ToString();
                     break;
-                case (int)ProtocolConstants.RESPONSE_COMMANDS.LIST_PHOTOS:
+                case (int)ProtocolConstants.ResponseCommands.LIST_PHOTOS:
                     var photos = await GetPhotosAsync(communication, dataLength);
                     msg = photos.ToString();
                     break;
-                case (int)ProtocolConstants.RESPONSE_COMMANDS.LIST_COMMENTS:
+                case (int)ProtocolConstants.ResponseCommands.LIST_COMMENTS:
                     var comments = await GetPhotosAsync(communication, dataLength);
                     msg = comments.ToString();
                     break;
@@ -126,7 +126,7 @@ namespace Controller.FileClient
             Console.WriteLine(msg);
         }
 
-        private static string UsersToString(IEnumerable<Client> clients)
+        private static string UsersToString(IEnumerable<User> clients)
         {
             return clients.Aggregate("",(acc, x) => acc + x.Email+','+x.Name+','+x.LastConnection+'\n');
         }
@@ -136,16 +136,16 @@ namespace Controller.FileClient
             throw new NotImplementedException();
         }
 
-        private static async Task<IEnumerable<Client>> GetClientsAsync(NetworkCommunication communication, int dataLength)
+        private static async Task<IEnumerable<User>> GetClientsAsync(NetworkCommunication communication, int dataLength)
         {
-            var users = new List<Client>();
+            var users = new List<User>();
 
             while (dataLength!=0)
             {
-                var name = ByteToString(await communication.ReadAsync(Client.NameSize));
-                var email = ByteToString(await communication.ReadAsync(Client.EmailSize));
-                var lastConnection = ByteToDateTime(await communication.ReadAsync(Client.LastConnectionSize));
-                var user = new Client()
+                var name = ByteToString(await communication.ReadAsync(User.NameSize));
+                var email = ByteToString(await communication.ReadAsync(User.EmailSize));
+                var lastConnection = ByteToDateTime(await communication.ReadAsync(User.LastConnectionSize));
+                var user = new User()
                 {
                     Name = name,
                     Email = email,
@@ -154,7 +154,7 @@ namespace Controller.FileClient
 
                 users.Add(user);
 
-                dataLength -= Client.NameSize + Client.EmailSize + Client.LastConnectionSize;
+                dataLength -= User.NameSize + User.EmailSize + User.LastConnectionSize;
             }
 
             return users;
@@ -169,7 +169,7 @@ namespace Controller.FileClient
                 var id = ByteToString(await communication.ReadAsync(Photo.IdSize));
                 var name = ByteToString(await communication.ReadAsync(Photo.NameSize));
                 var lengthFile = ByteToInt(await communication.ReadAsync(Photo.LengthSize));
-                var email = ByteToString(await communication.ReadAsync(Client.EmailSize));
+                var email = ByteToString(await communication.ReadAsync(User.EmailSize));
                 //TODO
                 //Como hacer fotos???
                 var user = new Photo()
@@ -177,7 +177,7 @@ namespace Controller.FileClient
                     Id = id,
                     Name = name,
                     LengthFile = lengthFile,
-                    Client = new Client()
+                    User = new User()
                     {
                         Email = email
                     }
@@ -185,7 +185,7 @@ namespace Controller.FileClient
         
                 photos.Add(user);
         
-                dataLength -= Photo.IdSize + Photo.NameSize + Photo.LengthSize + Client.EmailSize;
+                dataLength -= Photo.IdSize + Photo.NameSize + Photo.LengthSize + User.EmailSize;
             }
         
             return photos;
