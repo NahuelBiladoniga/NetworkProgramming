@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TCPComm.Protocol
+namespace Contracts
 {
-    public class ProtocolResponse
+    class Class1
     {
-
-
-
     }
 }

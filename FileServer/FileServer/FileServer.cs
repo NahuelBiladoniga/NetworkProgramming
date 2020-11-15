@@ -1,61 +1,66 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net;
-using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
-using TCPComm.Protocol;
+using System.Net.Sockets;
+using Contracts;
+using System.Threading;
+using Domain;
 
-namespace Controller.FileServer
+namespace FileServer.FileServer
 {
-    public class FileServer
+    class FileServer
     {
-        static TcpListener server;
+        private Socket _socket;
+        private IService _service;
 
-        static async Task Main(string[] args)
+        public bool AcceptClients { get; set; }
+        public FileServer(Socket socket, IService service)
         {
-            Console.WriteLine("Starting server");
-            var ipEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 6000);
-            server = new TcpListener(ipEndPoint);
-            server.Start(100);
+            _socket = socket;
+            _service = service;
 
-            while (true)
+            AcceptClients = true;
+
+            Thread acceptConnections = new Thread(AcceptConnections);
+            acceptConnections.Start();
+        }
+
+        private void AcceptConnections()
+        {
+            while (AcceptClients)
             {
-                await WaitForClientConnection();
+                AddClient();
             }
         }
 
-        static async Task WaitForClientConnection()
+        private void AddClient()
         {
-            TcpClient client = await server.AcceptTcpClientAsync();
-            NetworkStream stream = client.GetStream();
-            var communication = new NetworkCommunication(stream);
-            var readTask = Task.Run(async () => await ReadAsync(communication));
-            await WriteAsync(communication);
+            Client client = new Client(_socket.Accept());
+            _service.AddClient(client);
+            Thread thread = new Thread(() => Connection(client));
+            thread.Start();
         }
 
-        static async Task WriteAsync(NetworkCommunication communication, ProtocolResponse response)
+        private void Connection(Client client)
         {
-            while (true)
+            bool is_connected = true;
+            try
             {
-                var msg = Console.ReadLine();
-                var data = Encoding.UTF8.GetBytes(msg);
-                byte[] dataLength = BitConverter.GetBytes(data.Length);
-                await communication.WriteAsync(dataLength);
-                await communication.WriteAsync(data);
+                GetInformation(is_connected, client);
+            }
+            catch (SocketException)
+            {
+                is_connected = false;
+               //DESCONECTAR CLIENTE ()
+                client.Socket.Shutdown(SocketShutdown.Both);
+                client.Socket.Close();
             }
         }
 
-        static async Task ReadAsync(NetworkCommunication communication)
+        private void GetInformation(bool gettingData, Client client)
         {
-            while (true)
-            {
-                byte[] dataLength = await communication.ReadAsync(ProtocolConstants.FixedDataSize);
-                int dataSize = BitConverter.ToInt32(dataLength, 0);
-                byte[] data = await communication.ReadAsync(dataSize);
-                var msg = Encoding.UTF8.GetString(data);
-                Console.WriteLine(msg);
-            }
+           
         }
     }
 }
