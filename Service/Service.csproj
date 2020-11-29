@@ -2,13 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Configurations>Debug;Release;InstaPhoto</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="FileServer\" />
+    <Compile Remove="FileServer\**" />
+    <EmbeddedResource Remove="FileServer\**" />
+    <None Remove="FileServer\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Contracts\Contracts.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
