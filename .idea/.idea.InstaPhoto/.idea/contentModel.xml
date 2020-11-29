@@ -116,12 +116,8 @@
           </e>
         </e>
         <e p="Protocol" t="Include">
-          <e p="Commands.cs" t="Include" />
           <e p="NetworkCommunication.cs" t="Include" />
           <e p="ProtocolConstants.cs" t="Include" />
-          <e p="ProtocolResponse.cs" t="Include" />
-          <e p="ReadAsync.cs" t="Include" />
-          <e p="WriteAsync.cs" t="Include" />
         </e>
         <e p="TCPComm.csproj" t="IncludeRecursive" />
         <e p="Utils.cs" t="Include" />

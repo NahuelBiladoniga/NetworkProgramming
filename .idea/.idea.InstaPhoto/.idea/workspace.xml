@@ -25,7 +25,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="135eaaf7-e28a-4e86-ba43-e747b03c161b" name="Default Changelist" comment="" />
+    <list default="true" id="135eaaf7-e28a-4e86-ba43-e747b03c161b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.InstaPhoto/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.InstaPhoto/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.InstaPhoto/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.InstaPhoto/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TCPComm/Protocol/Commands.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TCPComm/Protocol/ProtocolResponse.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TCPComm/Protocol/ReadAsync.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TCPComm/Protocol/WriteAsync.cs" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -160,6 +167,13 @@
       <workItem from="1605057732107" duration="606000" />
       <workItem from="1605213116340" duration="5946000" />
       <workItem from="1605362508810" duration="12809000" />
+      <workItem from="1605790589737" duration="936000" />
+      <workItem from="1606350447231" duration="75000" />
+      <workItem from="1606350615141" duration="245000" />
+      <workItem from="1606531634485" duration="1032000" />
+      <workItem from="1606535761049" duration="680000" />
+      <workItem from="1606623869658" duration="667000" />
+      <workItem from="1606672512755" duration="469000" />
     </task>
     <task id="LOCAL-00001" summary="Added client implementation">
       <created>1604869202450</created>
