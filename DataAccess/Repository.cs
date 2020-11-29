@@ -4,39 +4,60 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain;
+using Contracts;
+
 
 namespace DataAccess
 {
-    class Repository
+    public class Repository : IRepository
     {
-        public static List<Client> Clients { get; set; }
+        public static List<User> Users { get; set; }
 
-        private object lock_clients = new object();
+        private object lock_users = new object();
 
         public Repository()
         {
-            Clients = new List<Client>();
+            Users = new List<User>();
         }
 
-        public List<Client> GetClients()
+        public List<User> GetUsers()
         {
-            return Clients;
+            return Users;
         }
 
-        public void AddClient(Client client)
+        public void AddUser(User user)
         {
-            lock (lock_clients)
+            lock (lock_users)
             {
-                Clients.Add(client);
+                Users.Add(user);
             }
         }
 
-        public bool DeleteClient(Client client)
+        public void UpdateUser(User user)
         {
-            lock (lock_clients)
+            lock (lock_users)
             {
-                return Clients.Remove(client);
+                try
+                {
+                    User old_user = Users.Find(c => c.Email == user.Email);
+                    old_user.Name = user.Name;
+                    old_user.Email = user.Email;
+                }
+                catch (ArgumentNullException)
+                {
+                    throw new DataAccessException($"Error al editar cliente. El cliente {user.ToString()} no existe.");
+                }
+            }
+        }
+
+        public bool DeleteUser(User user)
+        {
+            lock (lock_users)
+            {
+                return Users.Remove(user);
             }
         }
     }
+
+    
 }

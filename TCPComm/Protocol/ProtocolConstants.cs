@@ -15,6 +15,10 @@ namespace TCPComm.Protocol
         public const int PHOTO_ID = 20;
         public const int PHOTO_NAME = 20;
         public const int PHOTO_LENGTH = 8;
+        public const int MAX_PACKET_SIZE = 32768;
+        public const int FIXED_FILE_NAME_LENGTH = 4;
+        public const int SIZE = 4;
+
 
         public enum COMMANDS{
             RESPONSE,

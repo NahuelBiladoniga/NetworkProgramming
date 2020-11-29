@@ -9,7 +9,7 @@ namespace Service.FileClient
     public interface IClientService
     {
         bool Login(string email);
-        void CreateUser(Client user);
+        void CreateUser(User user);
         void DeleteUser(string email);
         IEnumerable<Photo> ListPhotos(string email = "");
         void UploadPhoto(Photo photo);

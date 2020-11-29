@@ -7,10 +7,10 @@ namespace Contracts
 {
     public interface IRepository
     {
-        List<Client> GetClients();
+        List<User> GetUsers();
 
-        void AddClient(Client client);
+        void AddUser(User user);
 
-        bool DeleteClient(Client client);
+        bool DeleteUser(User user);
     }
 }
