@@ -12,6 +12,8 @@ namespace DataAccess
     public class Repository : IRepository
     {
         public static List<User> Users { get; set; }
+        public static List<Photo> Photos { get; set; }
+        public static List<Comment> Comments { get; set; }
 
         private object lock_users = new object();
 
@@ -33,6 +35,11 @@ namespace DataAccess
             }
         }
 
+        public List<Photo> GetPhotos()
+        {
+            throw new NotImplementedException();
+        }
+
         public void UpdateUser(User user)
         {
             lock (lock_users)
@@ -48,6 +55,21 @@ namespace DataAccess
                     throw new DataAccessException($"Error al editar cliente. El cliente {user.ToString()} no existe.");
                 }
             }
+        }
+
+        public void DisconnectUser(User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public User GetUser(User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CommentPhoto(Comment commentEntity)
+        {
+            throw new NotImplementedException();
         }
 
         public bool DeleteUser(User user)

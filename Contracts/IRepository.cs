@@ -12,5 +12,10 @@ namespace Contracts
         void AddUser(User user);
 
         bool DeleteUser(User user);
+        List<Photo> GetPhotos();
+        void UpdateUser(User user);
+        void DisconnectUser(User user);
+        User GetUser(User user);
+        void CommentPhoto(Comment commentEntity);
     }
 }

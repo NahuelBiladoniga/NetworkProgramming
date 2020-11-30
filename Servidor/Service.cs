@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Contracts;
 using Domain;
-namespace Servidor
+using TCPComm;
+
+namespace Server
 {
     public class Service : IService
     {
@@ -19,23 +20,54 @@ namespace Servidor
             return _repository.GetUsers();
         }
 
-        public void AddUser(User client)
+        public List<Photo> GetAllPhotos()
         {
-            _repository.AddUser(client);
+            return _repository.GetPhotos();
         }
 
-        public void DeleteUser(User client)
+        public void AddUser(User user)
         {
-            _repository.DeleteUser(client);
+            _repository.AddUser(user);
+        }
+
+        public void DeleteUser(User user)
+        {
+            _repository.DeleteUser(user);
+        }
+
+        public void UpdateUser(User user)
+        {
+            _repository.UpdateUser(user);
+        }
+
+        public void DisconnectUser(User user)
+        {
+            _repository.DisconnectUser(user);
         }
 
         public int GetClientSize(){
             return _repository.GetUsers().Count;
         }
 
+        public void AddClient(CommunicationClient client)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool ContainsUser(User user)
         {
             return _repository.GetUsers().Contains(user);
+        }
+
+        public bool AutenticateUser(User user)
+        {
+            var savedUser = _repository.GetUser(user);
+            return savedUser.IsUserValid(user);
+        }
+        
+        public void CommentPhoto(Comment comment)
+        {
+            _repository.CommentPhoto(comment);
         }
     }
 }

@@ -9,14 +9,15 @@ using TCPComm;
 using System.Linq;
 using Domain;
 
-namespace Servidor
+namespace Server
 {
     public class Server
     {
         public IService Service { get; }
         private TcpListener _listener;
         public bool AcceptClients { get; set; }
-
+        public User UserLogged { get; set; }
+        
         public Server(TcpListener listener, IService service)
         {
             _listener = listener;
@@ -39,12 +40,13 @@ namespace Servidor
 
         private void AddClient()
         {
-            TCPComm.CommunicationClient client = new TCPComm.CommunicationClient(_listener.AcceptTcpClient());
+            CommunicationClient client = new CommunicationClient(_listener.AcceptTcpClient());
             Service.AddClient(client);
+            
             new Thread(() => Connection(client)).Start();
         }
 
-        private void Connection(TCPComm.CommunicationClient client)
+        private void Connection(CommunicationClient client)
         {
             try
             {
@@ -57,7 +59,7 @@ namespace Servidor
             }
         }
 
-        private async void GetData(TCPComm.CommunicationClient client)
+        private void GetData(CommunicationClient client)
         {
             ValidateLogin(client);
             //while (gettingData)
@@ -67,7 +69,7 @@ namespace Servidor
             //    //_service.ExecuteOperation(command, protocol);
             //}
         }
-        private async void ValidateLogin(TCPComm.CommunicationClient client)
+        private async void ValidateLogin(CommunicationClient client)
         {
             bool existUser = false;
             do
@@ -75,7 +77,7 @@ namespace Servidor
                 string command = await client.networkCommunication.RecieveDataString();
                 var infoSplitter = command.Split('$');
                 var user = new User(infoSplitter);
-                existUser = Service.ContainsUser(user);
+                existUser = Service.AutenticateUser(user);
                 if (!existUser)
                 {
                     await client.networkCommunication.SendDataString("Error$Mensage={message}");
@@ -89,10 +91,10 @@ namespace Servidor
 
         }
 
-        private void DisconnectUser(TCPComm.CommunicationClient client)
+        private void DisconnectUser(CommunicationClient client)
         {
             Console.WriteLine("\n\nSe ha desconectado: ", client.ToString());
-            Service.DeleteClient(client);
+            // Service.DisconnectUser(client);
         }
 
         public string[] GetConnectedClients()

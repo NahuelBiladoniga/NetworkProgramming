@@ -54,15 +54,14 @@ namespace TCPComm
             return Encoding.UTF8.GetBytes(data);
         }
 
-        public static byte[] AddCommandResult(byte[] result, string cmd)
-        {
-            return MergeArrays(result, FillToSize(cmd, ProtocolConstants.CommandSize));
-        }
-
-        public static byte[] AddLengthResult(byte[] result, int size)
-        {
-            return MergeArrays(result, FillToSize(size.ToString(), ProtocolConstants.IntegerSize));
-        }
-
+        // public static byte[] AddCommandResult(byte[] result, string cmd)
+        // {
+        //     return MergeArrays(result, FillToSize(cmd, ProtocolConstants.CommandSize));
+        // }
+        //
+        // public static byte[] AddLengthResult(byte[] result, int size)
+        // {
+        //     return MergeArrays(result, FillToSize(size.ToString(), ProtocolConstants.IntegerSize));
+        // }
     }
 }
