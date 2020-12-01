@@ -10,19 +10,19 @@ namespace TCPComm.Protocol
         {
             var data = new byte[length];
 
-            using (var fileStream = new FileStream(path, FileMode.Open))
+            using var fileStream = new FileStream(path, FileMode.Open)
             {
-                fileStream.Position = offset;
-                var bytesRead = 0;
-                while (bytesRead < length)
+                Position = offset
+            };
+            var bytesRead = 0;
+            while (bytesRead < length)
+            {
+                var read = fileStream.Read(data, bytesRead, length - bytesRead);
+                if (read == 0)
                 {
-                    var read = fileStream.Read(data, bytesRead, length - bytesRead);
-                    if (read == 0)
-                    {
-                        throw new Exception("Couldn't not read file");
-                    }
-                    bytesRead += read;
+                    throw new Exception("Couldn't not read file");
                 }
+                bytesRead += read;
             }
 
             return data;
@@ -30,23 +30,21 @@ namespace TCPComm.Protocol
 
         public void Write(string relativePath, string fileName, byte[] data)
         {
-            string path = GetFullPath();
-            string fullPath = Path.Combine(path, relativePath);
+            var path = GetFullPath();
+            var fullPath = Path.Combine(path, relativePath);
             Directory.CreateDirectory(fullPath);
 
-            using (FileStream fileStream = new FileStream(fullPath + "\\" + fileName, FileMode.Append))
-            {
-                fileStream.Write(data, 0, data.Length);
-            }
+            using var fileStream = new FileStream(fullPath + "\\" + fileName, FileMode.Append);
+            fileStream.Write(data, 0, data.Length);
         }
 
         public FileInfo[] GetFileInfoInDirectory(string relativePath)
         {
-            string path = GetFullPath();
-            string fullPath = Path.Combine(path, relativePath);
+            var path = GetFullPath();
+            var fullPath = Path.Combine(path, relativePath);
 
-            DirectoryInfo directory = new DirectoryInfo(fullPath);
-            FileInfo[] files = directory.GetFiles();
+            var directory = new DirectoryInfo(fullPath);
+            var files = directory.GetFiles();
 
             return files;
         }

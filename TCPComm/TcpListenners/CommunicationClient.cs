@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Net.Sockets;
 using System.Threading;
+using Domain;
 using TCPComm;
 using TCPComm.Protocol;
 
@@ -10,14 +11,16 @@ namespace TCPComm
 {
     public class CommunicationClient
     {
-        public TcpClient clientListener { get; }
-
-        public NetworkCommunication networkCommunication;
+        public TcpClient ClientListener { get; }
+        public User User { get; set; }
+        public readonly StreamCommunication StreamCommunication;
+        public readonly FileCommsHandler FileCommsHandler;
 
         public CommunicationClient(TcpClient clientListener)
         {
-            this.clientListener = clientListener;
-            this.networkCommunication = new NetworkCommunication(clientListener.GetStream());
+            ClientListener = clientListener;
+            StreamCommunication = new StreamCommunication(clientListener.GetStream());
+            FileCommsHandler = new FileCommsHandler(clientListener.GetStream());
         }
     }
 }

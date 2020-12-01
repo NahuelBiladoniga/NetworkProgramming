@@ -7,6 +7,7 @@ using TCPComm.Protocol;
 using Contracts;
 using TCPComm;
 using System.Linq;
+using System.Threading.Tasks;
 using Domain;
 
 namespace Server
@@ -21,13 +22,11 @@ namespace Server
         public Server(TcpListener listener, IService service)
         {
             _listener = listener;
-            this.Service = service;
+            Service = service;
 
             AcceptClients = true;
 
-            new Thread(AcceptConnections).Start();
-
-            //server.Stop();
+            AcceptConnections();
         }
 
         private void AcceptConnections()
@@ -40,8 +39,8 @@ namespace Server
 
         private void AddClient()
         {
-            CommunicationClient client = new CommunicationClient(_listener.AcceptTcpClient());
-            Service.AddClient(client);
+            var client = new CommunicationClient(_listener.AcceptTcpClient());
+            // Service.AddClient(client);
             
             new Thread(() => Connection(client)).Start();
         }
@@ -55,51 +54,82 @@ namespace Server
             catch (SocketException)
             {
                 DisconnectUser(client);
-                client.clientListener.Close();
+                client.ClientListener.Close();
             }
         }
 
-        private void GetData(CommunicationClient client)
+        private async void GetData(CommunicationClient client)
         {
             ValidateLogin(client);
-            //while (gettingData)
-            //{
-            //    ExtendedProtocol protocol = new ExtendedProtocol(client.Socket, new CustomFileStream());
-            //    string command = protocol.RecieveDataString();
-            //    //_service.ExecuteOperation(command, protocol);
-            //}
+            
+            var gettingData = true;
+            
+            while (gettingData)
+            {
+                await ProcessCommands(client);
+            }
         }
+
+        private async Task ProcessCommands(CommunicationClient client)
+        {
+            var command = await client.StreamCommunication.RecieveDataString();
+            var infoSplitter = command.Split('$');
+            var bodydata = infoSplitter.Skip(1).ToArray();
+            switch (infoSplitter[0])
+            {
+                case "CreateUser":
+                    ClientHandler.HandleCreateUser(bodydata, this,client);
+                    break;
+                case "UploadPhoto":
+                    ClientHandler.HandleUploadPhoto(bodydata, this,client);
+                    break;
+                case "ViewUsers":
+                    ClientHandler.HandleViewUsers(bodydata, this,client);
+                    break;
+                case "ViewPhotos":
+                    ClientHandler.HandleViewPhotos(bodydata, this,client);
+                    break;
+                case "ViewCommentsPhoto":
+                    ClientHandler.HandleViewCommentsPhoto(bodydata, this,client);
+                    break;
+                case "CommentPhoto":
+                    ClientHandler.HandleCommentPhoto(bodydata, this,client);
+                    break;
+                default:
+                    client.StreamCommunication.SendDataString("Error$Message=Invalid Command");
+                    break;
+            }
+        }
+
         private async void ValidateLogin(CommunicationClient client)
         {
-            bool existUser = false;
+            var existUser = false;
             do
             {
-                string command = await client.networkCommunication.RecieveDataString();
+                var command = await client.StreamCommunication.RecieveDataString();
                 var infoSplitter = command.Split('$');
                 var user = new User(infoSplitter);
                 existUser = Service.AutenticateUser(user);
                 if (!existUser)
                 {
-                    await client.networkCommunication.SendDataString("Error$Mensage={message}");
+                    client.StreamCommunication.SendDataString("Error$Message=Invalid user");
                 }
                 else
                 {
-                    await client.networkCommunication.SendDataString("Ok$Mensage={message}");
+                    client.StreamCommunication.SendDataString("Ok$Message=Login Successfully");
                 }
             } while (!existUser);
-
-
         }
 
         private void DisconnectUser(CommunicationClient client)
         {
-            Console.WriteLine("\n\nSe ha desconectado: ", client.ToString());
+            // Console.WriteLine("\n\nSe ha desconectado: ", client.ToString());
             // Service.DisconnectUser(client);
         }
 
         public string[] GetConnectedClients()
         {
-            List<string> connectedClients = new List<string>();
+            var connectedClients = new List<string>();
             Service.GetAllClients().ForEach(c => connectedClients.Add(c.ToString()));
             return connectedClients.ToArray();
         }    

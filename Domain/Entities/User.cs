@@ -13,6 +13,7 @@ namespace Domain
         public string Password { get; set; }
         public DateTime LastConnection { get; set; }
         public List<Photo> Photos { get; set; }
+        public bool IsConnected { get; set; }
 
         public User()
         {
@@ -36,6 +37,8 @@ namespace Domain
         }
 
         public override string ToString() => $"Nombre: {Name} - Email: {Email} - Fecha ultima conexion: {LastConnection.ToString("MM/dd/yy H:mm")}";
+
+        public string ToStringProtocol() => $"Name={Name}$Email={Email}$Conected={IsConnected}$LastConnection={LastConnection}";
 
         public override bool Equals(object obj)
         {

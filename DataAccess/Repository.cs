@@ -40,6 +40,11 @@ namespace DataAccess
             throw new NotImplementedException();
         }
 
+        public List<Photo> GetPhotosFromUser(User user)
+        {
+            throw new NotImplementedException();
+        }
+
         public void UpdateUser(User user)
         {
             lock (lock_users)

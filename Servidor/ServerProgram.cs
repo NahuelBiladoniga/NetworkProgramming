@@ -29,37 +29,12 @@ namespace Server
 
             Menu(server);
         }
-
-        static async Task WriteAsync(NetworkCommunication communication)
-        {
-            while (true)
-            {
-                var msg = Console.ReadLine();
-                var data = System.Text.Encoding.UTF8.GetBytes(msg);
-                var dataLength = BitConverter.GetBytes(data.Length);
-                await communication.WriteAsync(dataLength);
-                await communication.WriteAsync(data);
-            }
-        }
-
-        //public static async Task ReadAsync(NetworkCommunication communication)
-        //{
-        //    while (true)
-        //    {
-        //        byte[] dataLength = await communication.ReadAsync(ProtocolConstants.FixedDataSize);
-        //        int dataSize = BitConverter.ToInt32(dataLength, 0);
-        //        byte[] data = await communication.ReadAsync(dataSize);
-        //        var msg = System.Text.Encoding.UTF8.GetString(data);
-        //        Console.WriteLine(msg);
-        //    }
-        //}
-
+        
         private static void Menu(Server server)
         {
             string[] options = new string[] { 
                 "LISTAR CLIENTES CONECTADOS", 
                 "ADMINISTRAR CLIENTES", 
-                "Administrar Fotos",
                 "APAGAR SERVIDOR" 
             };
             ConsoleValidations.ListOperations($"{"ADMINISTRACIÓN DEL SERVIDOR"}\n\nMENÚ PRINCIPAL:", options, true);
@@ -83,9 +58,6 @@ namespace Server
                     CrudClient(server);
                     break;
                 case "3":
-                    PhotosHandler(server);
-                    break;
-                case "4":
                     Environment.Exit(Environment.ExitCode);
                     break;
                 default:
@@ -161,7 +133,7 @@ namespace Server
         
         private static void CrudClient(Server server)
         {
-            var menu_options = new string[] {
+            var menu_options = new []{
                 "Crear un cliente",
                 "Borrar un cliente",
                 "Modificar un cliente existente",
@@ -176,13 +148,13 @@ namespace Server
             switch (option)
             {
                 case "1":
-                    UserHandler.CreateUser(server);
+                    AdminHandler.CreateUser(server);
                     break;
                 case "2":
-                    UserHandler.DeleteUser(server);
+                    AdminHandler.DeleteUser(server);
                     break;
                 case "3":
-                    UserHandler.ModifyUser(server);
+                    AdminHandler.ModifyUser(server);
                     break;
                 case "4":
                     Menu(server);
@@ -199,25 +171,5 @@ namespace Server
                 Menu(server);
             }
         }
-
-        // public static string ReadValidRange(string input, int min_value, int max_value)
-        // {
-        //     if (input.Trim().ToLower() == "q")
-        //     {
-        //         return input.Trim();
-        //     }
-        //
-        //     bool isInt = false;
-        //     int option = int.MinValue;
-        //
-        //     while (!isInt || option < min_value || option > max_value)
-        //     {
-        //         Console.WriteLine($"\nIngrese una opción entre {min_value} y {max_value}");
-        //         input = Console.ReadLine();
-        //         isInt = int.TryParse(input, out option);
-        //     }
-        //
-        //     return input;
-        // }
     }
 }

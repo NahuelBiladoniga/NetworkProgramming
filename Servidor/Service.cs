@@ -20,9 +20,19 @@ namespace Server
             return _repository.GetUsers();
         }
 
-        public List<Photo> GetAllPhotos()
+        public List<User> GetConnectedClients()
         {
-            return _repository.GetPhotos();
+            throw new NotImplementedException();
+        }
+
+        public List<Photo> GetPhotosFromUser(User user)
+        {
+            return _repository.GetPhotosFromUser(user);
+        }
+
+        public List<Comment> GetCommentsFromPhoto(Photo id)
+        {
+            throw new NotImplementedException();
         }
 
         public void AddUser(User user)
@@ -68,6 +78,11 @@ namespace Server
         public void CommentPhoto(Comment comment)
         {
             _repository.CommentPhoto(comment);
+        }
+
+        public void UploadPhoto(Photo photo)
+        {
+            throw new NotImplementedException();
         }
     }
 }

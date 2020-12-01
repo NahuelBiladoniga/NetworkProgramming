@@ -18,12 +18,12 @@ namespace TCPComm.Protocol
 
             string[] availableIPs = GetIPs().ToArray();
             Array.ForEach(availableIPs,
-                          ip => Console.Write("{0} - {1}\n", ++i, ip));
+                ip => Console.Write("{0} - {1}\n", ++i, ip));
 
             var option = ReadUntilValid(
-                            prompt: "\nSeleccione una IP",
-                            pattern: $"^[1-{i}]$",
-                            errorMsg: $"Ingrese un número entre 1 y {i}.");
+                prompt: "\nSeleccione una IP",
+                pattern: $"^[1-{i}]$",
+                errorMsg: $"Ingrese un número entre 1 y {i}.");
             return availableIPs[int.Parse(option) - 1];
         }
 
@@ -32,8 +32,7 @@ namespace TCPComm.Protocol
             if (clear) { Console.Clear(); };
             Console.WriteLine("{0}\n", title);
             int i = 0;
-            Array.ForEach(options,
-                          op => Console.Write("{0} - {1}\n", ++i, op));
+            Array.ForEach(options, op => Console.Write("{0} - {1}\n", ++i, op));
         }
 
         public static string ReadUntilValid(string prompt, string pattern, string errorMsg)

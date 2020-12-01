@@ -6,7 +6,7 @@ using TCPComm.Protocol;
 
 namespace Server
 {
-    public static class UserHandler
+    public static class AdminHandler
     {
         public static void CreateUser(Server server)
         {
@@ -33,20 +33,7 @@ namespace Server
             //
             // Menu(server);
         }
-        
-                
-        public static List<User> ListUsers(string server_clients)
-        {
-            string[] one_by_one = server_clients.Split('$');
-            one_by_one = one_by_one.Take(one_by_one.Length - 1).ToArray();
-            List<User> clients = new List<User>();
-            foreach (string client in one_by_one)
-            {
-                clients.Add(new User(client.Split('#')));
-            }
-            return clients;
-        }
-        
+
         public static void DeleteUser(Server server)
         {
             var clients = server.Service.GetAllClients();

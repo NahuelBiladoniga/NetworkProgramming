@@ -6,19 +6,28 @@ using System.Threading.Tasks;
 
 namespace TCPComm.Protocol
 {
-    public class NetworkCommunication
+    public class StreamCommunication
     {
+        public const int FixedNameSize = 4;
+        public const int FixedFileSize = 8;
+        public const int MaxPacketSize = 32768;
         private readonly NetworkStream _networkStream;
 
-        public NetworkCommunication(NetworkStream networkStream)
+        public StreamCommunication(NetworkStream networkStream)
         {
             _networkStream = networkStream;
         }
-
-        public async Task WriteAsync(byte[] data)
+        
+        public static long CalculateFileParts(long fileSize)
         {
-            int dataRead = 0;
-            int length = data.Length;
+            var fileParts = fileSize / MaxPacketSize;
+            return fileParts * MaxPacketSize == fileSize ? fileParts : fileParts + 1;
+        }
+
+        public void Write(byte[] data)
+        {
+            var dataRead = 0;
+            var length = data.Length;
             _networkStream.Write(buffer: data,
                                 offset: dataRead,
                                 size: length - dataRead);
@@ -27,7 +36,7 @@ namespace TCPComm.Protocol
 
         public async Task<byte[]> ReadAsync(int length)
         {
-            int offset = 0;
+            var offset = 0;
             var data = new byte[length];
             while (offset < length)
             {
@@ -46,8 +55,8 @@ namespace TCPComm.Protocol
         }
 
         public async Task<int> ReadDataLengthAsync(){
-            var data = await Task.Run(async () => await ReadAsync(ProtocolConstants.SIZE));
-            return Utils.ByteToInt(data);            
+            var data = await Task.Run(async () => await ReadAsync(ProtocolConstants.Size));
+            return ConversionHandler.ConvertBytesToInt(data);            
         }
 
         public async Task<byte[]> RecieveDataBytes()
@@ -57,9 +66,9 @@ namespace TCPComm.Protocol
             return dataReceive;
         }
 
-        public async Task SendDataString(String data)
+        public void SendDataString(String data)
         {
-            await Task.Run(async () => await WriteAsync(Utils.StringToByte(data)));
+             Write(ConversionHandler.ConvertStringToBytes(data));
         }
 
     }

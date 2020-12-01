@@ -12,7 +12,7 @@ namespace Contracts
         void AddUser(User user);
 
         bool DeleteUser(User user);
-        List<Photo> GetPhotos();
+        List<Photo> GetPhotosFromUser(User user);
         void UpdateUser(User user);
         void DisconnectUser(User user);
         User GetUser(User user);

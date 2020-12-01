@@ -7,7 +7,9 @@ namespace Contracts
     public interface IService
     {
         List<User> GetAllClients();
-        List<Photo> GetAllPhotos();
+        List<User> GetConnectedClients();
+        List<Photo> GetPhotosFromUser(User user);
+        List<Comment> GetCommentsFromPhoto(Photo id);
         void AddUser(User user);
         void DeleteUser(User user);
         void UpdateUser(User user);
@@ -17,5 +19,6 @@ namespace Contracts
         bool ContainsUser(User user);
         bool AutenticateUser(User user);
         void CommentPhoto(Comment comment);
+        void UploadPhoto(Photo photo);
     }
 }
