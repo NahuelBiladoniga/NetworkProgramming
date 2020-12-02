@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Threading;
-using TCPComm.Protocol;
 using Contracts;
 using TCPComm;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain;
+using TCPComm.Protocol;
 
 namespace Server
 {
     public class Server
     {
         public IService Service { get; }
-        private TcpListener _listener;
+        private readonly TcpListener _listener;
         public bool AcceptClients { get; set; }
         public User UserLogged { get; set; }
         
@@ -58,9 +56,9 @@ namespace Server
             }
         }
 
-        private async void GetData(CommunicationClient client)
+        private async Task GetData(CommunicationClient client)
         {
-            ValidateLogin(client);
+            await ClientHandler.ValidateLogin(this,client);
             
             var gettingData = true;
             
@@ -72,53 +70,41 @@ namespace Server
 
         private async Task ProcessCommands(CommunicationClient client)
         {
-            var command = await client.StreamCommunication.RecieveDataString();
-            var infoSplitter = command.Split('$');
-            var bodydata = infoSplitter.Skip(1).ToArray();
-            switch (infoSplitter[0])
+            var request = ConversionHandler.ConvertBytesToInt( await client.StreamCommunication.ReadAsync(ProtocolConstants.RequestTypeLength));
+            if (request == (int)ProtocolConstants.Commands.Request )
             {
-                case "CreateUser":
-                    ClientHandler.HandleCreateUser(bodydata, this,client);
-                    break;
-                case "UploadPhoto":
-                    ClientHandler.HandleUploadPhoto(bodydata, this,client);
-                    break;
-                case "ViewUsers":
-                    ClientHandler.HandleViewUsers(bodydata, this,client);
-                    break;
-                case "ViewPhotos":
-                    ClientHandler.HandleViewPhotos(bodydata, this,client);
-                    break;
-                case "ViewCommentsPhoto":
-                    ClientHandler.HandleViewCommentsPhoto(bodydata, this,client);
-                    break;
-                case "CommentPhoto":
-                    ClientHandler.HandleCommentPhoto(bodydata, this,client);
-                    break;
-                default:
-                    client.StreamCommunication.SendDataString("Error$Message=Invalid Command");
-                    break;
+                var commandType = ConversionHandler.ConvertBytesToInt( await client.StreamCommunication.ReadAsync(ProtocolConstants.CommandTypeLength));
+            
+                switch (commandType)
+                {
+                    case (int) ProtocolConstants.RequestCommands.Login:
+                        await ClientHandler.HandleCreateUser( this,client);
+                        break;
+                    case (int) ProtocolConstants.RequestCommands.UploadPhoto:
+                        await ClientHandler.HandleUploadPhoto( this,client);
+                        break;
+                    case (int) ProtocolConstants.RequestCommands.ViewUsers:
+                        ClientHandler.HandleViewUsers( this,client);
+                        break;
+                    case (int) ProtocolConstants.RequestCommands.ViewPhotos:
+                        await ClientHandler.HandleViewPhotos( this,client);
+                        break;
+                    case (int) ProtocolConstants.RequestCommands.ViewComments:
+                        await ClientHandler.HandleViewCommentsPhoto( this,client);
+                        break;
+                    case (int) ProtocolConstants.RequestCommands.CommentPhoto:
+                        await ClientHandler.HandleCommentPhoto(this,client);
+                        break;
+                    default:
+                        ProtocolHelpers.SendResponseCommand(ProtocolConstants.ResponseCommands.Error ,client.StreamCommunication);
+                        client.StreamCommunication.Write(ConversionHandler.ConvertStringToBytes("Invalid Command"));
+                        break;
+                }
             }
-        }
-
-        private async void ValidateLogin(CommunicationClient client)
-        {
-            var existUser = false;
-            do
+            else
             {
-                var command = await client.StreamCommunication.RecieveDataString();
-                var infoSplitter = command.Split('$');
-                var user = new User(infoSplitter);
-                existUser = Service.AutenticateUser(user);
-                if (!existUser)
-                {
-                    client.StreamCommunication.SendDataString("Error$Message=Invalid user");
-                }
-                else
-                {
-                    client.StreamCommunication.SendDataString("Ok$Message=Login Successfully");
-                }
-            } while (!existUser);
+                //TODO INVALID
+            }
         }
 
         private void DisconnectUser(CommunicationClient client)

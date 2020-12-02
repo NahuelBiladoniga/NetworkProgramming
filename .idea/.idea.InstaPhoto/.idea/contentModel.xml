@@ -48,13 +48,9 @@
       </e>
       <e p="FileClient" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
-        <e p="DTO" t="Include">
-          <e p="CommandWriteDTO.cs" t="Include" />
-        </e>
-        <e p="FileClient" t="Include">
-          <e p="Client.cs" t="Include" />
-          <e p="ClientProgram.cs" t="Include" />
-        </e>
+        <e p="Client.cs" t="Include" />
+        <e p="ClientHandler.cs" t="Include" />
+        <e p="ClientProgram.cs" t="Include" />
         <e p="FileClient.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -63,6 +59,7 @@
             </e>
           </e>
         </e>
+        <e p="ServerUtils.cs" t="Include" />
       </e>
       <e p="InstaPhoto.sln" t="IncludeFlat" />
       <e p="packages" t="ExcludeRecursive" />
@@ -123,7 +120,6 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="ClientHandler.cs" t="Include" />
         <e p="FileServer.csproj" t="IncludeRecursive" />
-        <e p="ImageHandler.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
@@ -149,19 +145,30 @@
           </e>
         </e>
         <e p="Protocol" t="Include">
-          <e p="ConsoleValidations.cs" t="Include" />
           <e p="ConversionHandler.cs" t="Include" />
-          <e p="CustomFileStream.cs" t="Include" />
           <e p="FileCommsHandler.cs" t="Include" />
           <e p="FileHandler.cs" t="Include" />
           <e p="FileStreamHandler.cs" t="Include" />
           <e p="ProtocolConstants.cs" t="Include" />
+          <e p="ProtocolHelpers.cs" t="Include" />
           <e p="StreamCommunication.cs" t="Include" />
         </e>
         <e p="TCPComm.csproj" t="IncludeRecursive" />
         <e p="TcpListenners" t="Include">
           <e p="CommunicationClient.cs" t="Include" />
         </e>
+      </e>
+      <e p="Utils" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="ConsoleValidations.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="Utils.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Utils.csproj" t="IncludeRecursive" />
       </e>
     </e>
   </component>

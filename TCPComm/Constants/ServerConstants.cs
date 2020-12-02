@@ -17,10 +17,9 @@ namespace TCPComm.Constants
 
         private static int GetPort(string key)
         {
-            string value = System.Configuration.ConfigurationManager.AppSettings[key];
-            //string value = System.Configuration.ConfigurationManager.AppSettings[key].ToString();
+            var value = ConfigurationManager.AppSettings[key];
             int port;
-            bool isInt = int.TryParse(value, out port);
+            var isInt = int.TryParse(value, out port);
             return isInt ? port : 0;
         }
     }

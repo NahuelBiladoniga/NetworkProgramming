@@ -6,6 +6,8 @@ namespace Domain
 {
     public class Comment
     {
+        public const int CommentLength = 8;
+
         public string Message { get; set; }
         public Photo Photo { get; set; }
         public User Commentor { get; set; }

@@ -7,6 +7,9 @@ namespace Domain
 {
     public class Photo
     {
+        public const int PhotoExtensionLength = 10;
+        public const int PhotoNameLength = 40;
+
         private static long IdCounter = 0;
         public long Id { get; set; } 
         public string Name { get; set; }

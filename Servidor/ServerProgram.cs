@@ -6,12 +6,13 @@ using DataAccess;
 using Domain;
 using TCPComm.Constants;
 using TCPComm.Protocol;
+using Utils;
 
 namespace Server
 {
     public class ServerProgram
     {
-        public static async Task Main(string[] args)
+        public static void Main(string[] args)
         {
             Console.Clear();
             Console.Title = "ADMINISTRACIÓN DEL SERVIDOR";
@@ -75,59 +76,6 @@ namespace Server
             if (option.ToLower() == "q")
             {
                 Menu(server);
-            }
-        }
-        
-        private static void PhotosHandler(Server server)
-        {
-            bool userAutenticated;
-            do
-            {
-                Console.WriteLine("\nIngrese el email (<<q>> para cancelar) >>");
-                string email = ServerUtils.ReadUntilIsNotEmpty(Console.ReadLine());
-                Exit(email, server);
-
-                Console.WriteLine("\nIngrese la contrasenia (<<q>> para cancelar) >>");
-                string password = ServerUtils.ReadUntilIsNotEmpty(Console.ReadLine());
-                Exit(password, server);
-
-                var user = new User
-                {
-                    Email = email,
-                    Password = password
-                };
-
-                userAutenticated = server.Service.AutenticateUser(user);
-            } while (!userAutenticated);
-
-            string[] menu_options = new string[] {
-                "Cargar Foto",
-                "Listar Foto",
-                "Comentar Foto",
-                "Volver" 
-            };
-
-            ConsoleValidations.ListOperations("\nMENU Fotos:", menu_options, false);
-
-            string option = ConsoleValidations.ReadUntilValid(prompt: "\nIngrese opción",
-                pattern: $"^[1-{menu_options.Length}]$",
-                errorMsg: $"Ingrese un número entre 1 y {menu_options.Length}");
-            switch (option)
-            {
-                case "1":
-                    ImageHandler.UploadPhoto(server);
-                    break;
-                case "2":
-                    ImageHandler.ListPhotos(server);
-                    break;
-                case "3":
-                    ImageHandler.CommentPhoto(server);
-                    break;
-                case "4":
-                    Menu(server);
-                    break;
-                default:
-                    throw new Exception($"Option: {option} is not a valid option.");
             }
         }
         

@@ -31,7 +31,6 @@ namespace TCPComm.Protocol
             _networkStream.Write(buffer: data,
                                 offset: dataRead,
                                 size: length - dataRead);
-            
         }
 
         public async Task<byte[]> ReadAsync(int length)
@@ -48,28 +47,5 @@ namespace TCPComm.Protocol
 
             return data;
         }
-
-        public async Task<string> RecieveDataString()
-        {
-            return Encoding.UTF8.GetString(await Task.Run(async () => await RecieveDataBytes()));
-        }
-
-        public async Task<int> ReadDataLengthAsync(){
-            var data = await Task.Run(async () => await ReadAsync(ProtocolConstants.Size));
-            return ConversionHandler.ConvertBytesToInt(data);            
-        }
-
-        public async Task<byte[]> RecieveDataBytes()
-        {
-            var dataLength = await Task.Run(async () => await ReadDataLengthAsync());
-            var dataReceive = await Task.Run(async () => await ReadAsync(dataLength));
-            return dataReceive;
-        }
-
-        public void SendDataString(String data)
-        {
-             Write(ConversionHandler.ConvertStringToBytes(data));
-        }
-
     }
 }

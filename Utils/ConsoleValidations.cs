@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
 using System.Text.RegularExpressions;
 
-namespace TCPComm.Protocol
+namespace Utils
 {
-    public class ConsoleValidations
+    public static class ConsoleValidations
     {
         public static string PromptIPsAvailablesOnPC(string title)
         {
@@ -69,6 +68,5 @@ namespace TCPComm.Protocol
                 return ip_addresses;
             }
         }
-
     }
 }
