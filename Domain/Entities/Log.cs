@@ -1,21 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Domain.Entities
 {
     public enum LogType
     {
-        Information,
-        Debug,
-        Exception
-    }
-
-    public enum LogPriority
-    {
-        Low,
-        Medium,
-        High
+        Administration,
+        Instaphoto
     }
 
     public class Log
@@ -25,7 +15,6 @@ namespace Domain.Entities
         public string Author { get; set; }
         public DateTime DateTime { get; set; }
         public string Detail { get; set; }
-        public LogPriority? Priority { get; set; }
         public LogType? Type { get; set; }
 
         public Log()
@@ -45,9 +34,8 @@ namespace Domain.Entities
             Detail = detail;
         }
 
-        public Log(string @event, string author, string detail, LogPriority? priority, LogType? type) : this(@event, author, detail)
+        public Log(string @event, string author, string detail, LogType? type) : this(@event, author, detail)
         {
-            Priority = priority;
             Type = type;
         }
 

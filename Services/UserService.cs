@@ -22,7 +22,7 @@ namespace Services
         public async Task<IEnumerable<User>> GetUsersAsync()
         {
             IEnumerable<UserDto> usersDto = await _userRepository.GetUsersAsync();
-            return usersDto.Select(userDto => MapStudentDtoToDomain(userDto)).ToList();
+            return usersDto.Select(userDto => MapUserDtoToDomain(userDto)).ToList();
         }
 
         public async Task<PaginatedResponse<User>> GetUsersAsync(int page, int pageSize)
@@ -44,7 +44,7 @@ namespace Services
                 var users = new List<User>();
                 foreach (var userDto in repoUsers)
                 {
-                    users.Add(MapStudentDtoToDomain(userDto));
+                    users.Add(MapUserDtoToDomain(userDto));
                 }
 
                 return PaginationHelper<User>.GeneratePaginatedResponse(pageSize, totalStudents, users);
@@ -58,7 +58,7 @@ namespace Services
             UserDto userDto = await _userRepository.GetUserByIdAsync(id);
             if (userDto != null)
             {
-                return MapStudentDtoToDomain(userDto);
+                return MapUserDtoToDomain(userDto);
             }
 
             return null;
@@ -66,25 +66,25 @@ namespace Services
 
         public async Task<User> SaveUserAsync(User user)
         {
-            UserDto userDto = MapStudentDomainToDto(user);
+            UserDto userDto = MapUserDomainToDto(user);
             var responseUserDto = await _userRepository.SaveUserAsync(userDto);
-            return MapStudentDtoToDomain(responseUserDto);
+            return MapUserDtoToDomain(responseUserDto);
         }
 
         public async Task<User> UpdateUserAsync(User user)
         {
-            UserDto userDto = MapStudentDomainToDto(user);
+            UserDto userDto = MapUserDomainToDto(user);
             var responseUserDto = await _userRepository.UpdateUserAsync(userDto);
-            return MapStudentDtoToDomain(responseUserDto);
+            return MapUserDtoToDomain(responseUserDto);
         }
 
-        public async Task DeleteStudentAsync(User user)
+        public async Task DeleteUserAsync(User user)
         {
-            UserDto userDto = MapStudentDomainToDto(user);
+            UserDto userDto = MapUserDomainToDto(user);
             await _userRepository.DeleteUserAsync(userDto);
         }
 
-        private UserDto MapStudentDomainToDto(User user)
+        private UserDto MapUserDomainToDto(User user)
         {
             return new UserDto
             {
@@ -94,7 +94,7 @@ namespace Services
             };
         }
 
-        private User MapStudentDtoToDomain(UserDto userDto)
+        private User MapUserDtoToDomain(UserDto userDto)
         {
             return new User
             {
@@ -104,9 +104,9 @@ namespace Services
             };
         }
 
-        public Task DeleteUserAsync(User user)
-        {
-            throw new System.NotImplementedException();
-        }
+        //public Task DeleteUserAsync(User user)
+        //{
+        //    throw new System.NotImplementedException();
+        //}
     }
 }

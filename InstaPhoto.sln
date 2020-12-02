@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server", "Servidor\Server.c
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiAdmin", "WebApiAdmin\WebApiAdmin.csproj", "{500C67FC-93BF-4BF8-851C-6E85536C1043}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{A6FA45B0-D3F6-4B39-9B3D-92B2F30D088D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{A6FA45B0-D3F6-4B39-9B3D-92B2F30D088D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiLogs", "WebApiLogs\WebApiLogs.csproj", "{CFA8F53C-A961-454F-A760-A8806124F364}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,6 +68,12 @@ Global
 		{A6FA45B0-D3F6-4B39-9B3D-92B2F30D088D}.InstaPhoto|Any CPU.Build.0 = Release|Any CPU
 		{A6FA45B0-D3F6-4B39-9B3D-92B2F30D088D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6FA45B0-D3F6-4B39-9B3D-92B2F30D088D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFA8F53C-A961-454F-A760-A8806124F364}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFA8F53C-A961-454F-A760-A8806124F364}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFA8F53C-A961-454F-A760-A8806124F364}.InstaPhoto|Any CPU.ActiveCfg = Release|Any CPU
+		{CFA8F53C-A961-454F-A760-A8806124F364}.InstaPhoto|Any CPU.Build.0 = Release|Any CPU
+		{CFA8F53C-A961-454F-A760-A8806124F364}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFA8F53C-A961-454F-A760-A8806124F364}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
