@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using Domain;
-using DataAccess;
 using System.Linq;
 using System.Text;
 using TCPComm.Constants;
@@ -19,24 +18,22 @@ namespace Servidor
         public static async Task Main(string[] args)
         {
             Console.Clear();
-            Console.Title = "ADMINISTRACIÓN DEL SERVIDOR";
-            Console.WriteLine($"{"ADMINISTRACIÓN DEL SERVIDOR"}\n\nPresione una tecla para continuar...\n");
+            Console.Title = "CLIENTE";
+            Console.WriteLine($"CLIENTE\n\nPresione una tecla para continuar...\n");
 
             Console.ReadLine();
 
-            string ip_server = ConsoleValidations.PromptIPsAvailablesOnPC("ADMINISTRACIÓN DEL SERVIDOR");
+            string userIP = ConsoleValidations.PromptIPsAvailablesOnPC("CLIENTE");
+            string serverIP = PromptIPConfigurationServer();
+        }
 
-            //Socket serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            //serverSocket.Bind(new IPEndPoint(IPAddress.Parse(ip_server), int.Parse(ServerConstants.SERVER_PORT.ToString())));
-            //serverSocket.Listen(100);
-
-            var ipEndPoint = new IPEndPoint(IPAddress.Parse(ip_server), int.Parse(ServerConstants.SERVER_PORT.ToString()));
-            var listener = new TcpListener(ipEndPoint);
-            listener.Start(100);
-
-            Client server = new Client(listener, new Service(new Repository()));
-
-            Menu(server);
+        private static string PromptIPConfigurationServer()
+        {
+            Console.Clear();
+            return ConsoleValidations.ReadUntilValid(
+                            prompt: $"{"CLIENTE"}\n\nIngrese la IP del servidor al que desea conectarse",
+                            pattern: @"^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$",
+                            errorMsg: "Ingrese una direccion IP válida.");
         }
 
         static async Task WriteAsync(NetworkCommunication communication)

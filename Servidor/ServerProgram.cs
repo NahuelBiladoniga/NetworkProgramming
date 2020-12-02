@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using Domain;
-using DataAccess;
+using Repositories;
 using System.Linq;
-using System.Text;
 using TCPComm.Constants;
 using TCPComm.Protocol;
-using FileClient;
 using System.Threading.Tasks;
-using System.Text.RegularExpressions;
 
 namespace Servidor
 {

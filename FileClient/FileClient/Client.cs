@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Net.Sockets;
 using System.Threading;
-using TCPComm.Protocol;
-using Contracts;
-using TCPComm;
-using System.Linq;
 using Domain;
+using Services.Interfaces;
 
 namespace Servidor
 {
@@ -92,7 +88,7 @@ namespace Servidor
         private void DisconnectUser(TCPComm.CommunicationClient client)
         {
             Console.WriteLine("\n\nSe ha desconectado: ", client.ToString());
-            Service.DeleteClient(client);
+            //Service.DeleteClient(client);
         }
 
         public string[] GetConnectedClients()
