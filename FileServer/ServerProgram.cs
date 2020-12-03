@@ -105,13 +105,13 @@ namespace FileServer
             switch (option)
             {
                 case "1":
-                    AdminHandler.CreateUser(server);
+                    await AdminHandler.CreateUser(server);
                     break;
                 case "2":
-                    AdminHandler.DeleteUser(server);
+                    await AdminHandler.DeleteUser(server);
                     break;
                 case "3":
-                    AdminHandler.ModifyUser(server);
+                    await AdminHandler.ModifyUser(server);
                     break;
                 case "4":
                     await Menu(server);

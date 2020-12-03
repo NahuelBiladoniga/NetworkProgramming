@@ -11,7 +11,7 @@ namespace Repositories
         {
         }
         private static Repository instance = null;
-        public static Repository Instance
+        public static Repository GetInstance
         {
             get
             {

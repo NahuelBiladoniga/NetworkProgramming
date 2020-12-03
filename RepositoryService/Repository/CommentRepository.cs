@@ -12,7 +12,7 @@ namespace Repositories
 
         public CommentRepository()
         {
-            repository = Repository.Instance;
+            repository = Repository.GetInstance;
         }
 
         public void CommentPhoto(Photo photo,Comment commentEntity)

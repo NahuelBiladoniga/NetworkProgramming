@@ -12,7 +12,7 @@ namespace Repositories
 
         public PhotoRepository()
         {
-            repository = Repository.Instance;
+            repository = Repository.GetInstance;
         }
 
         public void UploadPhoto(User user, Photo photo)

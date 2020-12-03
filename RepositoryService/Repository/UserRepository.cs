@@ -14,7 +14,7 @@ namespace Repositories
 
         public UserRepository()
         {
-            repository = Repository.Instance;
+            repository = Repository.GetInstance;
         }
 
         public IEnumerable<User> GetUsers()

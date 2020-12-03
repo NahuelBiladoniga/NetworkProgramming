@@ -39,7 +39,7 @@ namespace Domain
             Email = description != null ? description.Split('=')[1] : string.Empty;
         }
         
-        public override string ToString() => $"Nombre: {Name} - Email: {Email} - Fecha ultima conexion: {LastConnection.ToString("MM/dd/yy H:mm")}";
+        public override string ToString() => $"Nombre: {Name} - Email: {Email} - Fecha ultima conexion: {LastConnection:MM/dd/yy H:mm}";
         
         public override bool Equals(object obj)
         {

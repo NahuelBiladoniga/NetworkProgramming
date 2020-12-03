@@ -11,39 +11,40 @@ namespace WebApiLogs.Controllers
         [ApiController]
         public class LogsController : ControllerBase
         {
-            // private readonly ILogService _logService;
-            // private readonly IHttpContextAccessor _httpContextAccessor;
-            //
-            // public LogsController(
-            //     ILogService logService,
-            //     IHttpContextAccessor httpContextAccessor)
-            // {
-            //     _httpContextAccessor = httpContextAccessor;
-            //     _logService = logService;
-            // }
-            //
-            // [HttpGet]
-            // public async Task<ActionResult<WebPaginatedResponse<Log>>> GetLogsAsync(int page = 1, int pageSize = 15)
-            // {
-            //     if (page <= 0 || pageSize <= 0)
-            //     {
-            //         return BadRequest();
-            //     }
-            //
-            //     PaginatedResponse<Log> logsPaginatedResponse =
-            //         await _logService.GetLogsAsync(page, pageSize);
-            //     if (logsPaginatedResponse == null)
-            //     {
-            //         return NoContent();
-            //     }
-            //
-            //     string route = _httpContextAccessor.HttpContext.Request.Host.Value +
-            //                    _httpContextAccessor.HttpContext.Request.Path;
-            //     WebPaginatedResponse<Log> response =
-            //         WebPaginationHelper<Log>.GenerateWebPaginatedResponse(logsPaginatedResponse, page, pageSize, route);
-            //
-            //     return Ok(response);
-            // }
+            //private readonly ILogService _logService;
+            private readonly IHttpContextAccessor _httpContextAccessor;
+
+            public LogsController(
+                //ILogService logService,
+                IHttpContextAccessor httpContextAccessor)
+            {
+                _httpContextAccessor = httpContextAccessor;
+                //_logService = logService;
+            }
+
+            //[HttpGet]
+            //public async Task<ActionResult<WebPaginatedResponse<Log>>> GetLogsAsync(int page = 1, int pageSize = 15)
+            //{
+            //    //if (page <= 0 || pageSize <= 0)
+            //    //{
+            //    //    return BadRequest();
+            //    //}
+
+            //    //PaginatedResponse<Log> logsPaginatedResponse =
+            //    //    await _logService.GetLogsAsync(page, pageSize);
+            //    //if (logsPaginatedResponse == null)
+            //    //{
+            //    //    return NoContent();
+            //    //}
+
+            //    //string route = _httpContextAccessor.HttpContext.Request.Host.Value +
+            //    //               _httpContextAccessor.HttpContext.Request.Path;
+            //    //WebPaginatedResponse<Log> response =
+            //    //    WebPaginationHelper<Log>.GenerateWebPaginatedResponse(logsPaginatedResponse, page, pageSize, route);
+
+            //    //return Ok(response);
+            //    return Ok();
+            //}
         }
     }
 }

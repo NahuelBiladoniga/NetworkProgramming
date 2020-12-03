@@ -9,7 +9,7 @@ namespace FileServer
 {
     public static class AdminHandler
     {
-        public static async Task CreateUser(FileServer.Server server)
+        public static async Task CreateUser(Server server)
         {
             Console.Clear();
             Console.WriteLine("ADMINISTRACIÓN DEL SERVIDOR" + "\n\nCREACIÓN DE CLIENTE");
@@ -20,18 +20,28 @@ namespace FileServer
             Console.WriteLine("\nIngrese el email del nuevo cliente (<<q>> para cancelar) >>");
             var email = ServerUtils.ReadUntilIsNotEmpty(Console.ReadLine());
 
+            Console.WriteLine("\nIngrese la contrasenia del nuevo cliente (<<q>> para cancelar) >>");
+            var password = ServerUtils.ReadUntilIsNotEmpty(Console.ReadLine());
+
             var client = new UserDto
             {
                 Name = name,
-                Email = email
+                Email = email,
+                Password = password
             };
             
             await server.Service.AddUserAsync(client);
         }
 
-        public static async Task DeleteUser(FileServer.Server server)
+        public static async Task DeleteUser(Server server)
         {
-            var clients = await server.Service.GetUsersAsync();
+            var clients = (await server.Service.GetUsersAsync()).ToList().Select(c => new User()
+            {
+                Name = c.Name,
+                Email = c.Email,
+                //LastConnection = c.LastConnection
+            });
+
             if (!clients.Any())
             {
                 Console.WriteLine("\nNo hay usuarios en el sistema");
@@ -47,12 +57,21 @@ namespace FileServer
 
             
             var clientToDelete = clients.ElementAt(int.Parse(option) - 1);
-            server.Service.RemoveUserAsync(clientToDelete);
+            var clientDto = new UserDto
+            {
+                Email = clientToDelete.Email
+            };
+            await server.Service.RemoveUserAsync(clientDto);
         }
 
-        public static async Task ModifyUser(FileServer.Server server)
+        public static async Task ModifyUser(Server server)
         {
-            var clients = (await server.Service.GetUsersAsync()).ToList();
+            var clients = (await server.Service.GetUsersAsync()).ToList().Select(c => new User()
+            {
+                Name = c.Name,
+                Email = c.Email,
+                //LastConnection = c.LastConnection
+            });
             if (!clients.Any())
             {
                 Console.WriteLine("\nNo hay usuarios en el sistema");
@@ -84,7 +103,7 @@ namespace FileServer
                 Email = userToUpdate.Email
             };
             
-            await server.Service.ModifyUserAsync(userToUpdate);
+            await server.Service.ModifyUserAsync(dto);
         }
     }
 }

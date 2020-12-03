@@ -116,6 +116,8 @@ namespace RepositoryService
             if (_userRepository.ContainsUser(user))
             {
 
+                _userRepository.DeleteUser(user);
+
                 return Task.FromResult(new ResponseMessage
                 {
                     Status = "Ok",
@@ -124,8 +126,6 @@ namespace RepositoryService
             }
             else
             {
-                _userRepository.SaveUser(user);
-
                 return Task.FromResult(new ResponseMessage
                 {
                     Status = "Error",

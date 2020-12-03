@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Net;
 using System.Net.Sockets;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Domain;
+using RabbitMQ.Client;
 using TCPComm;
 using TCPComm.Protocol;
 
@@ -23,8 +26,32 @@ namespace FileServer
             Service = new RepositoryClient.RepositoryHandler();
 
             AcceptClients = true;
-            
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+
             AcceptConnections();
+        }
+
+        public void SendMessages(string logToSend)
+        {
+            var connectionFactory = new ConnectionFactory { HostName = "localhost" };
+            IConnection connection = connectionFactory.CreateConnection();
+            IModel channel = connection.CreateModel();
+            QueueDeclare(channel);
+            PublishMessage(logToSend, channel);
+        }
+
+        private void QueueDeclare(IModel channel)
+        {
+            channel.QueueDeclare(queue: "QueueForLogs", durable: false, exclusive: false, autoDelete: false, arguments: null);
+        }
+
+        public void PublishMessage(string message, IModel channel)
+        {
+            if (!string.IsNullOrEmpty(message))
+            {
+                var body = Encoding.UTF8.GetBytes(message);
+                channel.BasicPublish(exchange: string.Empty, routingKey: "QueueForLogs", basicProperties: null, body: body);
+            }
         }
 
         private void AcceptConnections()
@@ -32,7 +59,8 @@ namespace FileServer
             new Thread(() => {
             while (AcceptClients)
             {
-                AddClient();
+                    SendMessages("ATR PRRO FCUMBIA CAGETEALA PIOLA GATOO");
+                    AddClient();
             }
             
             }).Start();

@@ -12,12 +12,13 @@ namespace RepositoryClient
     {
         private static UserHandler.UserHandlerClient _client;
 
-        private static async Task Main(string[] args)
+        public RepositoryHandler()
         {
             var connectionAddress = ConfigurationManager.AppSettings["SERVICE_URL"];
 
             var channel = GrpcChannel.ForAddress(connectionAddress);
             _client = new UserHandler.UserHandlerClient(channel);
+
         }
 
         public async Task<ResponseDto> AddCommentAsync(CommentDto comment)
