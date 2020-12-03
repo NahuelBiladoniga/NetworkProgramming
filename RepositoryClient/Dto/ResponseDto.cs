@@ -4,7 +4,9 @@ using System.Text;
 
 namespace RepositoryClient.Dto
 {
-    class ViewPhotoResponseDto
+    public class ResponseDto
     {
+        public string Status { get; set; }
+        public string Message { get; set; }
     }
 }

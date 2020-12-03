@@ -10,6 +10,7 @@ namespace Domain
 
         public string Message { get; set; }
         public DateTime CreationDate { get; set; }
+        public Photo Photo { get; set; }
 
         public string ToStringProtocol() => $"Comment={Message}$CreateDate={CreationDate.ToLocalTime()}";
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Domain;
@@ -17,6 +18,8 @@ namespace Repositories
         public void CommentPhoto(Photo photo,Comment commentEntity)
         {
             var photoLinked = repository.Users.Find(x => x.Photos.Contains(photo)).Photos.First(x => x.Equals(photo));
+            commentEntity.Photo = photo;
+            commentEntity.CreationDate = DateTime.Now;
             photoLinked.Comments.Add(commentEntity);
         }
 

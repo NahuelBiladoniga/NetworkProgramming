@@ -43,7 +43,8 @@ message UploadPhotoInput {
 }
 
 message AddCommentInput {
-  string name = 1;
+  int64 photoId = 1;
+  string comment = 2;
 }
 
 message ResponseMessage {
@@ -66,10 +67,11 @@ message ViewPhotoResponse {
 }
 
 message PhotoResponse {
-  string idPhoto = 1;
+  int64 idPhoto = 1;
   string namePhoto = 2;
   string email = 3;
   string extension = 4;
+  int64 fileSize = 5;
 }
 
 message ViewCommentResponse {
@@ -77,7 +79,7 @@ message ViewCommentResponse {
 }
 
 message ViewCommentInput {
-  string photoId = 1;
+  int64 photoId = 1;
 }
 
 message CommentResponse {

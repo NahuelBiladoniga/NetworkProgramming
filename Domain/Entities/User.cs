@@ -16,9 +16,12 @@ namespace Domain
         public string Email { get; set; }        
         public string Password { get; set; }
         public DateTime LastConnection { get; set; }
+        public List<Photo> Photos { get; set; }
+        public bool IsConnected { get; set; }
 
         public User()
         {
+
         }
 
         public User(Socket socket)
@@ -35,9 +38,6 @@ namespace Domain
             Name = name != null ? name.Split('=')[1] : string.Empty;
             Email = description != null ? description.Split('=')[1] : string.Empty;
         }
-
-        public List<Photo> Photos { get; set; }
-        public bool IsConnected { get; set; }
         
         public override string ToString() => $"Nombre: {Name} - Email: {Email} - Fecha ultima conexion: {LastConnection.ToString("MM/dd/yy H:mm")}";
         

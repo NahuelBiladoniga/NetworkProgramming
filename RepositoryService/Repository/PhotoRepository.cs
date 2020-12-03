@@ -15,17 +15,13 @@ namespace Repositories
             repository = Repository.Instance;
         }
 
-        public void CommentPhoto(Comment commentEntity)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public void UploadPhoto(User user, Photo photo)
         {
             lock (lock_photo)
             {
                 photo.UpdateId();
                 var userListed = repository.Users.Find(u => u.Equals(user));
+                photo.User = userListed;
                 userListed.Photos.Add(photo);
             }
         }

@@ -24,14 +24,25 @@ namespace RepositoryService
             _photoRepository = photoRepository;
         }
 
-        // rpc AddUser (AddUserInput) returns (ResponseMessage);
-        // rpc RemoveUser (RemoveUserInput) returns (ResponseMessage);
-        // rpc ModifyUser (ModifyUserInput) returns (ResponseMessage);
-        // rpc UploadPhoto (UploadPhotoInput) returns (ResponseMessage);
-        // rpc AddComment (AddCommentInput) returns (ResponseMessage);
-        // rpc ViewPhotos (EmptyInput) returns (ViewPhotoResponse);
-        // rpc ViewComments (ViewCommentInput) returns (ViewComments);
-        // rpc ViewUsers (EmptyInput) returns (ViewUserResponse);
+        public override Task<ResponseMessage> AddComment(AddCommentInput request, ServerCallContext context)
+        {
+            var comment = new Comment()
+            {
+                Message = request.Comment
+            };
+            var photo = new Photo
+            {
+                Id = request.PhotoId,
+            };
+
+            _commentsRepository.CommentPhoto(photo, comment);
+
+            return Task.FromResult(new ResponseMessage
+            {
+                Status = "Ok",
+                Message = "Comentario agregado",
+            });
+        }
 
         public override Task<ResponseMessage> AddUser(AddUserInput request, ServerCallContext context)
         {
@@ -120,6 +131,7 @@ namespace RepositoryService
                 });
             }
         }
+
         public override Task<ResponseMessage> UploadPhoto(UploadPhotoInput request, ServerCallContext context)
         {
             var user = new User()
@@ -131,7 +143,7 @@ namespace RepositoryService
                 Name = request.Name,
                 Extension = request.Extension,
                 FileSize = request.Size,
-                UserEmail = request.UserEmail
+                User = user
             };
 
             _photoRepository.UploadPhoto(user, photo);
@@ -151,10 +163,11 @@ namespace RepositoryService
             {
                 result.Results.Add(new PhotoResponse()
                 {
-                    Email = e.UserEmail,
+                    Email = e.User.Email,
                     NamePhoto = e.Name,
-                    IdPhoto = e.Id.ToString(),
+                    IdPhoto = e.Id,
                     Extension = e.Extension,
+                    FileSize = e.FileSize,
                 });
             });
             
@@ -162,33 +175,37 @@ namespace RepositoryService
         }
         public override Task<ViewCommentResponse> ViewComments(ViewCommentInput request, ServerCallContext context)
         {
-/*            var photos = _userRepository.GetTotalUsers();
+            var photo = _photoRepository.GetPhotos().Find(p => p.Id == request.PhotoId);
+            var comments = _commentsRepository.GetCommentsFromPhoto(photo);
 
-            var result = new ViewPhotoResponse();
-            photos.ForEach((e) =>
+            var result = new ViewCommentResponse();
+            comments.ForEach((e) =>
             {
-                result.Results.Add(new PhotoResponse()
+                var user = e.Photo.User;
+
+                result.Results.Add(new CommentResponse()
                 {
-                    Email = e.UserEmail,
-                    NamePhoto = e.Name,
-                    IdPhoto = e.Id.ToString(),
-                    Extension = e.Extension,
+                    Comment = e.Message,
+                    Name = user.Name,
+                    Email = user.Email
                 });
             });
 
             return Task.FromResult(result);
-*/        }
+        }
+
         public override Task<ViewUserResponse> ViewUsers(EmptyInput request, ServerCallContext context)
         {
-            var users = _userRepository.GetTotalUsers();
+            var users = _userRepository.GetUsers().ToList();
 
-            var result = new View();
+            var result = new ViewUserResponse();
             users.ForEach((e) =>
             {
                 result.Results.Add(new UserResponse()
                 {
-                    Email = e.UserEmail,
-                    Na
+                    Email = e.Email,
+                    Name = e.Name,
+                    LastConnected = e.LastConnection.ToString(),
                 });
             });
 
