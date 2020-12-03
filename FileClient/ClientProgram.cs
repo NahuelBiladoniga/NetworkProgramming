@@ -132,6 +132,8 @@ namespace FileClient
             else
             {
                 Console.WriteLine("\nDatos invalidos, revise y pruebe de nuevo");
+
+                ConsoleValidations.ContinueHandler();
             }
         }
 
@@ -146,7 +148,7 @@ namespace FileClient
                 "Ver Comentarios" ,
                 "Ver Fotos",
                 "Agregar Comentarios",
-                "Cerrar Sesion"
+                "Salir"
                 };
 
                 Console.Clear();
@@ -182,10 +184,10 @@ namespace FileClient
                     await AddCommentsAsync();
                     break;
                 case "6":
-                    _client.IsLoggedIn = false;
+                    Environment.Exit(Environment.ExitCode);
                     break;
                 default:
-                    throw new Exception($"Option: {option} is not a valid option.");
+                    throw new Exception($"Opcion: {option} no es valida.");
             }
         }
 

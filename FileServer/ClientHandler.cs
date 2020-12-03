@@ -11,42 +11,43 @@ namespace FileServer
     public static class ClientHandler
     {
         private static readonly string PhotosPath = AppDomain.CurrentDomain.BaseDirectory + "Photos";
+        static LoggerService loggerService = new LoggerService();
 
-        public static async Task ValidateLogin(FileServer.Server server, CommunicationClient client)
+        public static async Task<bool> ValidateLogin(Server server, CommunicationClient client)
         {
             var existUser = false;
-            do
+            var email = ConversionHandler.ConvertBytesToString( await client.StreamCommunication.ReadAsync(User.UserEmailLength));
+            var password = ConversionHandler.ConvertBytesToString( await client.StreamCommunication.ReadAsync(User.UserPasswordLength));
+            var user = new UserDto()
             {
-                var email = ConversionHandler.ConvertBytesToString( await client.StreamCommunication.ReadAsync(User.UserEmailLength));
-                var password = ConversionHandler.ConvertBytesToString( await client.StreamCommunication.ReadAsync(User.UserPasswordLength));
-                var user = new UserDto()
+                Email = email,
+                Password = password
+            };
+                
+            existUser = await server.Service.AutenticateUserAsync(user);
+                
+            if (!existUser)
+            {
+                ProtocolHelpers.SendResponseCommand(ProtocolConstants.ResponseCommands.Error ,client.StreamCommunication);
+                client.StreamCommunication.Write(ConversionHandler.ConvertStringToBytes("Invalid User", ProtocolConstants.ResponseMessageLength));
+            }
+            else
+            {
+                client.User = new User()
                 {
                     Email = email,
                     Password = password
                 };
-                
-                existUser = await server.Service.AutenticateUserAsync(user);
-                
-                if (!existUser)
-                {
-                    ProtocolHelpers.SendResponseCommand(ProtocolConstants.ResponseCommands.Error ,client.StreamCommunication);
-                    client.StreamCommunication.Write(ConversionHandler.ConvertStringToBytes("Invalid User", ProtocolConstants.ResponseMessageLength));
-                }
-                else
-                {
-                    client.User = new User()
-                    {
-                        Email = email,
-                        Password = password
-                    };
 
-                    ProtocolHelpers.SendResponseCommand(ProtocolConstants.ResponseCommands.Error ,client.StreamCommunication);
-                    client.StreamCommunication.Write(ConversionHandler.ConvertStringToBytes("Login Successfully", ProtocolConstants.ResponseMessageLength));
-                }
-            } while (!existUser);
+                loggerService.SendMessages("Login Successfully, mail: " + email);
+
+                ProtocolHelpers.SendResponseCommand(ProtocolConstants.ResponseCommands.Error ,client.StreamCommunication);
+                client.StreamCommunication.Write(ConversionHandler.ConvertStringToBytes("Login Successfully", ProtocolConstants.ResponseMessageLength));
+            }
+            return existUser;
         }
         
-        public static async Task HandleCreateUser(FileServer.Server server, CommunicationClient client)
+        public static async Task<bool> HandleCreateUser(Server server, CommunicationClient client)
         {
             var name = ConversionHandler.ConvertBytesToString( await client.StreamCommunication.ReadAsync(User.UserNameLength));
             var email = ConversionHandler.ConvertBytesToString( await client.StreamCommunication.ReadAsync(User.UserEmailLength));
@@ -65,19 +66,29 @@ namespace FileServer
                 Password = password,
             };
             
-            await server.Service.AddUserAsync(user);
-            client.User = new User()
+            var response = await server.Service.AddUserAsync(user);
+            if (response.Status.Equals("Ok"))
             {
-                Email = email,
-                Name = name,
-                Password = password,
-            };
+                client.User = new User()
+                {
+                    Email = email,
+                    Name = name,
+                    Password = password,
+                };
+                loggerService.SendMessages("User created, mail: " + email);
+                ProtocolHelpers.SendResponseCommand(ProtocolConstants.ResponseCommands.Ok, client.StreamCommunication);
+                client.StreamCommunication.Write(ConversionHandler.ConvertStringToBytes(response.Message, ProtocolConstants.ResponseMessageLength));
+            }
+            else
+            {
+                ProtocolHelpers.SendResponseCommand(ProtocolConstants.ResponseCommands.Error, client.StreamCommunication);
+                client.StreamCommunication.Write(ConversionHandler.ConvertStringToBytes(response.Message, ProtocolConstants.ResponseMessageLength));
+            }
 
-            ProtocolHelpers.SendResponseCommand(ProtocolConstants.ResponseCommands.Ok ,client.StreamCommunication);
-            client.StreamCommunication.Write(ConversionHandler.ConvertStringToBytes("Added Sucessfully", ProtocolConstants.ResponseMessageLength));
+            return response.Status.Equals("Ok");
         }
 
-        public static async Task HandleUploadPhoto(FileServer.Server server, CommunicationClient client)
+        public static async Task HandleUploadPhoto(Server server, CommunicationClient client)
         {
             var name = ConversionHandler.ConvertBytesToString( await client.StreamCommunication.ReadAsync(Photo.PhotoNameLength));
             var extension = ConversionHandler.ConvertBytesToString( await client.StreamCommunication.ReadAsync(Photo.PhotoExtensionLength));
@@ -93,17 +104,19 @@ namespace FileServer
                 Name = name,
                 Extension = extension,
                 FileSize = fileSize,
+                UserEmail = client.User.Email
             };
 
             await server.Service.UploadPhotoAsync(photo);
             var fileName = $"{PhotosPath}\\Image_{photo.Id}{extension}";
             
             await FileHandler.ReceiveFileWithStreams(fileSize, fileName, client.StreamCommunication);
+            loggerService.SendMessages("Image uploaded");
 
             ProtocolHelpers.SendMessageCommand(ProtocolConstants.ResponseCommands.Ok, client, "Added succesfully");
         }
 
-        public static async Task HandleCommentPhoto(FileServer.Server server, CommunicationClient client)
+        public static async Task HandleCommentPhoto(Server server, CommunicationClient client)
         {
             var photoIdParsed = ConversionHandler.ConvertBytesToInt( await client.StreamCommunication.ReadAsync(ProtocolConstants.IntegerTypeLength));
             var message = ConversionHandler.ConvertBytesToString( await client.StreamCommunication.ReadAsync(Comment.CommentLength));
@@ -121,11 +134,12 @@ namespace FileServer
             };
 
             await server.Service.AddCommentAsync(comment);
+            loggerService.SendMessages("Image commented");
 
             ProtocolHelpers.SendMessageCommand(ProtocolConstants.ResponseCommands.Ok,client, "Added Sucessfully");
         }
 
-        public static async Task HandleViewUsers(FileServer.Server server, CommunicationClient client)
+        public static async Task HandleViewUsers(Server server, CommunicationClient client)
         {
             ProtocolHelpers.SendResponseCommand(ProtocolConstants.ResponseCommands.ListUsers,
                 client.StreamCommunication);
@@ -145,9 +159,10 @@ namespace FileServer
                 };
                 ProtocolHelpers.SendUserData(client.StreamCommunication,user);
             });
+            loggerService.SendMessages("Users listed correctly");
         }
 
-        public static async Task HandleViewPhotos(FileServer.Server server, CommunicationClient client)
+        public static async Task HandleViewPhotos(Server server, CommunicationClient client)
         {
             ProtocolHelpers.SendResponseCommand(ProtocolConstants.ResponseCommands.ListPhotos,
             client.StreamCommunication);
@@ -172,6 +187,8 @@ namespace FileServer
                 };
                 ProtocolHelpers.SendPhotoData(client.StreamCommunication, photo);
             });
+
+            loggerService.SendMessages("Images listed correctly");
         }
 
         public static async Task HandleViewCommentsPhoto(FileServer.Server server, CommunicationClient client)
@@ -197,6 +214,8 @@ namespace FileServer
                 };
                 ProtocolHelpers.SendCommentData(client.StreamCommunication, comment);
             });
+
+            loggerService.SendMessages("Comments listed correctly");
         }
     }
 }

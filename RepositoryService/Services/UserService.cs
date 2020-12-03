@@ -24,7 +24,7 @@ namespace RepositoryService
             _photoRepository = photoRepository;
         }
 
-        public Task<ResponseMessage> AutenticateUserAsync(AutenticateUserInput request, ServerCallContext context)
+        public override Task<ResponseMessage> AutenticateUser(AutenticateUserInput request, ServerCallContext context)
         {
             var user = new User()
             {
@@ -34,7 +34,7 @@ namespace RepositoryService
 
             var savedUser = _userRepository.GetUser(user);
 
-            if (savedUser.Password.Equals(user.Password) && savedUser.Email.Equals(user.Email))
+            if (savedUser != null && (savedUser.Password.Equals(user.Password) && savedUser.Email.Equals(user.Email)))
             {
                 savedUser.IsConnected = true;
                 savedUser.LastConnection = DateTime.Now;

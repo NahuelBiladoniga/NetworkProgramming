@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using WebApiAdmin.Services;
 
 namespace WebApiAdmin
 {
@@ -29,7 +30,7 @@ namespace WebApiAdmin
         {
             services.AddControllers();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            
+            services.AddSingleton<LogService, LogService>();
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowMyOrigin", builder =>

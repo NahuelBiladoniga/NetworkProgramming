@@ -17,7 +17,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
     <ProjectReference Include="..\FileClient\FileClient.csproj" />
-    <ProjectReference Include="..\Repositories\Repositories.csproj" />
     <ProjectReference Include="..\RepositoryClient\RepositoryClient.csproj" />
     <ProjectReference Include="..\TCPComm\TCPComm.csproj" />
   </ItemGroup>

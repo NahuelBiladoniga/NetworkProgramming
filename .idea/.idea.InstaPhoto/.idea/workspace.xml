@@ -35,36 +35,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ba77854-2eb2-41b0-b9a8-ec91c94bcdd0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.InstaPhoto/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.InstaPhoto/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.InstaPhoto/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.InstaPhoto/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdminServer/AdminServer.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdminServer/Controllers/UserController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdminServer/Helpers/WebPaginationHelper.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdminServer/Program.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdminServer/Properties/launchSettings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdminServer/Responses/WebPaginatedResponse.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdminServer/Startup.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdminServer/appsettings.Development.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdminServer/appsettings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Entities/Comment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Comment.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Entities/Photo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Photo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileClient/ServerHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileClient/ServerHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileServer/AdminHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileServer/AdminHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileServer/ClientHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileServer/ClientHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileClient/FileClient.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FileClient/FileClient.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FileServer/FileServer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FileServer/FileServer.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileServer/Server.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileServer/Server.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileServer/ServerProgram.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileServer/ServerProgram.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileServer/Service.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileServer/Service.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InstaPhoto.sln" beforeDir="false" afterPath="$PROJECT_DIR$/InstaPhoto.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RepositoryClient/RepositoryClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RepositoryClient/RepositoryHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RepositoryService/Protos/user.proto" beforeDir="false" afterPath="$PROJECT_DIR$/RepositoryService/Protos/user.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RepositoryService/Repository/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RepositoryService/Repository/UserRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RepositoryService/Services/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RepositoryService/Services/UserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TCPComm/Protocol/ProtocolHelpers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TCPComm/Protocol/ProtocolHelpers.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApiAdmin/Controllers/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiAdmin/Controllers/UserController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApiAdmin/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiAdmin/Startup.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApiAdmin/WebApiAdmin.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiAdmin/WebApiAdmin.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApiLogs/Controllers/LogController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiLogs/Controllers/LogController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApiLogs/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiLogs/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApiLogs/WebApiLogs.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiLogs/WebApiLogs.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,17 +57,17 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A9C37662-579A-499A-A4DE-B3C85349280D/2E/Object.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/TCPComm/Protocol/ProtocolConstants.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A9C37662-579A-499A-A4DE-B3C85349280D/2B6/RuntimeMethodInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A9C37662-579A-499A-A4DE-B3C85349280D/286/TaskAwaiter.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A9C37662-579A-499A-A4DE-B3C85349280D/1E0/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A9C37662-579A-499A-A4DE-B3C85349280D/321/Stream.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Utils/ConsoleValidations.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BA6F3355-5A5A-4969-8229-1CC21F017E3A/88/e7794286/IDbConnection.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/318D2799-861E-4377-8FA8-7E428C96ED58/ae/2d374ee1/NetworkStream.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/TCPComm/Protocol/ProtocolConstants.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A9C37662-579A-499A-A4DE-B3C85349280D/2B6/RuntimeMethodInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TCPComm/Protocol/StreamCommunication.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7EC34705-F546-47B9-970A-53DBFB87C6FB/a4/1d926009/MvcServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TCPComm/Protocol/ExtendedProtocol.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A9C37662-579A-499A-A4DE-B3C85349280D/286/TaskAwaiter.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A9C37662-579A-499A-A4DE-B3C85349280D/1E0/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A9C37662-579A-499A-A4DE-B3C85349280D/321/Stream.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -452,6 +428,7 @@
       <workItem from="1606992560791" duration="7406000" />
       <workItem from="1607013119509" duration="2242000" />
       <workItem from="1607015426321" duration="4814000" />
+      <workItem from="1607032774868" duration="597000" />
     </task>
     <task id="LOCAL-00001" summary="Added more operations for server program and added repo server">
       <created>1606718683219</created>

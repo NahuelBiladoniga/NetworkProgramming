@@ -1,12 +1,11 @@
 ﻿using System.Threading.Tasks;
-using WebApiAdmin.Responses;
-using Domain.Responses;
-using Domain;
-using WebApiAdmin.Helpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RepositoryClient;
+using Domain;
 using RepositoryClient.Dto;
+using System.Collections.Generic;
+using WebApiAdmin.Services;
 
 namespace WebApiAdmin.Controllers
 {
@@ -16,49 +15,20 @@ namespace WebApiAdmin.Controllers
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly RepositoryHandler _repositoryClient;
-        
+        private readonly LogService _logService;
+
         public UsersController(
             IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
-            _repositoryClient = new global::RepositoryClient.RepositoryHandler();
+            _repositoryClient = new RepositoryHandler();
         }
 
         [HttpGet]
-        public async Task<ActionResult<WebPaginatedResponse<User>>> GetUsersAsync(int page = 1, int pageSize = 15)
+        public async Task<ActionResult<IEnumerable<User>>> GetUsersAsync()
         {
-            // if (page <= 0 || pageSize <= 0)
-            // {
-            //     return BadRequest();
-            // }
-            //
-            // PaginatedResponse<User> usersPaginatedResponse =
-            //     await _repositoryClient.GetUsersAsync(page, pageSize);
-            // if (usersPaginatedResponse == null)
-            // {
-            //     return NoContent();
-            // }
-            //
-            // var route = _httpContextAccessor.HttpContext.Request.Host.Value +
-            //                _httpContextAccessor.HttpContext.Request.Path;
-            // WebPaginatedResponse<User> response =
-            //     WebPaginationHelper<User>.GenerateWebPaginatedResponse(usersPaginatedResponse, page, pageSize, route);
-            //
-            // return Ok(response);
-            return Ok();
+            return Ok(await _repositoryClient.GetUsersAsync());
         }
-
-        // [HttpGet("{id}")]
-        // public async Task<ActionResult<User>> GetUserByIdAsync(int id)
-        // {
-        //     var user = await _userService.GetUserByIdAsync(id);
-        //     if (user != null)
-        //     {
-        //         return Ok(user);
-        //     }
-        //
-        //     return NotFound();
-        // }
 
         [HttpPost]
         public async Task<ActionResult<User>> SaveUserAsync(User user)
@@ -70,7 +40,8 @@ namespace WebApiAdmin.Controllers
                 Password = user.Password
             };
             var responseUser = await _repositoryClient.AddUserAsync(dto);
-            
+            _logService.SendLogs("User " + user.Email + " was saved");
+
             return new CreatedResult(string.Empty, responseUser);
         }
 
@@ -85,6 +56,7 @@ namespace WebApiAdmin.Controllers
             };
             
             var responseUser = await _repositoryClient.ModifyUserAsync(dto);
+            _logService.SendLogs("User " + user.Email + " was updated");
             return Ok(responseUser);
         }
 
@@ -95,6 +67,7 @@ namespace WebApiAdmin.Controllers
             {
                 Email = email
             };
+            _logService.SendLogs("User " + user.Email + " was deleted");
             return Ok(await _repositoryClient.RemoveUserAsync(user));
         }
     }

@@ -29,7 +29,7 @@ namespace Repositories
         {
             lock (lock_users)
             {
-                return repository.Users.First(u => u.Equals(user));
+                return repository.Users.FirstOrDefault(u => u.Equals(user));
             }
         }
 

@@ -1,7 +1,9 @@
 ﻿using Domain.Entities;
-using Domain.Responses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using WebApiLogs.Repository;
 
 namespace WebApiLogs.Controllers
 {
@@ -11,40 +13,18 @@ namespace WebApiLogs.Controllers
         [ApiController]
         public class LogsController : ControllerBase
         {
-            //private readonly ILogService _logService;
-            private readonly IHttpContextAccessor _httpContextAccessor;
+            private readonly LogRepository _logRepository;
 
-            public LogsController(
-                //ILogService logService,
-                IHttpContextAccessor httpContextAccessor)
+            public LogsController()
             {
-                _httpContextAccessor = httpContextAccessor;
-                //_logService = logService;
+                _logRepository = LogRepository.GetInstance();
             }
 
-            //[HttpGet]
-            //public async Task<ActionResult<WebPaginatedResponse<Log>>> GetLogsAsync(int page = 1, int pageSize = 15)
-            //{
-            //    //if (page <= 0 || pageSize <= 0)
-            //    //{
-            //    //    return BadRequest();
-            //    //}
-
-            //    //PaginatedResponse<Log> logsPaginatedResponse =
-            //    //    await _logService.GetLogsAsync(page, pageSize);
-            //    //if (logsPaginatedResponse == null)
-            //    //{
-            //    //    return NoContent();
-            //    //}
-
-            //    //string route = _httpContextAccessor.HttpContext.Request.Host.Value +
-            //    //               _httpContextAccessor.HttpContext.Request.Path;
-            //    //WebPaginatedResponse<Log> response =
-            //    //    WebPaginationHelper<Log>.GenerateWebPaginatedResponse(logsPaginatedResponse, page, pageSize, route);
-
-            //    //return Ok(response);
-            //    return Ok();
-            //}
+            [HttpGet]
+            public async Task<IEnumerable<Log>> GetLogsAsync()
+            {
+                return (IEnumerable<Log>)Ok(_logRepository.GetLogEntries());
+            }
         }
     }
 }

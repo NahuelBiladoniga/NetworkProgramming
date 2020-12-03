@@ -59,8 +59,7 @@ namespace FileServer
             new Thread(() => {
             while (AcceptClients)
             {
-                    SendMessages("ATR PRRO FCUMBIA CAGETEALA PIOLA GATOO");
-                    AddClient();
+                AddClient();
             }
             
             }).Start();
@@ -89,15 +88,19 @@ namespace FileServer
 
         private async Task GetData(CommunicationClient client)
         {
-            var request = ConversionHandler.ConvertBytesToShort(await client.StreamCommunication.ReadAsync(ProtocolConstants.ShortTypeLength));
-            var commandType = ConversionHandler.ConvertBytesToShort(await client.StreamCommunication.ReadAsync(ProtocolConstants.ShortTypeLength));
-
-            if(commandType == (short)ProtocolConstants.RequestCommands.LOGIN)
-            {            
-                await ClientHandler.ValidateLogin(this,client);
-            }else 
+            var logged = false;
+            while(!logged)
             {
-                await ClientHandler.HandleCreateUser(this, client);
+                var request = ConversionHandler.ConvertBytesToShort(await client.StreamCommunication.ReadAsync(ProtocolConstants.ShortTypeLength));
+                var commandType = ConversionHandler.ConvertBytesToShort(await client.StreamCommunication.ReadAsync(ProtocolConstants.ShortTypeLength));
+                if (commandType == (short)ProtocolConstants.RequestCommands.LOGIN)
+                {
+                    logged = await ClientHandler.ValidateLogin(this, client);
+                }
+                else
+                {
+                    logged = await ClientHandler.HandleCreateUser(this, client);
+                }
             }
 
             var gettingData = true;
@@ -124,10 +127,10 @@ namespace FileServer
                         await ClientHandler.HandleUploadPhoto( this,client);
                         break;
                     case (short) ProtocolConstants.RequestCommands.VIEW_USERS:
-                        ClientHandler.HandleViewUsers( this,client);
+                        await ClientHandler.HandleViewUsers( this,client);
                         break;
                     case (short) ProtocolConstants.RequestCommands.VIEW_PHOTOS:
-                        ClientHandler.HandleViewPhotos( this,client);
+                        await ClientHandler.HandleViewPhotos( this,client);
                         break;
                     case (short) ProtocolConstants.RequestCommands.VIEW_COMMENTS:
                         await ClientHandler.HandleViewCommentsPhoto( this,client);

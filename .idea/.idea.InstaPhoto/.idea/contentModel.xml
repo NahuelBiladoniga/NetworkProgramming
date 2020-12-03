@@ -63,7 +63,6 @@
       <e p="InstaPhoto.sln" t="IncludeFlat" />
       <e p="packages" t="ExcludeRecursive" />
       <e p="RepositoryClient" t="IncludeRecursive">
-        <e p="app.config" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="DTO" t="Include">
           <e p="CommentDto.cs" t="Include" />
@@ -194,6 +193,7 @@
         <e p="WebApiAdmin.csproj" t="IncludeRecursive" />
       </e>
       <e p="WebApiLogs" t="IncludeRecursive">
+        <e p="app.config" t="Include" />
         <e p="appsettings.Development.json" t="Include" />
         <e p="appsettings.json" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
@@ -213,6 +213,9 @@
         <e p="Program.cs" t="Include" />
         <e p="Properties" t="Include">
           <e p="launchSettings.json" t="Include" />
+        </e>
+        <e p="Repository" t="Include">
+          <e p="LogRepository.cs" t="Include" />
         </e>
         <e p="Responses" t="Include">
           <e p="WebPaginatedResponse.cs" t="Include" />
