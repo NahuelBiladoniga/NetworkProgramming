@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using Domain;
-using RabbitMQ.Client;
-using Services.Interfaces;
 using TCPComm;
 using TCPComm.Protocol;
 
@@ -13,15 +12,15 @@ namespace FileServer
 {
     public class Server
     {
-        public IService Service { get; }
+        public RepositoryClient.RepositoryHandler Service { get; }
         private readonly TcpListener _listener;
         public bool AcceptClients { get; set; }
         public User UserLogged { get; set; }
         
-        public Server(TcpListener listener, IService service)
+        public Server(TcpListener listener)
         {
             _listener = listener;
-            Service = service;
+            Service = new RepositoryClient.RepositoryHandler();
 
             AcceptClients = true;
             
@@ -126,11 +125,12 @@ namespace FileServer
             // Service.DisconnectUser(client);
         }
 
-        public string[] GetConnectedClients()
+        public async Task<string[]> GetConnectedClients()
         {
-            var connectedClients = new List<string>();
-            Service.GetAllClients().ForEach(c => connectedClients.Add(c.ToString()));
-            return connectedClients.ToArray();
+            // var connectedClients = new List<string>();
+            // (await Service.ViewUsers()).ForEach(c => connectedClients.Add(c.ToString()));
+            // return connectedClients.ToArray();
+            return (new List<string>()).ToArray();
         }    
     }
 }

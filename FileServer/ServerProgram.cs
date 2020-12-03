@@ -1,7 +1,7 @@
-﻿using Repositories;
-using System;
+﻿using System;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading.Tasks;
 using TCPComm.Constants;
 using Utils;
 
@@ -9,7 +9,7 @@ namespace FileServer
 {
     public class ServerProgram
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             Console.Clear();
             Console.Title = "ADMINISTRACIÓN DEL SERVIDOR";
@@ -23,7 +23,7 @@ namespace FileServer
             var listener = new TcpListener(ipEndPoint);
             listener.Start(100);
 
-            var server = new Server(listener, new Service(new Repository()));
+            var server = new Server(listener);
 
             //var log = new Log();
             //Console.WriteLine("Enter Log Level:");
@@ -33,10 +33,10 @@ namespace FileServer
             //var stringLog = JsonSerializer.Serialize(log);
             //var result = await SendMessage(channel, stringLog);
 
-            Menu(server);
+            await Menu(server);
         }
         
-        private static void Menu(FileServer.Server server)
+        private static async Task Menu(FileServer.Server server)
         {
             while (true)
             {
@@ -51,21 +51,21 @@ namespace FileServer
                     pattern: $"^[1-{options.Length}]$",
                     errorMsg: $"Ingrese un número entre 1 y {options.Length}");
 
-                ExecuteItemMenu(option, server);
+                await ExecuteItemMenu(option, server);
 
                 ConsoleValidations.ContinueHandler();
             }
         }
 
-        private static void ExecuteItemMenu(string option, FileServer.Server server)
+        private static async Task ExecuteItemMenu(string option, FileServer.Server server)
         {
             switch (option)
             {
                 case "1":
-                    ListSelectedOption(server,"CLIENTES CONECTADOS", server.GetConnectedClients());
+                    await ListSelectedOption(server,"CLIENTES CONECTADOS", await server.GetConnectedClients());
                     break;
                 case "2":
-                    CrudClient(server);
+                    await CrudClient(server);
                     break;
                 case "3":
                     Environment.Exit(Environment.ExitCode);
@@ -75,7 +75,7 @@ namespace FileServer
             }
         }
 
-        private static void ListSelectedOption(FileServer.Server server, string title, string[] list)
+        private static async Task ListSelectedOption(FileServer.Server server, string title, string[] list)
         {
             ConsoleValidations.ListOperations($"{"ADMINISTRACIÓN DEL SERVIDOR"}\n\n{title}:", list, true);
             string option = ConsoleValidations.ReadUntilValid(prompt: "\nPresione <<q>> para volver al menú principal",
@@ -84,11 +84,11 @@ namespace FileServer
 
             if (option.ToLower() == "q")
             {
-                Menu(server);
+                await Menu(server);
             }
         }
         
-        private static void CrudClient(FileServer.Server server)
+        private static async Task CrudClient(FileServer.Server server)
         {
             var menu_options = new []{
                 "Crear un cliente",
@@ -114,7 +114,7 @@ namespace FileServer
                     AdminHandler.ModifyUser(server);
                     break;
                 case "4":
-                    Menu(server);
+                    await Menu(server);
                     break;
                 default:
                     throw new Exception($"Option: {option} is not a valid option.");

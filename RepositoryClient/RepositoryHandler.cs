@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RepositoryClient
 {
-    public class RepositoryClient
+    public class RepositoryHandler
     {
         private static UserHandler.UserHandlerClient _client;
 
@@ -32,7 +32,7 @@ namespace RepositoryClient
             };
         }
 
-        public async Task<ResponseDto> AddUser(UserDto user)
+        public async Task<ResponseDto> AddUserAsync(UserDto user)
         {
             var input = new AddUserInput() { 
                 Email = user.Email,
@@ -47,10 +47,9 @@ namespace RepositoryClient
                 Message = response.Message,
                 Status = response.Status,
             };
-
         }
 
-        public async Task<ResponseDto> RemoveUser(UserDto user)
+        public async Task<ResponseDto> RemoveUserAsync(UserDto user)
         {
             var input = new RemoveUserInput()
             {
@@ -66,7 +65,7 @@ namespace RepositoryClient
             };
         }
 
-        public async Task<ResponseDto> ModifyUser(UserDto user)
+        public async Task<ResponseDto> ModifyUserAsync(UserDto user)
         {
             var input = new ModifyUserInput()
             {
@@ -84,7 +83,7 @@ namespace RepositoryClient
             };
         }
 
-        public async Task<ResponseDto> UploadPhoto(PhotoDto photo)
+        public async Task<ResponseDto> UploadPhotoAsync(PhotoDto photo)
         {
             var input = new UploadPhotoInput()
             {
@@ -103,7 +102,7 @@ namespace RepositoryClient
             };
         }
 
-        public async Task<List<PhotoDto>> ViewPhotos()
+        public async Task<List<PhotoDto>> GetPhotosAsync()
         {          
             var response = await _client.ViewPhotosAsync(new EmptyInput());
             var result = new List<PhotoDto>();
@@ -122,7 +121,7 @@ namespace RepositoryClient
 
             return result;
         }
-        public async Task<List<CommentDto>> ViewComments(PhotoDto photoDto)
+        public async Task<List<CommentDto>> GetCommentsAsync(PhotoDto photoDto)
         {
             var response = await _client.ViewCommentsAsync(new ViewCommentInput() { PhotoId = photoDto.Id});
             var result = new List<CommentDto>();
@@ -140,7 +139,7 @@ namespace RepositoryClient
             return result;
         }
 
-        public async Task<List<UserDto>> ViewUsers()
+        public async Task<List<UserDto>> GetUsersAsync()
         {
             var response = await _client.ViewUsersAsync(new EmptyInput());
             var result = new List<UserDto>();
@@ -157,5 +156,47 @@ namespace RepositoryClient
 
             return result;
         }
+        
+        // public async Task<List<UserDto>> GetUsersPagedAsync(int offset, int pageSize)
+        // {
+        //     var response = await _client.ViewUsers(new EmptyInput());
+        //     var result = new List<UserDto>();
+        //
+        //     foreach (var a in response.Results)
+        //     {
+        //         result.Add(new UserDto
+        //         {
+        //             Email = a.Email,
+        //             Name = a.Name,
+        //             //LastConnection = a.LastConnected
+        //         });
+        //     }
+        //
+        //     return result;
+        // }
+
+        public async Task<bool> AutenticateUserAsync(UserDto user)
+        {
+            var input = new AutenticateUserInput() { 
+                Email = user.Email,
+                Password = user.Password
+            };
+
+            var response = await _client.AutenticateUserAsync(input);
+
+            return response.Status.Equals("OK");
+        }
+        
+        // public async Task<bool> GetUserById(UserDto user)
+        // {
+        //     var input = new AutenticateUserInput() { 
+        //         Email = user.Email,
+        //         Password = user.Password
+        //     };
+        //
+        //     var response = await _client.AutenticateUserAsync(input);
+        //
+        //     return response.Status.Equals("OK");
+        // }
     }
 }

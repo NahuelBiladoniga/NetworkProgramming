@@ -13,6 +13,7 @@
     <projectFile>WebApiAdmin/WebApiAdmin.csproj</projectFile>
     <projectFile>WebApiLogs/WebApiLogs.csproj</projectFile>
     <projectFile>RepositoryService/RepositoryService.csproj</projectFile>
+    <projectFile>RepositoryClient/RepositoryClient.csproj</projectFile>
   </component>
   <component name="BranchesTreeState">
     <expand>
@@ -34,29 +35,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ba77854-2eb2-41b0-b9a8-ec91c94bcdd0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/RepositoryClient/Class1.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RepositoryClient/RepositoryClient.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.InstaPhoto/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.InstaPhoto/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.InstaPhoto/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.InstaPhoto/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdminServer/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AdminServer/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdminServer/AdminServer.csproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdminServer/Controllers/UserController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdminServer/Helpers/WebPaginationHelper.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdminServer/Program.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdminServer/Properties/launchSettings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdminServer/Responses/WebPaginatedResponse.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdminServer/Startup.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdminServer/appsettings.Development.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdminServer/appsettings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Comment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Comment.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Photo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Photo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileClient/ServerHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileClient/ServerHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileServer/AdminHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileServer/AdminHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileServer/ClientHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileServer/ClientHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileServer/FileServer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FileServer/FileServer.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FileServer/Server.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileServer/Server.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileServer/ServerProgram.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileServer/ServerProgram.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileServer/Service.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileServer/Service.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InstaPhoto.sln" beforeDir="false" afterPath="$PROJECT_DIR$/InstaPhoto.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/Repositories.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RepositoryService/Protos/greet.proto" beforeDir="false" afterPath="$PROJECT_DIR$/RepositoryService/Protos/user.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RepositoryService/RepositoryService.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/RepositoryService/RepositoryService.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RepositoryService/Services/GreeterService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RepositoryService/Services/UserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RepositoryService/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RepositoryService/Startup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Service/FileClient/IClientService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Service/Service.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/Interfaces/ILogService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/Interfaces/IService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/Interfaces/IUserService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/Interfaces/PrivilegesException.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/Interfaces/ServicesException.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/LogService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/Services.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/UserService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RepositoryClient/RepositoryClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RepositoryClient/RepositoryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RepositoryService/Protos/user.proto" beforeDir="false" afterPath="$PROJECT_DIR$/RepositoryService/Protos/user.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RepositoryService/Services/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RepositoryService/Services/UserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TCPComm/Protocol/ProtocolHelpers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TCPComm/Protocol/ProtocolHelpers.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApiAdmin/Controllers/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiAdmin/Controllers/UserController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApiAdmin/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiAdmin/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApiAdmin/WebApiAdmin.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiAdmin/WebApiAdmin.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApiLogs/Controllers/LogController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiLogs/Controllers/LogController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApiLogs/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiLogs/Startup.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -89,10 +96,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/RepositoryServer/Services/GreeterService.cs" />
-        <option value="$PROJECT_DIR$/RespositoryClient/Program.cs" />
-        <option value="$PROJECT_DIR$/RepositoryServer/Services/CommentService.cs" />
-        <option value="$PROJECT_DIR$/RepositoryServer/Services/UserService.cs" />
         <option value="$PROJECT_DIR$/RepositoryServer/Services/PhotoService.cs" />
         <option value="$PROJECT_DIR$/RepositoryServer/Protos/photo.proto" />
         <option value="$PROJECT_DIR$/RepositoryServer/Startup.cs" />
@@ -103,10 +106,7 @@
         <option value="$PROJECT_DIR$/Servidor/ServerProgram.cs" />
         <option value="$PROJECT_DIR$/Domain/Entities/User.cs" />
         <option value="$PROJECT_DIR$/InstaPhoto.sln" />
-        <option value="$PROJECT_DIR$/FileServer/AdminHandler.cs" />
-        <option value="$PROJECT_DIR$/FileServer/ServerProgram.cs" />
         <option value="$PROJECT_DIR$/FileServer/ServerUtils.cs" />
-        <option value="$PROJECT_DIR$/FileServer/Service.cs" />
         <option value="$PROJECT_DIR$/WebApiAdmin/Properties/launchSettings.json" />
         <option value="$PROJECT_DIR$/WebApiLogs/Properties/launchSettings.json" />
         <option value="$PROJECT_DIR$/AdminServer/appsettings.json" />
@@ -114,11 +114,8 @@
         <option value="$PROJECT_DIR$/Services/Services.csproj" />
         <option value="$PROJECT_DIR$/FileServer/FileServer.csproj" />
         <option value="$PROJECT_DIR$/AdminServer/Controllers/UserController.cs" />
-        <option value="$PROJECT_DIR$/WebApiAdmin/Controllers/UserController.cs" />
         <option value="$PROJECT_DIR$/Repositories/Repository.cs" />
         <option value="$PROJECT_DIR$/Repositories/UserRepository.cs" />
-        <option value="$PROJECT_DIR$/Domain/Entities/Comment.cs" />
-        <option value="$PROJECT_DIR$/Domain/Entities/Photo.cs" />
         <option value="$PROJECT_DIR$/Repositories/PhotoRepository.cs" />
         <option value="$PROJECT_DIR$/Repositories/Interfaces/IPhotoRepository.cs" />
         <option value="$PROJECT_DIR$/Repositories/Interfaces/ICommentsRepository.cs" />
@@ -127,18 +124,28 @@
         <option value="$PROJECT_DIR$/Repositories/LogRepository.cs" />
         <option value="$PROJECT_DIR$/Repositories/Interfaces/ILogRepository.cs" />
         <option value="$PROJECT_DIR$/FileClient/ClientProgram.cs" />
-        <option value="$PROJECT_DIR$/FileClient/ServerHandler.cs" />
-        <option value="$PROJECT_DIR$/FileServer/ClientHandler.cs" />
         <option value="$PROJECT_DIR$/RepositoryService/Protos/greet.proto" />
         <option value="$PROJECT_DIR$/RepositoryService/Repository/CommentRepository.cs" />
         <option value="$PROJECT_DIR$/RepositoryService/Repository/UserRepository.cs" />
         <option value="$PROJECT_DIR$/WebApiAdmin/Startup.cs" />
-        <option value="$PROJECT_DIR$/WebApiLogs/Startup.cs" />
         <option value="$PROJECT_DIR$/AdminServer/Startup.cs" />
         <option value="$PROJECT_DIR$/RepositoryService/Services/UserServ.cs" />
         <option value="$PROJECT_DIR$/RepositoryClient/Class1.cs" />
+        <option value="$PROJECT_DIR$/Domain/Entities/Comment.cs" />
+        <option value="$PROJECT_DIR$/TCPComm/Protocol/ProtocolHelpers.cs" />
+        <option value="$PROJECT_DIR$/Domain/Entities/Photo.cs" />
+        <option value="$PROJECT_DIR$/FileServer/Service.cs" />
         <option value="$PROJECT_DIR$/FileServer/Server.cs" />
+        <option value="$PROJECT_DIR$/FileServer/ServerProgram.cs" />
         <option value="$PROJECT_DIR$/RepositoryService/Protos/user.proto" />
+        <option value="$PROJECT_DIR$/FileClient/ServerHandler.cs" />
+        <option value="$PROJECT_DIR$/FileServer/AdminHandler.cs" />
+        <option value="$PROJECT_DIR$/FileServer/ClientHandler.cs" />
+        <option value="$PROJECT_DIR$/RepositoryClient/RepositoryClient.cs" />
+        <option value="$PROJECT_DIR$/RepositoryClient/RepositoryHandler.cs" />
+        <option value="$PROJECT_DIR$/WebApiAdmin/Controllers/UserController.cs" />
+        <option value="$PROJECT_DIR$/WebApiLogs/Startup.cs" />
+        <option value="$PROJECT_DIR$/WebApiLogs/Controllers/LogController.cs" />
         <option value="$PROJECT_DIR$/RepositoryService/Services/UserService.cs" />
       </list>
     </option>
@@ -163,6 +170,24 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected=".NET Launch Settings Profile.WebApiAdmin">
+    <configuration name="RepositoryClient" type="DotNetProject" factoryName=".NET Project">
+      <option name="EXE_PATH" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/RepositoryClient/RepositoryClient.csproj" />
+      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="DotNetCore" />
+      <option name="PROJECT_TFM" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
     <configuration name="RespositoryClient" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -425,6 +450,8 @@
       <workItem from="1606987967591" duration="2053000" />
       <workItem from="1606990357747" duration="1174000" />
       <workItem from="1606992560791" duration="7406000" />
+      <workItem from="1607013119509" duration="2242000" />
+      <workItem from="1607015426321" duration="4814000" />
     </task>
     <task id="LOCAL-00001" summary="Added more operations for server program and added repo server">
       <created>1606718683219</created>
@@ -679,24 +706,6 @@
           <line>125</line>
           <properties documentPath="C:\Users\Nahuel\Documents\My Files\ORT\ProgramacionRedes\NetworkProgramming\Servidor\ClientHandler.cs" initialLine="125" />
           <option name="timeStamp" value="57" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/FileClient/ServerHandler.cs</url>
-          <line>79</line>
-          <properties documentPath="C:\Users\Nahuel\Documents\My Files\ORT\ProgramacionRedes\NetworkProgramming\FileClient\ServerHandler.cs" initialLine="79" />
-          <option name="timeStamp" value="58" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/FileClient/ServerHandler.cs</url>
-          <line>80</line>
-          <properties documentPath="C:\Users\Nahuel\Documents\My Files\ORT\ProgramacionRedes\NetworkProgramming\FileClient\ServerHandler.cs" initialLine="80" />
-          <option name="timeStamp" value="59" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/FileClient/ClientProgram.cs</url>
-          <line>168</line>
-          <properties documentPath="C:\Users\Nahuel\Documents\My Files\ORT\ProgramacionRedes\NetworkProgramming\FileClient\ClientProgram.cs" initialLine="169" />
-          <option name="timeStamp" value="60" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

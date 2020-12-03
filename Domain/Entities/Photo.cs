@@ -18,7 +18,7 @@ namespace Domain
         public List<Comment> Comments { get; set; }        
         public User User { get; set; }
 
-        public override string ToString() => $"Id: {Id} - Nombre: {Name} - Extension: {Extension} - Tamanio: : {FileSize} - Email Usuario: {UserEmail}";
+        public override string ToString() => $"Id: {Id} - Nombre: {Name} - Extension: {Extension} - Tamanio: : {FileSize} - Nombre Usuario: {User.Name}";
 
         public string ToStringProtocol() => $"Name={Name}$Ext={Extension}$FileSize={FileSize}";
 

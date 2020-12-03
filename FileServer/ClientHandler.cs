@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain;
+using RepositoryClient.Dto;
 using TCPComm;
 using TCPComm.Protocol;
 
@@ -18,13 +19,13 @@ namespace FileServer
             {
                 var email = ConversionHandler.ConvertBytesToString( await client.StreamCommunication.ReadAsync(User.UserEmailLength));
                 var password = ConversionHandler.ConvertBytesToString( await client.StreamCommunication.ReadAsync(User.UserPasswordLength));
-                var user = new User
+                var user = new UserDto()
                 {
                     Email = email,
                     Password = password
                 };
                 
-                existUser = server.Service.AutenticateUser(user);
+                existUser = await server.Service.AutenticateUserAsync(user);
                 
                 if (!existUser)
                 {
@@ -33,7 +34,11 @@ namespace FileServer
                 }
                 else
                 {
-                    client.User = user;
+                    client.User = new User()
+                    {
+                        Email = email,
+                        Password = password
+                    };
 
                     ProtocolHelpers.SendResponseCommand(ProtocolConstants.ResponseCommands.Error ,client.StreamCommunication);
                     client.StreamCommunication.Write(ConversionHandler.ConvertStringToBytes("Login Successfully", ProtocolConstants.ResponseMessageLength));
@@ -52,16 +57,21 @@ namespace FileServer
                 ProtocolHelpers.SendResponseCommand(ProtocolConstants.ResponseCommands.Error ,client.StreamCommunication);
                 client.StreamCommunication.Write(ConversionHandler.ConvertStringToBytes("Input Error", ProtocolConstants.ResponseMessageLength));
             }
-
-            var user = new User
+            
+            var user = new UserDto()
             {
                 Email = email,
                 Name = name,
                 Password = password,
             };
             
-            server.Service.AddUser(user);
-            client.User = user;
+            await server.Service.AddUserAsync(user);
+            client.User = new User()
+            {
+                Email = email,
+                Name = name,
+                Password = password,
+            };
 
             ProtocolHelpers.SendResponseCommand(ProtocolConstants.ResponseCommands.Ok ,client.StreamCommunication);
             client.StreamCommunication.Write(ConversionHandler.ConvertStringToBytes("Added Sucessfully", ProtocolConstants.ResponseMessageLength));
@@ -78,14 +88,14 @@ namespace FileServer
                 ProtocolHelpers.SendMessageCommand(ProtocolConstants.ResponseCommands.Ok, client, "Input Error");
             }
 
-            var photo = new Photo()
+            var photo = new PhotoDto()
             {
                 Name = name,
                 Extension = extension,
                 FileSize = fileSize,
             };
 
-            server.Service.UploadPhoto(photo);
+            await server.Service.UploadPhotoAsync(photo);
             var fileName = $"{PhotosPath}\\Image_{photo.Id}{extension}";
             
             await FileHandler.ReceiveFileWithStreams(fileSize, fileName, client.StreamCommunication);
@@ -103,50 +113,64 @@ namespace FileServer
                 ProtocolHelpers.SendMessageCommand(ProtocolConstants.ResponseCommands.Ok, client, "Input Error");
             }
 
-            var comment = new Comment
+            var comment = new CommentDto()
             {
-                Photo = new Photo
-                {
-                    Id = photoIdParsed
-                },
+                PhotoId = photoIdParsed,
                 Message = message,
-                Commentor = client.User
+                UserEmail = client.User.Email,
             };
 
-            server.Service.CommentPhoto(comment);
+            await server.Service.AddCommentAsync(comment);
 
             ProtocolHelpers.SendMessageCommand(ProtocolConstants.ResponseCommands.Ok,client, "Added Sucessfully");
         }
 
-        public static void HandleViewUsers(FileServer.Server server, CommunicationClient client)
+        public static async Task HandleViewUsers(FileServer.Server server, CommunicationClient client)
         {
             ProtocolHelpers.SendResponseCommand(ProtocolConstants.ResponseCommands.ListUsers,
                 client.StreamCommunication);
 
-            var clients = server.Service.GetAllClients();
+            var clients = (await server.Service.GetUsersAsync()).ToList();
             var length = clients.Count() * (User.UserEmailLength + User.UserNameLength + ProtocolConstants.DateTimeTypeLength);
 
             var data = ConversionHandler.ConvertIntToBytes(length);
             client.StreamCommunication.Write(data);
             clients.ForEach((elem) =>
             {
-                ProtocolHelpers.SendUserData(client.StreamCommunication,elem);
+                var user = new User()
+                {
+                    Name = elem.Name,
+                    Email = elem.Email,
+                    LastConnection = elem.LastConnection
+                };
+                ProtocolHelpers.SendUserData(client.StreamCommunication,user);
             });
         }
 
-        public static void HandleViewPhotos(FileServer.Server server, CommunicationClient client)
+        public static async Task HandleViewPhotos(FileServer.Server server, CommunicationClient client)
         {
             ProtocolHelpers.SendResponseCommand(ProtocolConstants.ResponseCommands.ListPhotos,
             client.StreamCommunication);
 
-            var photos = server.Service.GetPhotos();
+            var photos = await server.Service.GetPhotosAsync();
             var length = photos.Count() * (User.UserEmailLength + ProtocolConstants.LongTypeLength + Photo.PhotoNameLength + Photo.PhotoExtensionLength + ProtocolConstants.LongTypeLength);
 
             var data = ConversionHandler.ConvertIntToBytes(length);
             client.StreamCommunication.Write(data);
             photos.ForEach((elem) =>
             {
-                ProtocolHelpers.SendPhotoData(client.StreamCommunication, elem);
+                var photo = new Photo()
+                {
+                    Id = elem.Id,
+                    Name = elem.Name,
+                    Extension = elem.Extension,
+                    FileSize = elem.FileSize,
+                    User = new User()
+                    {
+                        Email = elem.UserEmail
+                    }
+                };
+                ProtocolHelpers.SendPhotoData(client.StreamCommunication, photo);
             });
         }
 
@@ -154,14 +178,24 @@ namespace FileServer
         {
             var photoIdParsed = ConversionHandler.ConvertBytesToInt( await client.StreamCommunication.ReadAsync(ProtocolConstants.IntegerTypeLength));
     
-            var photo = new Photo
+            var photo = new PhotoDto()
             {
                 Id = photoIdParsed
             };
 
-            server.Service.GetCommentsFromPhoto(photo).ForEach((elem) =>
+            (await server.Service.GetCommentsAsync(photo)).ToList().ForEach((elem) =>
             {
-                ProtocolHelpers.SendCommentData(client.StreamCommunication,elem);
+                var comment = new Comment()
+                {
+                    Message = elem.Message,
+                    CreationDate = elem.CreationDate,
+                    Commentator = new User()
+                    {
+                        Email = elem.UserEmail,
+                        Name = elem.UserName
+                    }
+                };
+                ProtocolHelpers.SendCommentData(client.StreamCommunication, comment);
             });
         }
     }

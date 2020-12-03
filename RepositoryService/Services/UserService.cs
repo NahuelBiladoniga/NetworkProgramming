@@ -24,6 +24,38 @@ namespace RepositoryService
             _photoRepository = photoRepository;
         }
 
+        public Task<ResponseMessage> AutenticateUserAsync(AutenticateUserInput request, ServerCallContext context)
+        {
+            var user = new User()
+            {
+                Email = request.Email,
+                Password = request.Password
+            };
+
+            var savedUser = _userRepository.GetUser(user);
+
+            if (savedUser.Password.Equals(user.Password) && savedUser.Email.Equals(user.Email))
+            {
+                savedUser.IsConnected = true;
+                savedUser.LastConnection = DateTime.Now;
+
+                return Task.FromResult(new ResponseMessage
+                {
+                    Status = "Ok",
+                    Message = "Bienvenido!",
+                });
+            }
+            else
+            {
+                return Task.FromResult(new ResponseMessage
+                {
+                    Status = "Error",
+                    Message = "Credenciales invalidas",
+                });
+            }
+
+        }
+
         public override Task<ResponseMessage> AddComment(AddCommentInput request, ServerCallContext context)
         {
             var comment = new Comment()

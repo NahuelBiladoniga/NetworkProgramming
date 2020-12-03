@@ -38,9 +38,9 @@ namespace FileClient
             return response;
         }
         
-        public static async Task<MessageResponse> HandleCommentCreation(Client client, Photo photo, Comment comment)
+        public static async Task<MessageResponse> HandleCommentCreation(Client client, Comment comment)
         {
-            var photoIdData = ConversionHandler.ConvertLongToBytes( photo.Id);
+            var photoIdData = ConversionHandler.ConvertLongToBytes( comment.Photo.Id);
             var commentData = ConversionHandler.ConvertStringToBytes( comment.Message, Comment.CommentLength);
          
             ProtocolHelpers.SendRequestCommand(ProtocolConstants.RequestCommands.COMMENT_PHOTO, client.StreamCommunication);

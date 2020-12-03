@@ -58,8 +58,8 @@ namespace TCPComm.Protocol
         
         public static void SendCommentData(StreamCommunication streamCommunication,Comment comment)
         {
-            var nameData = ConversionHandler.ConvertStringToBytes(comment.Commentor.Name, User.UserNameLength);
-            var emailData = ConversionHandler.ConvertStringToBytes(comment.Commentor.Email, User.UserEmailLength);
+            var nameData = ConversionHandler.ConvertStringToBytes(comment.Commentator.Name, User.UserNameLength);
+            var emailData = ConversionHandler.ConvertStringToBytes(comment.Commentator.Email, User.UserEmailLength);
             var commentData = ConversionHandler.ConvertStringToBytes(comment.Message, Comment.CommentLength);
 
             streamCommunication.Write(nameData);
