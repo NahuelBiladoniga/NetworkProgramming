@@ -34,65 +34,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ba77854-2eb2-41b0-b9a8-ec91c94bcdd0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/config/applicationhost.config" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdminServer/AdminServer.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdminServer/Controllers/UserController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdminServer/Helpers/WebPaginationHelper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdminServer/Program.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdminServer/Properties/launchSettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdminServer/Responses/WebPaginatedResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdminServer/Startup.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdminServer/appsettings.Development.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdminServer/appsettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RepositoryService/Program.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RepositoryService/Properties/launchSettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RepositoryService/Protos/greet.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RepositoryService/Repository/CommentRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RepositoryService/Repository/Interfaces/ICommentsRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RepositoryService/Repository/Interfaces/ILogRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RepositoryService/Repository/Interfaces/IPhotoRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RepositoryService/Repository/Interfaces/IUserRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RepositoryService/Repository/LogRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RepositoryService/Repository/PhotoRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RepositoryService/Repository/Repository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RepositoryService/Repository/UserRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RepositoryService/RepositoryService.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RepositoryService/Services/GreeterService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RepositoryService/Startup.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RepositoryService/appsettings.Development.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RepositoryService/appsettings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RepositoryClient/Class1.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RepositoryClient/RepositoryClient.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.InstaPhoto/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.InstaPhoto/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.InstaPhoto/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.InstaPhoto/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Entities/Comment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Comment.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Entities/Photo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Photo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileClient/ClientProgram.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileClient/ClientProgram.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileClient/ServerHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileClient/ServerHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileServer/ClientHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileServer/ClientHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileServer/FileServer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FileServer/FileServer.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdminServer/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AdminServer/Startup.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FileServer/Server.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileServer/Server.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileServer/ServerProgram.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileServer/ServerProgram.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InstaPhoto.sln" beforeDir="false" afterPath="$PROJECT_DIR$/InstaPhoto.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/DataAccessException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RepositoryService/Repository/DataAccessException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/Dtos/LogDto.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/Dtos/UserDto.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/Interfaces/ILogRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/Interfaces/IRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/Interfaces/IUserRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/LogRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/Repositories.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/Repositories.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/Repository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/UserRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/Services.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Services.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApiAdmin/Controllers/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiAdmin/Controllers/UserController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApiAdmin/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiAdmin/Properties/launchSettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/Repositories.csproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RepositoryService/Protos/greet.proto" beforeDir="false" afterPath="$PROJECT_DIR$/RepositoryService/Protos/user.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RepositoryService/RepositoryService.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/RepositoryService/RepositoryService.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RepositoryService/Services/GreeterService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RepositoryService/Services/UserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RepositoryService/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RepositoryService/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/FileClient/IClientService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/Service.csproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/Interfaces/ILogService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/Interfaces/IService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/Interfaces/IUserService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/Interfaces/PrivilegesException.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/Interfaces/ServicesException.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/LogService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/Services.csproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/UserService.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApiAdmin/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiAdmin/Startup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApiAdmin/WeatherForecast.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApiAdmin/WebApiAdmin.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiAdmin/WebApiAdmin.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApiAdmin/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiAdmin/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApiLogs/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiLogs/Properties/launchSettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApiLogs/WeatherForecast.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApiLogs/WebApiLogs.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiLogs/WebApiLogs.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApiLogs/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiLogs/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApiLogs/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiLogs/Startup.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,12 +79,9 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A9C37662-579A-499A-A4DE-B3C85349280D/286/TaskAwaiter.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A9C37662-579A-499A-A4DE-B3C85349280D/1E0/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A9C37662-579A-499A-A4DE-B3C85349280D/321/Stream.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/RepositoryService/Repository/Interfaces/ILogRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Utils/ConsoleValidations.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BA6F3355-5A5A-4969-8229-1CC21F017E3A/88/e7794286/IDbConnection.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/318D2799-861E-4377-8FA8-7E428C96ED58/ae/2d374ee1/NetworkStream.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/RepositoryService/Repository/Interfaces/IPhotoRepository.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Service/FileClient/IClientService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TCPComm/Protocol/StreamCommunication.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7EC34705-F546-47B9-970A-53DBFB87C6FB/a4/1d926009/MvcServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TCPComm/Protocol/ExtendedProtocol.cs" root0="SKIP_HIGHLIGHTING" />
@@ -127,14 +89,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Utils/ConsoleValidations.cs" />
-        <option value="$PROJECT_DIR$/Servidor/appsettings.json" />
-        <option value="$PROJECT_DIR$/TCPComm/Constants/ServerConstants.cs" />
-        <option value="$PROJECT_DIR$/TCPComm/Protocol/ConversionHandler.cs" />
-        <option value="$PROJECT_DIR$/Servidor/FileServer.csproj" />
-        <option value="$PROJECT_DIR$/Servidor/Server.cs" />
-        <option value="$PROJECT_DIR$/Servidor/ClientHandler.cs" />
-        <option value="$PROJECT_DIR$/TCPComm/Protocol/ProtocolHelpers.cs" />
         <option value="$PROJECT_DIR$/RepositoryServer/Services/GreeterService.cs" />
         <option value="$PROJECT_DIR$/RespositoryClient/Program.cs" />
         <option value="$PROJECT_DIR$/RepositoryServer/Services/CommentService.cs" />
@@ -155,14 +109,12 @@
         <option value="$PROJECT_DIR$/FileServer/Service.cs" />
         <option value="$PROJECT_DIR$/WebApiAdmin/Properties/launchSettings.json" />
         <option value="$PROJECT_DIR$/WebApiLogs/Properties/launchSettings.json" />
-        <option value="$PROJECT_DIR$/WebApiAdmin/Startup.cs" />
         <option value="$PROJECT_DIR$/AdminServer/appsettings.json" />
         <option value="$PROJECT_DIR$/AdminServer/appsettings.Development.json" />
         <option value="$PROJECT_DIR$/Services/Services.csproj" />
         <option value="$PROJECT_DIR$/FileServer/FileServer.csproj" />
         <option value="$PROJECT_DIR$/AdminServer/Controllers/UserController.cs" />
         <option value="$PROJECT_DIR$/WebApiAdmin/Controllers/UserController.cs" />
-        <option value="$PROJECT_DIR$/AdminServer/Startup.cs" />
         <option value="$PROJECT_DIR$/Repositories/Repository.cs" />
         <option value="$PROJECT_DIR$/Repositories/UserRepository.cs" />
         <option value="$PROJECT_DIR$/Domain/Entities/Comment.cs" />
@@ -177,7 +129,17 @@
         <option value="$PROJECT_DIR$/FileClient/ClientProgram.cs" />
         <option value="$PROJECT_DIR$/FileClient/ServerHandler.cs" />
         <option value="$PROJECT_DIR$/FileServer/ClientHandler.cs" />
+        <option value="$PROJECT_DIR$/RepositoryService/Protos/greet.proto" />
+        <option value="$PROJECT_DIR$/RepositoryService/Repository/CommentRepository.cs" />
+        <option value="$PROJECT_DIR$/RepositoryService/Repository/UserRepository.cs" />
+        <option value="$PROJECT_DIR$/WebApiAdmin/Startup.cs" />
+        <option value="$PROJECT_DIR$/WebApiLogs/Startup.cs" />
+        <option value="$PROJECT_DIR$/AdminServer/Startup.cs" />
+        <option value="$PROJECT_DIR$/RepositoryService/Services/UserServ.cs" />
+        <option value="$PROJECT_DIR$/RepositoryClient/Class1.cs" />
         <option value="$PROJECT_DIR$/FileServer/Server.cs" />
+        <option value="$PROJECT_DIR$/RepositoryService/Protos/user.proto" />
+        <option value="$PROJECT_DIR$/RepositoryService/Services/UserService.cs" />
       </list>
     </option>
   </component>
@@ -462,7 +424,7 @@
       <workItem from="1606971746201" duration="2879000" />
       <workItem from="1606987967591" duration="2053000" />
       <workItem from="1606990357747" duration="1174000" />
-      <workItem from="1606992560791" duration="5219000" />
+      <workItem from="1606992560791" duration="7406000" />
     </task>
     <task id="LOCAL-00001" summary="Added more operations for server program and added repo server">
       <created>1606718683219</created>
@@ -506,7 +468,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606989112837</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added rpc non functional">
+      <created>1606999071524</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1606999071524</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -535,93 +504,114 @@
     <MESSAGE value="Added grpc" />
     <MESSAGE value="Client" />
     <MESSAGE value="Finished merged" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished merged" />
+    <MESSAGE value="Added rpc non functional" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added rpc non functional" />
   </component>
   <component name="WindowStateProjectService">
     <state width="562" height="464" key="DebuggerActiveHint" timestamp="1606956968543">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="562" height="464" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1606956968543" />
-    <state width="1493" height="75" key="GridCell.Tab.0.bottom" timestamp="1606993854681">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="75" key="GridCell.Tab.0.bottom" timestamp="1607001001521">
+      <screen x="1920" y="0" width="1600" height="850" />
     </state>
     <state width="1493" height="75" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606993854681" />
-    <state width="1493" height="75" key="GridCell.Tab.0.center" timestamp="1606993854680">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="75" key="GridCell.Tab.0.bottom/1920.0.1600.850/0.0.1536.824@1920.0.1600.850" timestamp="1607001001521" />
+    <state width="1493" height="75" key="GridCell.Tab.0.center" timestamp="1607001001521">
+      <screen x="1920" y="0" width="1600" height="850" />
     </state>
     <state width="1493" height="75" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1606993854680" />
-    <state width="1493" height="75" key="GridCell.Tab.0.left" timestamp="1606993854680">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="75" key="GridCell.Tab.0.center/1920.0.1600.850/0.0.1536.824@1920.0.1600.850" timestamp="1607001001521" />
+    <state width="1493" height="75" key="GridCell.Tab.0.left" timestamp="1607001001521">
+      <screen x="1920" y="0" width="1600" height="850" />
     </state>
     <state width="1493" height="75" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1606993854680" />
-    <state width="1493" height="75" key="GridCell.Tab.0.right" timestamp="1606993854681">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="75" key="GridCell.Tab.0.left/1920.0.1600.850/0.0.1536.824@1920.0.1600.850" timestamp="1607001001521" />
+    <state width="1493" height="75" key="GridCell.Tab.0.right" timestamp="1607001001521">
+      <screen x="1920" y="0" width="1600" height="850" />
     </state>
     <state width="1493" height="75" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1606993854681" />
-    <state width="1493" height="75" key="GridCell.Tab.1.bottom" timestamp="1606993854683">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="75" key="GridCell.Tab.0.right/1920.0.1600.850/0.0.1536.824@1920.0.1600.850" timestamp="1607001001521" />
+    <state width="1493" height="75" key="GridCell.Tab.1.bottom" timestamp="1607001001509">
+      <screen x="1920" y="0" width="1600" height="850" />
     </state>
     <state width="1493" height="75" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606993854683" />
-    <state width="1493" height="75" key="GridCell.Tab.1.center" timestamp="1606993854682">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="75" key="GridCell.Tab.1.bottom/1920.0.1600.850/0.0.1536.824@1920.0.1600.850" timestamp="1607001001509" />
+    <state width="1493" height="75" key="GridCell.Tab.1.center" timestamp="1607001001509">
+      <screen x="1920" y="0" width="1600" height="850" />
     </state>
     <state width="1493" height="75" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1606993854682" />
-    <state width="1493" height="75" key="GridCell.Tab.1.left" timestamp="1606993854682">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="75" key="GridCell.Tab.1.center/1920.0.1600.850/0.0.1536.824@1920.0.1600.850" timestamp="1607001001509" />
+    <state width="1493" height="75" key="GridCell.Tab.1.left" timestamp="1607001001509">
+      <screen x="1920" y="0" width="1600" height="850" />
     </state>
     <state width="1493" height="75" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1606993854682" />
-    <state width="1493" height="75" key="GridCell.Tab.1.right" timestamp="1606993854682">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="75" key="GridCell.Tab.1.left/1920.0.1600.850/0.0.1536.824@1920.0.1600.850" timestamp="1607001001509" />
+    <state width="1493" height="75" key="GridCell.Tab.1.right" timestamp="1607001001509">
+      <screen x="1920" y="0" width="1600" height="850" />
     </state>
     <state width="1493" height="75" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1606993854682" />
-    <state width="1493" height="75" key="GridCell.Tab.2.bottom" timestamp="1606993854683">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="75" key="GridCell.Tab.1.right/1920.0.1600.850/0.0.1536.824@1920.0.1600.850" timestamp="1607001001509" />
+    <state width="1493" height="75" key="GridCell.Tab.2.bottom" timestamp="1607001001510">
+      <screen x="1920" y="0" width="1600" height="850" />
     </state>
     <state width="1493" height="75" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606993854683" />
-    <state width="1493" height="75" key="GridCell.Tab.2.center" timestamp="1606993854683">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="75" key="GridCell.Tab.2.bottom/1920.0.1600.850/0.0.1536.824@1920.0.1600.850" timestamp="1607001001510" />
+    <state width="1493" height="75" key="GridCell.Tab.2.center" timestamp="1607001001510">
+      <screen x="1920" y="0" width="1600" height="850" />
     </state>
     <state width="1493" height="75" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1606993854683" />
-    <state width="1493" height="75" key="GridCell.Tab.2.left" timestamp="1606993854683">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="75" key="GridCell.Tab.2.center/1920.0.1600.850/0.0.1536.824@1920.0.1600.850" timestamp="1607001001510" />
+    <state width="1493" height="75" key="GridCell.Tab.2.left" timestamp="1607001001510">
+      <screen x="1920" y="0" width="1600" height="850" />
     </state>
     <state width="1493" height="75" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1606993854683" />
-    <state width="1493" height="75" key="GridCell.Tab.2.right" timestamp="1606993854683">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="75" key="GridCell.Tab.2.left/1920.0.1600.850/0.0.1536.824@1920.0.1600.850" timestamp="1607001001510" />
+    <state width="1493" height="75" key="GridCell.Tab.2.right" timestamp="1607001001510">
+      <screen x="1920" y="0" width="1600" height="850" />
     </state>
     <state width="1493" height="75" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1606993854683" />
-    <state width="1493" height="75" key="GridCell.Tab.3.bottom" timestamp="1606993854683">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="75" key="GridCell.Tab.2.right/1920.0.1600.850/0.0.1536.824@1920.0.1600.850" timestamp="1607001001510" />
+    <state width="1493" height="75" key="GridCell.Tab.3.bottom" timestamp="1607001001511">
+      <screen x="1920" y="0" width="1600" height="850" />
     </state>
     <state width="1493" height="75" key="GridCell.Tab.3.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606993854683" />
-    <state width="1493" height="75" key="GridCell.Tab.3.center" timestamp="1606993854683">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="75" key="GridCell.Tab.3.bottom/1920.0.1600.850/0.0.1536.824@1920.0.1600.850" timestamp="1607001001511" />
+    <state width="1493" height="75" key="GridCell.Tab.3.center" timestamp="1607001001510">
+      <screen x="1920" y="0" width="1600" height="850" />
     </state>
     <state width="1493" height="75" key="GridCell.Tab.3.center/0.0.1536.824@0.0.1536.824" timestamp="1606993854683" />
-    <state width="1493" height="75" key="GridCell.Tab.3.left" timestamp="1606993854683">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="75" key="GridCell.Tab.3.center/1920.0.1600.850/0.0.1536.824@1920.0.1600.850" timestamp="1607001001510" />
+    <state width="1493" height="75" key="GridCell.Tab.3.left" timestamp="1607001001510">
+      <screen x="1920" y="0" width="1600" height="850" />
     </state>
     <state width="1493" height="75" key="GridCell.Tab.3.left/0.0.1536.824@0.0.1536.824" timestamp="1606993854683" />
-    <state width="1493" height="75" key="GridCell.Tab.3.right" timestamp="1606993854683">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="75" key="GridCell.Tab.3.left/1920.0.1600.850/0.0.1536.824@1920.0.1600.850" timestamp="1607001001510" />
+    <state width="1493" height="75" key="GridCell.Tab.3.right" timestamp="1607001001511">
+      <screen x="1920" y="0" width="1600" height="850" />
     </state>
     <state width="1493" height="75" key="GridCell.Tab.3.right/0.0.1536.824@0.0.1536.824" timestamp="1606993854683" />
-    <state width="1493" height="75" key="GridCell.Tab.4.bottom" timestamp="1606993854683">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="75" key="GridCell.Tab.3.right/1920.0.1600.850/0.0.1536.824@1920.0.1600.850" timestamp="1607001001511" />
+    <state width="1493" height="75" key="GridCell.Tab.4.bottom" timestamp="1607001001512">
+      <screen x="1920" y="0" width="1600" height="850" />
     </state>
     <state width="1493" height="75" key="GridCell.Tab.4.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606993854683" />
-    <state width="1493" height="75" key="GridCell.Tab.4.center" timestamp="1606993854683">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="75" key="GridCell.Tab.4.bottom/1920.0.1600.850/0.0.1536.824@1920.0.1600.850" timestamp="1607001001512" />
+    <state width="1493" height="75" key="GridCell.Tab.4.center" timestamp="1607001001512">
+      <screen x="1920" y="0" width="1600" height="850" />
     </state>
     <state width="1493" height="75" key="GridCell.Tab.4.center/0.0.1536.824@0.0.1536.824" timestamp="1606993854683" />
-    <state width="1493" height="75" key="GridCell.Tab.4.left" timestamp="1606993854683">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="75" key="GridCell.Tab.4.center/1920.0.1600.850/0.0.1536.824@1920.0.1600.850" timestamp="1607001001512" />
+    <state width="1493" height="75" key="GridCell.Tab.4.left" timestamp="1607001001511">
+      <screen x="1920" y="0" width="1600" height="850" />
     </state>
     <state width="1493" height="75" key="GridCell.Tab.4.left/0.0.1536.824@0.0.1536.824" timestamp="1606993854683" />
-    <state width="1493" height="75" key="GridCell.Tab.4.right" timestamp="1606993854683">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="75" key="GridCell.Tab.4.left/1920.0.1600.850/0.0.1536.824@1920.0.1600.850" timestamp="1607001001511" />
+    <state width="1493" height="75" key="GridCell.Tab.4.right" timestamp="1607001001512">
+      <screen x="1920" y="0" width="1600" height="850" />
     </state>
     <state width="1493" height="75" key="GridCell.Tab.4.right/0.0.1536.824@0.0.1536.824" timestamp="1606993854683" />
+    <state width="1493" height="75" key="GridCell.Tab.4.right/1920.0.1600.850/0.0.1536.824@1920.0.1600.850" timestamp="1607001001512" />
     <state x="147" y="65" key="MergeDialog" timestamp="1606974270983">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -630,11 +620,11 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="407" y="174" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1606974270991" />
-    <state x="2296" y="149" key="Rider.ProjectTemplateDialog.Size" timestamp="1606998726476">
+    <state x="2296" y="149" key="Rider.ProjectTemplateDialog.Size" timestamp="1607000311567">
       <screen x="1920" y="0" width="1600" height="850" />
     </state>
     <state x="361" y="144" key="Rider.ProjectTemplateDialog.Size/1920.0.1600.850/0.0.1536.824@0.0.1536.824" timestamp="1606905999830" />
-    <state x="2296" y="149" key="Rider.ProjectTemplateDialog.Size/1920.0.1600.850/0.0.1536.824@1920.0.1600.850" timestamp="1606998726476" />
+    <state x="2296" y="149" key="Rider.ProjectTemplateDialog.Size/1920.0.1600.850/0.0.1536.824@1920.0.1600.850" timestamp="1607000311567" />
     <state x="2531" y="118" key="RiderGenerateDialog" timestamp="1606997144095">
       <screen x="1920" y="0" width="1600" height="850" />
     </state>
@@ -655,11 +645,12 @@
     </state>
     <state x="93" y="93" width="1350" height="638" key="VCS.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1606994480819" />
     <state x="93" y="93" width="1350" height="638" key="VCS.FileHistoryDialog/1920.0.1600.850/0.0.1536.824@0.0.1536.824" timestamp="1606900298020" />
-    <state x="361" y="132" key="Vcs.Push.Dialog.v2" timestamp="1606989116008">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="2296" y="136" key="Vcs.Push.Dialog.v2" timestamp="1606999073153">
+      <screen x="1920" y="0" width="1600" height="850" />
     </state>
     <state x="361" y="132" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1606989116008" />
     <state x="361" y="132" key="Vcs.Push.Dialog.v2/1920.0.1600.850/0.0.1536.824@0.0.1536.824" timestamp="1606906329215" />
+    <state x="2296" y="136" key="Vcs.Push.Dialog.v2/1920.0.1600.850/0.0.1536.824@1920.0.1600.850" timestamp="1606999073153" />
     <state width="775" height="419" key="XDebugger.FullValuePopup" timestamp="1606949469497">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -673,11 +664,12 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1606716902706" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1606910196465">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="2369" y="150" width="700" height="700" key="search.everywhere.popup" timestamp="1606999676708">
+      <screen x="1920" y="0" width="1600" height="850" />
     </state>
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1606714641621" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/1920.0.1600.850/0.0.1536.824@0.0.1536.824" timestamp="1606910196465" />
+    <state x="2369" y="150" width="700" height="700" key="search.everywhere.popup/1920.0.1600.850/0.0.1536.824@1920.0.1600.850" timestamp="1606999676708" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

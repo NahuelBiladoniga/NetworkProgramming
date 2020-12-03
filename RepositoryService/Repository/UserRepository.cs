@@ -1,5 +1,5 @@
 ﻿using Domain;
-using Repositories.Interfaces;
+using RepositoryService.Interfaces;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -9,13 +9,19 @@ namespace Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private object lock_users = new object();
+        private readonly object lock_users = new object();
+        private readonly Repository repository;
+
+        public UserRepository()
+        {
+            repository = Repository.Instance;
+        }
 
         public IEnumerable<User> GetUsers()
         {
             lock (lock_users)
             {
-                return Repository.Users;
+                return repository.Users;
             }
         }
 
@@ -23,7 +29,7 @@ namespace Repositories
         {
             lock (lock_users)
             {
-                return Repository.Users.First(u => u.Equals(user));
+                return repository.Users.First(u => u.Equals(user));
             }
         }
 
@@ -31,7 +37,7 @@ namespace Repositories
         {
             lock (lock_users)
             {
-                Repository.Users.Add(user);
+                repository.Users.Add(user);
                 return user;
             }
         }
@@ -40,7 +46,7 @@ namespace Repositories
         {
             lock (lock_users)
             {
-                var userLocated = Repository.Users.First(u => u.Equals(user));
+                var userLocated = repository.Users.First(u => u.Equals(user));
                 userLocated.Name = user.Name;
                 userLocated.Password = user.Password;
             }
@@ -52,7 +58,7 @@ namespace Repositories
         {
             lock (lock_users)
             {
-                Repository.Users.Remove(user);
+                repository.Users.Remove(user);
             }
         }
 
@@ -60,7 +66,7 @@ namespace Repositories
         {
             lock (lock_users)
             {
-                return Repository.Users.Count();
+                return repository.Users.Count();
             }
         }
     }

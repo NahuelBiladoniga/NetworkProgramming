@@ -30,8 +30,6 @@ namespace AdminServer
         {
             services.AddControllers();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddCors(options =>
             {

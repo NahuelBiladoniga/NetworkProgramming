@@ -1,13 +1,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using Domain;
-using Repositories.Interfaces;
+using RepositoryService.Interfaces;
 
 namespace Repositories
 {
     public class PhotoRepository : IPhotoRepository
     {
         private object lock_photo = new object();
+        private readonly Repository repository;
+
+        public PhotoRepository()
+        {
+            repository = Repository.Instance;
+        }
 
         public void CommentPhoto(Comment commentEntity)
         {
@@ -19,14 +25,14 @@ namespace Repositories
             lock (lock_photo)
             {
                 photo.UpdateId();
-                var userListed = Repository.Users.Find(u => u.Equals(user));
+                var userListed = repository.Users.Find(u => u.Equals(user));
                 userListed.Photos.Add(photo);
             }
         }
 
         public List<Photo> GetPhotos()
         {
-            return Repository.Users.SelectMany(m => m.Photos).ToList();
+            return repository.Users.SelectMany(m => m.Photos).ToList();
         }
     }
 }

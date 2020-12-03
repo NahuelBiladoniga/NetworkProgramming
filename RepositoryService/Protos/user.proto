@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+option csharp_namespace = "RepositoryService";
+
+package userProto;
+
+service UserHandler {
+  rpc AddUser (AddUserInput) returns (ResponseMessage);
+  rpc RemoveUser (RemoveUserInput) returns (ResponseMessage);
+  rpc ModifyUser (ModifyUserInput) returns (ResponseMessage);
+  rpc UploadPhoto (UploadPhotoInput) returns (ResponseMessage);
+  rpc AddComment (AddCommentInput) returns (ResponseMessage);
+  rpc ViewPhotos (EmptyInput) returns (ViewPhotoResponse);
+  rpc ViewComments (ViewCommentInput) returns (ViewCommentResponse);
+  rpc ViewUsers (EmptyInput) returns (ViewUserResponse);
+}
+
+message AddUserInput {
+  string name = 1;
+  string email = 2;
+  string password = 3;
+}
+
+message EmptyInput{
+  string empty = 1;
+}
+
+message RemoveUserInput {
+  string name = 1;
+}
+
+message ModifyUserInput {
+  string name = 1;
+}
+
+message UploadPhotoInput {
+  string name = 1;
+}
+
+message AddCommentInput {
+  string name = 1;
+}
+
+message ResponseMessage {
+  string status = 1;
+  string message = 2;
+}
+
+message ViewUserResponse {
+  repeated UserResponse results = 1;
+}
+
+message UserResponse {
+  string name = 1;
+  string email = 2;
+  string lastConnected = 3;
+}
+
+message ViewPhotoResponse {
+  repeated PhotoResponse results = 1;
+}
+
+message PhotoResponse {
+  string idPhoto = 1;
+  string namePhoto = 2;
+  string email = 3;
+  string lastConnection = 4;
+}
+
+message ViewCommentResponse {
+  repeated CommentResponse results = 1;
+}
+
+message ViewCommentInput {
+  string photoId = 1;
+}
+
+message CommentResponse {
+  string name = 1;
+  string email = 2;
+  string comment = 3;
+}

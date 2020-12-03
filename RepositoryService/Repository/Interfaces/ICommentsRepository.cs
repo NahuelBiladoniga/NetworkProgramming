@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Domain;
 
-namespace Repositories.Interfaces
+namespace RepositoryService.Interfaces
 {
     public interface ICommentsRepository
     {

@@ -1,12 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Domain;
-using Repositories.Interfaces;
 
 namespace Repositories
 {
-    public static class Repository
+    public class Repository
     {
-        public static List<User> Users { get; set; } = new List<User>();
+        private static readonly object lockPad = new object();
+
+        Repository()
+        {
+        }
+        private static Repository instance = null;
+        public static Repository Instance
+        {
+            get
+            {
+                lock (lockPad)
+                {
+                    if (instance == null)
+                    {
+                        instance = new Repository();
+                        instance.Users = new List<User>();
+                    }
+                    return instance;
+                }
+            }
+        }
+
+        public List<User> Users { get; set; }
     }
 }

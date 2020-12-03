@@ -17,6 +17,7 @@ namespace RepositoryService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddGrpc();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -31,7 +32,7 @@ namespace RepositoryService
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGrpcService<GreeterService>();
+                endpoints.MapGrpcService<UserService>();
 
                 endpoints.MapGet("/",
                     async context =>

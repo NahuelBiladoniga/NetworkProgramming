@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{C112F89E-03A6-4FCA-B843-CE0CFBFACF92}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Service\Service.csproj", "{1D2D03E5-9DBE-4553-B6FF-5F7AAC9E5CDC}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TCPComm", "TCPComm\TCPComm.csproj", "{053AB616-0C75-4C06-9423-A5C29D2A88D3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileClient", "FileClient\FileClient.csproj", "{8F1F6980-E0F5-4582-96A9-2D69B73278A1}"
@@ -15,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileServer", "FileServer\Fi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utils", "Utils\Utils.csproj", "{0756354D-49F8-4581-863A-1E318235E55D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{96D3625C-FE69-4CC8-9944-59D736CC86CD}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiAdmin", "WebApiAdmin\WebApiAdmin.csproj", "{A0FD7258-A566-4DE4-B007-AA4062F79758}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiLogs", "WebApiLogs\WebApiLogs.csproj", "{7ACEA410-8F48-4C51-9754-75038E516755}"
@@ -24,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminServer", "AdminServer\AdminServer.csproj", "{21082DE8-2C21-409C-B7A1-7A8CA1FB3940}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryService", "RepositoryService\RepositoryService.csproj", "{CAFD22AB-B3BD-4FC7-8FA0-B459020F17C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryClient", "RepositoryClient\RepositoryClient.csproj", "{36695402-7321-459B-955A-BFF5B1B8A5D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,12 +36,6 @@ Global
 		{C112F89E-03A6-4FCA-B843-CE0CFBFACF92}.InstaPhoto|Any CPU.Build.0 = InstaPhoto|Any CPU
 		{C112F89E-03A6-4FCA-B843-CE0CFBFACF92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C112F89E-03A6-4FCA-B843-CE0CFBFACF92}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1D2D03E5-9DBE-4553-B6FF-5F7AAC9E5CDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D2D03E5-9DBE-4553-B6FF-5F7AAC9E5CDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1D2D03E5-9DBE-4553-B6FF-5F7AAC9E5CDC}.InstaPhoto|Any CPU.ActiveCfg = InstaPhoto|Any CPU
-		{1D2D03E5-9DBE-4553-B6FF-5F7AAC9E5CDC}.InstaPhoto|Any CPU.Build.0 = InstaPhoto|Any CPU
-		{1D2D03E5-9DBE-4553-B6FF-5F7AAC9E5CDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1D2D03E5-9DBE-4553-B6FF-5F7AAC9E5CDC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{053AB616-0C75-4C06-9423-A5C29D2A88D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{053AB616-0C75-4C06-9423-A5C29D2A88D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{053AB616-0C75-4C06-9423-A5C29D2A88D3}.InstaPhoto|Any CPU.ActiveCfg = InstaPhoto|Any CPU
@@ -68,12 +60,6 @@ Global
 		{0756354D-49F8-4581-863A-1E318235E55D}.InstaPhoto|Any CPU.Build.0 = Debug|Any CPU
 		{0756354D-49F8-4581-863A-1E318235E55D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0756354D-49F8-4581-863A-1E318235E55D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{96D3625C-FE69-4CC8-9944-59D736CC86CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{96D3625C-FE69-4CC8-9944-59D736CC86CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{96D3625C-FE69-4CC8-9944-59D736CC86CD}.InstaPhoto|Any CPU.ActiveCfg = Release|Any CPU
-		{96D3625C-FE69-4CC8-9944-59D736CC86CD}.InstaPhoto|Any CPU.Build.0 = Release|Any CPU
-		{96D3625C-FE69-4CC8-9944-59D736CC86CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{96D3625C-FE69-4CC8-9944-59D736CC86CD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A0FD7258-A566-4DE4-B007-AA4062F79758}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A0FD7258-A566-4DE4-B007-AA4062F79758}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0FD7258-A566-4DE4-B007-AA4062F79758}.InstaPhoto|Any CPU.ActiveCfg = Debug|Any CPU
@@ -98,6 +84,12 @@ Global
 		{CAFD22AB-B3BD-4FC7-8FA0-B459020F17C0}.InstaPhoto|Any CPU.Build.0 = Debug|Any CPU
 		{CAFD22AB-B3BD-4FC7-8FA0-B459020F17C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CAFD22AB-B3BD-4FC7-8FA0-B459020F17C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36695402-7321-459B-955A-BFF5B1B8A5D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36695402-7321-459B-955A-BFF5B1B8A5D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36695402-7321-459B-955A-BFF5B1B8A5D9}.InstaPhoto|Any CPU.ActiveCfg = Debug|Any CPU
+		{36695402-7321-459B-955A-BFF5B1B8A5D9}.InstaPhoto|Any CPU.Build.0 = Debug|Any CPU
+		{36695402-7321-459B-955A-BFF5B1B8A5D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36695402-7321-459B-955A-BFF5B1B8A5D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

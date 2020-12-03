@@ -24,14 +24,7 @@ namespace FileServer
             Service = service;
 
             AcceptClients = true;
-
-            var channel = new ConnectionFactory() { HostName = "localhost" }.CreateConnection().CreateModel();
-            channel.QueueDeclare(queue: "log_queue",
-                durable: false,
-                exclusive: false,
-                autoDelete: false,
-                arguments: null);
-
+            
             AcceptConnections();
         }
 

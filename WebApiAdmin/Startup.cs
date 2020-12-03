@@ -13,8 +13,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Repositories;
-using Repositories.Interfaces;
 using Services;
 using Services.Interfaces;
 
@@ -31,12 +29,8 @@ namespace WebApiAdmin
 
         public void ConfigureServices(IServiceCollection services)
         {
-            string instaphotoConnString = Configuration.GetConnectionString("instaphotoDB");
             services.AddControllers();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddTransient<IDbConnection>(serviceProvider => new SqliteConnection(instaphotoConnString));
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IUserRepository, UserRepository>();
             
             services.AddCors(options =>
             {
