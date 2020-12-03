@@ -13,7 +13,6 @@ namespace FileServer
 {
     public class Server
     {
-
         public IService Service { get; }
         private readonly TcpListener _listener;
         public bool AcceptClients { get; set; }

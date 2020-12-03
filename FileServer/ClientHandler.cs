@@ -83,7 +83,6 @@ namespace FileServer
                 Name = name,
                 Extension = extension,
                 FileSize = fileSize,
-                User = client.User
             };
 
             server.Service.UploadPhoto(photo);

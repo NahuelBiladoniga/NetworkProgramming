@@ -12,6 +12,7 @@
     <projectFile>Services/Services.csproj</projectFile>
     <projectFile>WebApiAdmin/WebApiAdmin.csproj</projectFile>
     <projectFile>WebApiLogs/WebApiLogs.csproj</projectFile>
+    <projectFile>RepositoryService/RepositoryService.csproj</projectFile>
   </component>
   <component name="BranchesTreeState">
     <expand>
@@ -33,78 +34,65 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ba77854-2eb2-41b0-b9a8-ec91c94bcdd0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Domain/Entities/Client.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Domain/Entities/Log.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Domain/Helpers/PaginationHelper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Domain/Responses/PaginatedResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FileClient/FileClient/Client.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FileClient/FileClient/ClientProgram.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Repositories/Dtos/LogDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Repositories/Dtos/UserDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Repositories/Interfaces/ILogRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Repositories/Interfaces/IUserRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Repositories/LogRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Repositories/UserRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Services/Interfaces/ILogService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Services/Interfaces/IUserService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Services/Interfaces/PrivilegesException.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Services/Interfaces/ServicesException.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Services/LogService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Services/UserService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TCPComm/Protocol/ExtendedProtocol.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TCPComm/Protocol/NetworkCommunication.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApiAdmin/Controllers/UserController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApiAdmin/Helpers/WebPaginationHelper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApiAdmin/Properties/launchSettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApiAdmin/Responses/WebPaginatedResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApiAdmin/Startup.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApiAdmin/WeatherForecast.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApiAdmin/WebApiAdmin.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApiAdmin/appsettings.Development.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApiLogs/Controllers/LogController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApiLogs/Helpers/WebPaginationHelper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApiLogs/Program.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApiLogs/Properties/launchSettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApiLogs/Responses/WebPaginatedResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApiLogs/Startup.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApiLogs/WeatherForecast.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApiLogs/appsettings.Development.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApiLogs/appsettings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/config/applicationhost.config" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AdminServer/AdminServer.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AdminServer/Controllers/UserController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AdminServer/Helpers/WebPaginationHelper.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AdminServer/Program.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AdminServer/Properties/launchSettings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AdminServer/Responses/WebPaginatedResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AdminServer/Startup.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AdminServer/appsettings.Development.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AdminServer/appsettings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RepositoryService/Program.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RepositoryService/Properties/launchSettings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RepositoryService/Protos/greet.proto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RepositoryService/Repository/CommentRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RepositoryService/Repository/Interfaces/ICommentsRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RepositoryService/Repository/Interfaces/ILogRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RepositoryService/Repository/Interfaces/IPhotoRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RepositoryService/Repository/Interfaces/IUserRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RepositoryService/Repository/LogRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RepositoryService/Repository/PhotoRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RepositoryService/Repository/Repository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RepositoryService/Repository/UserRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RepositoryService/RepositoryService.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RepositoryService/Services/GreeterService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RepositoryService/Startup.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RepositoryService/appsettings.Development.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RepositoryService/appsettings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.InstaPhoto/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.InstaPhoto/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.InstaPhoto/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.InstaPhoto/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contracts/Contracts.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Services.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contracts/IRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/Interfaces/IRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contracts/IService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Interfaces/IService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/Controller.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/FileClient/FileClient.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/FileServer/FileServer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/Main.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAccess/DataAccess.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/Repositories.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAccess/DataAccessException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/DataAccessException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAccess/Repository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/Repository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Entities/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileClient/FileClient.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FileClient/FileClient.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Comment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Comment.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Photo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Photo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileClient/ClientProgram.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileClient/ClientProgram.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileClient/ServerHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileClient/ServerHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileServer/ClientHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileServer/ClientHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileServer/FileServer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FileServer/FileServer.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FileServer/Server.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileServer/Server.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileServer/Service.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileServer/Service.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileServer/ServerProgram.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileServer/ServerProgram.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InstaPhoto.sln" beforeDir="false" afterPath="$PROJECT_DIR$/InstaPhoto.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RepositoryServer/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiAdmin/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RepositoryServer/Properties/launchSettings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RepositoryServer/Protos/user.proto" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RepositoryServer/RepositoryServer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiLogs/WebApiLogs.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RepositoryServer/Services/UserService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RepositoryServer/Startup.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RepositoryServer/appsettings.Development.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RepositoryServer/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiAdmin/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RespositoryClient/Program.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RespositoryClient/RespositoryClient.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Servidor/AdminHandler.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Servidor/App.config" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Servidor/ClientHandler.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Servidor/FileServer.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Servidor/Server.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Servidor/ServerProgram.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Servidor/ServerUtils.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Servidor/Service.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/DataAccessException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RepositoryService/Repository/DataAccessException.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/Dtos/LogDto.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/Dtos/UserDto.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/Interfaces/ILogRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/Interfaces/IRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/Interfaces/IUserRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/LogRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/Repositories.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/Repositories.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/Repository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/UserRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/Services.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Services.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApiAdmin/Controllers/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiAdmin/Controllers/UserController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApiAdmin/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiAdmin/Properties/launchSettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApiAdmin/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiAdmin/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApiAdmin/WeatherForecast.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApiAdmin/WebApiAdmin.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiAdmin/WebApiAdmin.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApiAdmin/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiAdmin/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApiLogs/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiLogs/Properties/launchSettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApiLogs/WeatherForecast.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApiLogs/WebApiLogs.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiLogs/WebApiLogs.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApiLogs/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiLogs/appsettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,52 +110,29 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A9C37662-579A-499A-A4DE-B3C85349280D/2E/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TCPComm/Protocol/ProtocolConstants.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A9C37662-579A-499A-A4DE-B3C85349280D/2B6/RuntimeMethodInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A9C37662-579A-499A-A4DE-B3C85349280D/286/TaskAwaiter.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A9C37662-579A-499A-A4DE-B3C85349280D/1E0/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A9C37662-579A-499A-A4DE-B3C85349280D/321/Stream.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/RepositoryService/Repository/Interfaces/ILogRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Utils/ConsoleValidations.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BA6F3355-5A5A-4969-8229-1CC21F017E3A/88/e7794286/IDbConnection.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/318D2799-861E-4377-8FA8-7E428C96ED58/ae/2d374ee1/NetworkStream.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/RepositoryService/Repository/Interfaces/IPhotoRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Service/FileClient/IClientService.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/FileClient/FileClient/ClientProgram.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TCPComm/Protocol/StreamCommunication.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/FileClient/FileClient/Client.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7EC34705-F546-47B9-970A-53DBFB87C6FB/a4/1d926009/MvcServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TCPComm/Protocol/ExtendedProtocol.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/TCPComm/Protocol/NetworkCommunication.cs" />
-        <option value="$PROJECT_DIR$/TCPComm/Protocol/FileCommsHandler.cs" />
-        <option value="$PROJECT_DIR$/TCPComm/Protocol/ConsoleValidations.cs" />
-        <option value="$PROJECT_DIR$/Contracts/IRepository.cs" />
-        <option value="$PROJECT_DIR$/Servidor/ImageHandler.cs" />
-        <option value="$PROJECT_DIR$/DataAccess/Repository.cs" />
-        <option value="$PROJECT_DIR$/Contracts/IService.cs" />
-        <option value="$PROJECT_DIR$/Servidor/Service.cs" />
-        <option value="$PROJECT_DIR$/FileClient/FileClient/ClientHandler.cs" />
-        <option value="$PROJECT_DIR$/FileClient/ServerUtils.cs" />
-        <option value="$PROJECT_DIR$/FileClient/ClientHandler.cs" />
-        <option value="$PROJECT_DIR$/Domain/Entities/Comment.cs" />
-        <option value="$PROJECT_DIR$/TCPComm/Protocol/StreamCommunication.cs" />
-        <option value="$PROJECT_DIR$/Domain/Entities/Photo.cs" />
-        <option value="$PROJECT_DIR$/Servidor/ConsoleValidations.cs" />
-        <option value="$PROJECT_DIR$/ClassLibrary1/Class1.cs" />
-        <option value="$PROJECT_DIR$/Utils/Utils.csproj" />
-        <option value="$PROJECT_DIR$/TCPComm/Dto/MessageResponse.cs" />
-        <option value="$PROJECT_DIR$/TCPComm/TcpListenners/CommunicationClient.cs" />
-        <option value="$PROJECT_DIR$/TCPComm/Protocol/FileHandler.cs" />
-        <option value="$PROJECT_DIR$/FileClient/Dto/UserDto.cs" />
-        <option value="$PROJECT_DIR$/TCPComm/Protocol/ProtocolConstants.cs" />
-        <option value="$PROJECT_DIR$/FileClient/Client.cs" />
-        <option value="$PROJECT_DIR$/Servidor/AdminHandler.cs" />
         <option value="$PROJECT_DIR$/Utils/ConsoleValidations.cs" />
         <option value="$PROJECT_DIR$/Servidor/appsettings.json" />
         <option value="$PROJECT_DIR$/TCPComm/Constants/ServerConstants.cs" />
         <option value="$PROJECT_DIR$/TCPComm/Protocol/ConversionHandler.cs" />
         <option value="$PROJECT_DIR$/Servidor/FileServer.csproj" />
-        <option value="$PROJECT_DIR$/FileClient/ServerHandler.cs" />
         <option value="$PROJECT_DIR$/Servidor/Server.cs" />
-        <option value="$PROJECT_DIR$/FileClient/ClientProgram.cs" />
         <option value="$PROJECT_DIR$/Servidor/ClientHandler.cs" />
         <option value="$PROJECT_DIR$/TCPComm/Protocol/ProtocolHelpers.cs" />
         <option value="$PROJECT_DIR$/RepositoryServer/Services/GreeterService.cs" />
@@ -184,9 +149,35 @@
         <option value="$PROJECT_DIR$/Servidor/ServerProgram.cs" />
         <option value="$PROJECT_DIR$/Domain/Entities/User.cs" />
         <option value="$PROJECT_DIR$/InstaPhoto.sln" />
-        <option value="$PROJECT_DIR$/Repositories/UserRepository.cs" />
-        <option value="$PROJECT_DIR$/FileServer/Server.cs" />
+        <option value="$PROJECT_DIR$/FileServer/AdminHandler.cs" />
+        <option value="$PROJECT_DIR$/FileServer/ServerProgram.cs" />
+        <option value="$PROJECT_DIR$/FileServer/ServerUtils.cs" />
         <option value="$PROJECT_DIR$/FileServer/Service.cs" />
+        <option value="$PROJECT_DIR$/WebApiAdmin/Properties/launchSettings.json" />
+        <option value="$PROJECT_DIR$/WebApiLogs/Properties/launchSettings.json" />
+        <option value="$PROJECT_DIR$/WebApiAdmin/Startup.cs" />
+        <option value="$PROJECT_DIR$/AdminServer/appsettings.json" />
+        <option value="$PROJECT_DIR$/AdminServer/appsettings.Development.json" />
+        <option value="$PROJECT_DIR$/Services/Services.csproj" />
+        <option value="$PROJECT_DIR$/FileServer/FileServer.csproj" />
+        <option value="$PROJECT_DIR$/AdminServer/Controllers/UserController.cs" />
+        <option value="$PROJECT_DIR$/WebApiAdmin/Controllers/UserController.cs" />
+        <option value="$PROJECT_DIR$/AdminServer/Startup.cs" />
+        <option value="$PROJECT_DIR$/Repositories/Repository.cs" />
+        <option value="$PROJECT_DIR$/Repositories/UserRepository.cs" />
+        <option value="$PROJECT_DIR$/Domain/Entities/Comment.cs" />
+        <option value="$PROJECT_DIR$/Domain/Entities/Photo.cs" />
+        <option value="$PROJECT_DIR$/Repositories/PhotoRepository.cs" />
+        <option value="$PROJECT_DIR$/Repositories/Interfaces/IPhotoRepository.cs" />
+        <option value="$PROJECT_DIR$/Repositories/Interfaces/ICommentsRepository.cs" />
+        <option value="$PROJECT_DIR$/Repositories/CommentRepository.cs" />
+        <option value="$PROJECT_DIR$/Repositories/Interfaces/IUserRepository.cs" />
+        <option value="$PROJECT_DIR$/Repositories/LogRepository.cs" />
+        <option value="$PROJECT_DIR$/Repositories/Interfaces/ILogRepository.cs" />
+        <option value="$PROJECT_DIR$/FileClient/ClientProgram.cs" />
+        <option value="$PROJECT_DIR$/FileClient/ServerHandler.cs" />
+        <option value="$PROJECT_DIR$/FileServer/ClientHandler.cs" />
+        <option value="$PROJECT_DIR$/FileServer/Server.cs" />
       </list>
     </option>
   </component>
@@ -205,10 +196,11 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="CodeLensConfigurable" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected=".NET Project.RespositoryClient">
+  <component name="RunManager" selected=".NET Launch Settings Profile.WebApiAdmin">
     <configuration name="RespositoryClient" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -245,66 +237,6 @@
         <option name="Build" />
       </method>
     </configuration>
-    <configuration name="RepositoryServer (1)" type="LaunchSettings" factoryName=".NET Launch Settings Profile" temporary="true">
-      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/RepositoryServer/RepositoryServer.csproj" />
-      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
-      <option name="LAUNCH_PROFILE_NAME" value="RepositoryServer" />
-      <option name="USE_EXTERNAL_CONSOLE" value="0" />
-      <option name="USE_MONO" value="0" />
-      <option name="RUNTIME_ARGUMENTS" value="" />
-      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
-      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
-      <option name="SEND_DEBUG_REQUEST" value="1" />
-      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
-      <method v="2">
-        <option name="Build" />
-      </method>
-    </configuration>
-    <configuration name="RepositoryServer (2)" type="LaunchSettings" factoryName=".NET Launch Settings Profile" temporary="true">
-      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/RepositoryServer/RepositoryServer.csproj" />
-      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
-      <option name="LAUNCH_PROFILE_NAME" value="RepositoryServer" />
-      <option name="USE_EXTERNAL_CONSOLE" value="0" />
-      <option name="USE_MONO" value="0" />
-      <option name="RUNTIME_ARGUMENTS" value="" />
-      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
-      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
-      <option name="SEND_DEBUG_REQUEST" value="1" />
-      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
-      <method v="2">
-        <option name="Build" />
-      </method>
-    </configuration>
-    <configuration name="RepositoryServer (3)" type="LaunchSettings" factoryName=".NET Launch Settings Profile" temporary="true">
-      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/RepositoryServer/RepositoryServer.csproj" />
-      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
-      <option name="LAUNCH_PROFILE_NAME" value="RepositoryServer" />
-      <option name="USE_EXTERNAL_CONSOLE" value="0" />
-      <option name="USE_MONO" value="0" />
-      <option name="RUNTIME_ARGUMENTS" value="" />
-      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
-      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
-      <option name="SEND_DEBUG_REQUEST" value="1" />
-      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
-      <method v="2">
-        <option name="Build" />
-      </method>
-    </configuration>
-    <configuration name="RepositoryServer (4)" type="LaunchSettings" factoryName=".NET Launch Settings Profile" temporary="true">
-      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/RepositoryServer/RepositoryServer.csproj" />
-      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
-      <option name="LAUNCH_PROFILE_NAME" value="RepositoryServer" />
-      <option name="USE_EXTERNAL_CONSOLE" value="0" />
-      <option name="USE_MONO" value="0" />
-      <option name="RUNTIME_ARGUMENTS" value="" />
-      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
-      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
-      <option name="SEND_DEBUG_REQUEST" value="1" />
-      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
-      <method v="2">
-        <option name="Build" />
-      </method>
-    </configuration>
     <configuration name="RepositoryServer (5)" type="LaunchSettings" factoryName=".NET Launch Settings Profile" temporary="true">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/RepositoryServer/RepositoryServer.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
@@ -324,6 +256,21 @@
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/RepositoryServer/RepositoryServer.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
       <option name="LAUNCH_PROFILE_NAME" value="RepositoryServer" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration name="RepositoryService" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/RepositoryService/RepositoryService.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
+      <option name="LAUNCH_PROFILE_NAME" value="RepositoryService" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="USE_MONO" value="0" />
       <option name="RUNTIME_ARGUMENTS" value="" />
@@ -369,6 +316,66 @@
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/WebApiAdmin/WebApiAdmin.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
       <option name="LAUNCH_PROFILE_NAME" value="WebApiAdmin" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration name="WebApiAdmin: IIS Express (1)" type="LaunchSettings" factoryName=".NET Launch Settings Profile" temporary="true">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/WebApiAdmin/WebApiAdmin.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
+      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration name="WebApiAdmin: IIS Express (2)" type="LaunchSettings" factoryName=".NET Launch Settings Profile" temporary="true">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/WebApiAdmin/WebApiAdmin.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
+      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration name="WebApiAdmin: IIS Express (3)" type="LaunchSettings" factoryName=".NET Launch Settings Profile" temporary="true">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/WebApiAdmin/WebApiAdmin.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
+      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration name="WebApiAdmin: IIS Express (4)" type="LaunchSettings" factoryName=".NET Launch Settings Profile" temporary="true">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/WebApiAdmin/WebApiAdmin.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
+      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="USE_MONO" value="0" />
       <option name="RUNTIME_ARGUMENTS" value="" />
@@ -427,11 +434,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue=".NET Launch Settings Profile.WebApiAdmin: IIS Express (4)" />
+        <item itemvalue=".NET Launch Settings Profile.WebApiAdmin: IIS Express (3)" />
+        <item itemvalue=".NET Launch Settings Profile.WebApiAdmin: IIS Express (2)" />
+        <item itemvalue=".NET Launch Settings Profile.WebApiAdmin: IIS Express (1)" />
         <item itemvalue=".NET Launch Settings Profile.RepositoryServer (5)" />
-        <item itemvalue=".NET Launch Settings Profile.RepositoryServer (4)" />
-        <item itemvalue=".NET Launch Settings Profile.RepositoryServer (3)" />
-        <item itemvalue=".NET Launch Settings Profile.RepositoryServer (2)" />
-        <item itemvalue=".NET Launch Settings Profile.RepositoryServer (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -453,7 +460,9 @@
       <workItem from="1606951502958" duration="508000" />
       <workItem from="1606953520500" duration="3523000" />
       <workItem from="1606971746201" duration="2879000" />
-      <workItem from="1606987967591" duration="888000" />
+      <workItem from="1606987967591" duration="2053000" />
+      <workItem from="1606990357747" duration="1174000" />
+      <workItem from="1606992560791" duration="5219000" />
     </task>
     <task id="LOCAL-00001" summary="Added more operations for server program and added repo server">
       <created>1606718683219</created>
@@ -490,7 +499,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606973872439</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Finished merged">
+      <created>1606989112837</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1606989112837</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -518,93 +534,94 @@
     <MESSAGE value="Added new protocol for communications server redone, missing client" />
     <MESSAGE value="Added grpc" />
     <MESSAGE value="Client" />
-    <option name="LAST_COMMIT_MESSAGE" value="Client" />
+    <MESSAGE value="Finished merged" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished merged" />
   </component>
   <component name="WindowStateProjectService">
     <state width="562" height="464" key="DebuggerActiveHint" timestamp="1606956968543">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="562" height="464" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1606956968543" />
-    <state width="1493" height="322" key="GridCell.Tab.0.bottom" timestamp="1606974648410">
+    <state width="1493" height="75" key="GridCell.Tab.0.bottom" timestamp="1606993854681">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="322" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606974648410" />
-    <state width="1493" height="322" key="GridCell.Tab.0.center" timestamp="1606974648409">
+    <state width="1493" height="75" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606993854681" />
+    <state width="1493" height="75" key="GridCell.Tab.0.center" timestamp="1606993854680">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="322" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1606974648409" />
-    <state width="1493" height="322" key="GridCell.Tab.0.left" timestamp="1606974648409">
+    <state width="1493" height="75" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1606993854680" />
+    <state width="1493" height="75" key="GridCell.Tab.0.left" timestamp="1606993854680">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="322" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1606974648409" />
-    <state width="1493" height="322" key="GridCell.Tab.0.right" timestamp="1606974648410">
+    <state width="1493" height="75" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1606993854680" />
+    <state width="1493" height="75" key="GridCell.Tab.0.right" timestamp="1606993854681">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="322" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1606974648410" />
-    <state width="1493" height="123" key="GridCell.Tab.1.bottom" timestamp="1606974648399">
+    <state width="1493" height="75" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1606993854681" />
+    <state width="1493" height="75" key="GridCell.Tab.1.bottom" timestamp="1606993854683">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="123" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606974648399" />
-    <state width="1493" height="123" key="GridCell.Tab.1.center" timestamp="1606974648398">
+    <state width="1493" height="75" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606993854683" />
+    <state width="1493" height="75" key="GridCell.Tab.1.center" timestamp="1606993854682">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="123" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1606974648398" />
-    <state width="1493" height="123" key="GridCell.Tab.1.left" timestamp="1606974648398">
+    <state width="1493" height="75" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1606993854682" />
+    <state width="1493" height="75" key="GridCell.Tab.1.left" timestamp="1606993854682">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="123" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1606974648398" />
-    <state width="1493" height="123" key="GridCell.Tab.1.right" timestamp="1606974648399">
+    <state width="1493" height="75" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1606993854682" />
+    <state width="1493" height="75" key="GridCell.Tab.1.right" timestamp="1606993854682">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="123" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1606974648399" />
-    <state width="1493" height="123" key="GridCell.Tab.2.bottom" timestamp="1606974648399">
+    <state width="1493" height="75" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1606993854682" />
+    <state width="1493" height="75" key="GridCell.Tab.2.bottom" timestamp="1606993854683">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="123" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606974648399" />
-    <state width="1493" height="123" key="GridCell.Tab.2.center" timestamp="1606974648399">
+    <state width="1493" height="75" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606993854683" />
+    <state width="1493" height="75" key="GridCell.Tab.2.center" timestamp="1606993854683">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="123" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1606974648399" />
-    <state width="1493" height="123" key="GridCell.Tab.2.left" timestamp="1606974648399">
+    <state width="1493" height="75" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1606993854683" />
+    <state width="1493" height="75" key="GridCell.Tab.2.left" timestamp="1606993854683">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="123" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1606974648399" />
-    <state width="1493" height="123" key="GridCell.Tab.2.right" timestamp="1606974648399">
+    <state width="1493" height="75" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1606993854683" />
+    <state width="1493" height="75" key="GridCell.Tab.2.right" timestamp="1606993854683">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="123" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1606974648399" />
-    <state width="1493" height="123" key="GridCell.Tab.3.bottom" timestamp="1606974648400">
+    <state width="1493" height="75" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1606993854683" />
+    <state width="1493" height="75" key="GridCell.Tab.3.bottom" timestamp="1606993854683">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="123" key="GridCell.Tab.3.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606974648400" />
-    <state width="1493" height="123" key="GridCell.Tab.3.center" timestamp="1606974648400">
+    <state width="1493" height="75" key="GridCell.Tab.3.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606993854683" />
+    <state width="1493" height="75" key="GridCell.Tab.3.center" timestamp="1606993854683">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="123" key="GridCell.Tab.3.center/0.0.1536.824@0.0.1536.824" timestamp="1606974648400" />
-    <state width="1493" height="123" key="GridCell.Tab.3.left" timestamp="1606974648400">
+    <state width="1493" height="75" key="GridCell.Tab.3.center/0.0.1536.824@0.0.1536.824" timestamp="1606993854683" />
+    <state width="1493" height="75" key="GridCell.Tab.3.left" timestamp="1606993854683">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="123" key="GridCell.Tab.3.left/0.0.1536.824@0.0.1536.824" timestamp="1606974648400" />
-    <state width="1493" height="123" key="GridCell.Tab.3.right" timestamp="1606974648400">
+    <state width="1493" height="75" key="GridCell.Tab.3.left/0.0.1536.824@0.0.1536.824" timestamp="1606993854683" />
+    <state width="1493" height="75" key="GridCell.Tab.3.right" timestamp="1606993854683">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="123" key="GridCell.Tab.3.right/0.0.1536.824@0.0.1536.824" timestamp="1606974648400" />
-    <state width="1493" height="123" key="GridCell.Tab.4.bottom" timestamp="1606974648401">
+    <state width="1493" height="75" key="GridCell.Tab.3.right/0.0.1536.824@0.0.1536.824" timestamp="1606993854683" />
+    <state width="1493" height="75" key="GridCell.Tab.4.bottom" timestamp="1606993854683">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="123" key="GridCell.Tab.4.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606974648401" />
-    <state width="1493" height="123" key="GridCell.Tab.4.center" timestamp="1606974648400">
+    <state width="1493" height="75" key="GridCell.Tab.4.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606993854683" />
+    <state width="1493" height="75" key="GridCell.Tab.4.center" timestamp="1606993854683">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="123" key="GridCell.Tab.4.center/0.0.1536.824@0.0.1536.824" timestamp="1606974648400" />
-    <state width="1493" height="123" key="GridCell.Tab.4.left" timestamp="1606974648400">
+    <state width="1493" height="75" key="GridCell.Tab.4.center/0.0.1536.824@0.0.1536.824" timestamp="1606993854683" />
+    <state width="1493" height="75" key="GridCell.Tab.4.left" timestamp="1606993854683">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="123" key="GridCell.Tab.4.left/0.0.1536.824@0.0.1536.824" timestamp="1606974648400" />
-    <state width="1493" height="123" key="GridCell.Tab.4.right" timestamp="1606974648400">
+    <state width="1493" height="75" key="GridCell.Tab.4.left/0.0.1536.824@0.0.1536.824" timestamp="1606993854683" />
+    <state width="1493" height="75" key="GridCell.Tab.4.right" timestamp="1606993854683">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="123" key="GridCell.Tab.4.right/0.0.1536.824@0.0.1536.824" timestamp="1606974648400" />
+    <state width="1493" height="75" key="GridCell.Tab.4.right/0.0.1536.824@0.0.1536.824" timestamp="1606993854683" />
     <state x="147" y="65" key="MergeDialog" timestamp="1606974270983">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -613,42 +630,44 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="407" y="174" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1606974270991" />
-    <state x="361" y="144" key="Rider.ProjectTemplateDialog.Size" timestamp="1606905999830">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="2296" y="149" key="Rider.ProjectTemplateDialog.Size" timestamp="1606998726476">
+      <screen x="1920" y="0" width="1600" height="850" />
     </state>
     <state x="361" y="144" key="Rider.ProjectTemplateDialog.Size/1920.0.1600.850/0.0.1536.824@0.0.1536.824" timestamp="1606905999830" />
-    <state x="2296" y="149" key="Rider.ProjectTemplateDialog.Size/1920.0.1600.850/0.0.1536.824@1920.0.1600.850" timestamp="1606719132124" />
-    <state x="587" y="114" key="RiderGenerateDialog" timestamp="1606718469167">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="2296" y="149" key="Rider.ProjectTemplateDialog.Size/1920.0.1600.850/0.0.1536.824@1920.0.1600.850" timestamp="1606998726476" />
+    <state x="2531" y="118" key="RiderGenerateDialog" timestamp="1606997144095">
+      <screen x="1920" y="0" width="1600" height="850" />
     </state>
-    <state x="587" y="114" key="RiderGenerateDialog/0.0.1536.824@0.0.1536.824" timestamp="1606717371849" />
+    <state x="587" y="114" key="RiderGenerateDialog/0.0.1536.824@0.0.1536.824" timestamp="1606994711171" />
     <state x="587" y="114" key="RiderGenerateDialog/1920.0.1600.850/0.0.1536.824@0.0.1536.824" timestamp="1606718469167" />
+    <state x="2531" y="118" key="RiderGenerateDialog/1920.0.1600.850/0.0.1536.824@1920.0.1600.850" timestamp="1606997144095" />
     <state x="450" y="123" key="RollbackChangesDialog" timestamp="1606941868714">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="450" y="123" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1606941868714" />
-    <state x="277" y="57" key="SettingsEditor" timestamp="1606799550678">
+    <state x="277" y="57" key="SettingsEditor" timestamp="1606993927407">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1606993927407" />
     <state x="277" y="57" key="SettingsEditor/1920.0.1600.850/0.0.1536.824@0.0.1536.824" timestamp="1606799550678" />
-    <state x="93" y="93" width="1350" height="638" key="VCS.FileHistoryDialog" timestamp="1606950246666">
+    <state x="93" y="93" width="1350" height="638" key="VCS.FileHistoryDialog" timestamp="1606994480819">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="93" y="93" width="1350" height="638" key="VCS.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1606950246666" />
+    <state x="93" y="93" width="1350" height="638" key="VCS.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1606994480819" />
     <state x="93" y="93" width="1350" height="638" key="VCS.FileHistoryDialog/1920.0.1600.850/0.0.1536.824@0.0.1536.824" timestamp="1606900298020" />
-    <state x="361" y="132" key="Vcs.Push.Dialog.v2" timestamp="1606973876243">
+    <state x="361" y="132" key="Vcs.Push.Dialog.v2" timestamp="1606989116008">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="132" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1606973876243" />
+    <state x="361" y="132" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1606989116008" />
     <state x="361" y="132" key="Vcs.Push.Dialog.v2/1920.0.1600.850/0.0.1536.824@0.0.1536.824" timestamp="1606906329215" />
     <state width="775" height="419" key="XDebugger.FullValuePopup" timestamp="1606949469497">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="775" height="419" key="XDebugger.FullValuePopup/0.0.1536.824@0.0.1536.824" timestamp="1606949469497" />
-    <state x="450" y="145" width="636" height="534" key="find.popup" timestamp="1606956429262">
+    <state x="450" y="145" width="636" height="534" key="find.popup" timestamp="1606993021437">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="450" y="145" width="636" height="534" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1606956429262" />
+    <state x="450" y="145" width="636" height="534" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1606993021437" />
     <state x="450" y="145" width="636" height="534" key="find.popup/1920.0.1600.850/0.0.1536.824@0.0.1536.824" timestamp="1606906239880" />
     <state x="425" y="187" key="run.anything.popup" timestamp="1606716902706">
       <screen x="0" y="0" width="1536" height="824" />
@@ -683,15 +702,9 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/FileClient/ClientProgram.cs</url>
-          <line>169</line>
+          <line>168</line>
           <properties documentPath="C:\Users\Nahuel\Documents\My Files\ORT\ProgramacionRedes\NetworkProgramming\FileClient\ClientProgram.cs" initialLine="169" />
           <option name="timeStamp" value="60" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/FileClient/ServerHandler.cs</url>
-          <line>36</line>
-          <properties documentPath="C:\Users\Nahuel\Documents\My Files\ORT\ProgramacionRedes\NetworkProgramming\FileClient\ServerHandler.cs" initialLine="36" />
-          <option name="timeStamp" value="65" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

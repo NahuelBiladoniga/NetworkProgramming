@@ -10,21 +10,21 @@ namespace Domain
         public const int PhotoExtensionLength = 10;
         public const int PhotoNameLength = 40;
 
-        private static long IdCounter = 0;
+        private static long _idCounter = 0;
         public long Id { get; set; } 
         public string Name { get; set; }
         public string Extension { get; set; }
         public long FileSize { get; set; }
-        public User User { get; set; }
+        public string UserEmail { get; set; }
         public List<Comment> Comments { get; set; }
 
-        public override string ToString() => $"Id: {Id} - Nombre: {Name} - Extension: {Extension} - Tamanio: : {FileSize} - Nombre Usuario: {User.Name}";
+        public override string ToString() => $"Id: {Id} - Nombre: {Name} - Extension: {Extension} - Tamanio: : {FileSize} - Email Usuario: {UserEmail}";
 
         public string ToStringProtocol() => $"Name={Name}$Ext={Extension}$FileSize={FileSize}";
 
         public void UpdateId()
         {
-            Id = IdCounter++;
+            Id = _idCounter++;
         }
         
         public override bool Equals(object obj)

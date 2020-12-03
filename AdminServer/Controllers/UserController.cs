@@ -3,14 +3,13 @@ using Services.Interfaces;
 using WebApiAdmin.Responses;
 using Domain.Responses;
 using Domain;
-using WebApiAdmin.Helpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebApiAdmin.Helpers;
 
 namespace WebApiAdmin.Controllers
 {
     [Route("users")]
-    [ApiController]
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
@@ -25,8 +24,9 @@ namespace WebApiAdmin.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<WebPaginatedResponse<User>>> GetUsersAsync(int page = 1, int pageSize = 15)
+        public async Task<ActionResult<WebPaginatedResponse<User>>> GetUsersAsync()
         {
+            int page = 1; int pageSize = 15;
             if (page <= 0 || pageSize <= 0)
             {
                 return BadRequest();

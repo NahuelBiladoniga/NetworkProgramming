@@ -4,6 +4,33 @@
     <e p="C:\Users\Nahuel\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
     <e p="C:\Users\Nahuel\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_InstaPhoto.633911708.00" t="ExcludeRecursive" />
     <e p="C:\Users\Nahuel\Documents\NetworkProgramming" t="IncludeFlat">
+      <e p="AdminServer" t="IncludeRecursive">
+        <e p="AdminServer.csproj" t="IncludeRecursive" />
+        <e p="appsettings.Development.json" t="Include" />
+        <e p="appsettings.json" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Controllers" t="Include">
+          <e p="UserController.cs" t="Include" />
+        </e>
+        <e p="Helpers" t="Include">
+          <e p="WebPaginationHelper.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="AdminServer.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
+        </e>
+        <e p="Responses" t="Include">
+          <e p="WebPaginatedResponse.cs" t="Include" />
+        </e>
+        <e p="Startup.cs" t="Include" />
+      </e>
       <e p="Domain" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
         <e p="Domain.csproj" t="IncludeRecursive" />
@@ -63,29 +90,45 @@
       </e>
       <e p="InstaPhoto.sln" t="IncludeFlat" />
       <e p="packages" t="ExcludeRecursive" />
-      <e p="Repositories" t="IncludeRecursive">
+      <e p="RepositoryService" t="IncludeRecursive">
+        <e p="appsettings.Development.json" t="Include" />
+        <e p="appsettings.json" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
-        <e p="DataAccessException.cs" t="Include" />
-        <e p="Dtos" t="Include">
-          <e p="LogDto.cs" t="Include" />
-          <e p="UserDto.cs" t="Include" />
-        </e>
-        <e p="Interfaces" t="Include">
-          <e p="ILogRepository.cs" t="Include" />
-          <e p="IRepository.cs" t="Include" />
-          <e p="IUserRepository.cs" t="Include" />
-        </e>
-        <e p="LogRepository.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
-              <e p="Repositories.AssemblyInfo.cs" t="Include" />
+              <e p="Greet.cs" t="Include" />
+              <e p="GreetGrpc.cs" t="Include" />
+              <e p="RepositoryService.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
         </e>
-        <e p="Repositories.csproj" t="IncludeRecursive" />
-        <e p="Repository.cs" t="Include" />
-        <e p="UserRepository.cs" t="Include" />
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
+        </e>
+        <e p="Protos" t="Include">
+          <e p="greet.proto" t="Include" />
+        </e>
+        <e p="Repository" t="Include">
+          <e p="CommentRepository.cs" t="Include" />
+          <e p="DataAccessException.cs" t="Include" />
+          <e p="Interfaces" t="Include">
+            <e p="ICommentsRepository.cs" t="Include" />
+            <e p="ILogRepository.cs" t="Include" />
+            <e p="IPhotoRepository.cs" t="Include" />
+            <e p="IUserRepository.cs" t="Include" />
+          </e>
+          <e p="LogRepository.cs" t="Include" />
+          <e p="PhotoRepository.cs" t="Include" />
+          <e p="Repository.cs" t="Include" />
+          <e p="UserRepository.cs" t="Include" />
+        </e>
+        <e p="RepositoryService.csproj" t="IncludeRecursive" />
+        <e p="Services" t="Include">
+          <e p="GreeterService.cs" t="Include" />
+        </e>
+        <e p="Startup.cs" t="Include" />
       </e>
       <e p="Service" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
@@ -189,7 +232,6 @@
           <e p="WebPaginatedResponse.cs" t="Include" />
         </e>
         <e p="Startup.cs" t="Include" />
-        <e p="WeatherForecast.cs" t="Include" />
         <e p="WebApiAdmin.csproj" t="IncludeRecursive" />
       </e>
       <e p="WebApiLogs" t="IncludeRecursive">
@@ -217,7 +259,6 @@
           <e p="WebPaginatedResponse.cs" t="Include" />
         </e>
         <e p="Startup.cs" t="Include" />
-        <e p="WeatherForecast.cs" t="Include" />
         <e p="WebApiLogs.csproj" t="IncludeRecursive" />
       </e>
     </e>

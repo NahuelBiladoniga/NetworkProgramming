@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Repositories;
+using System;
 using System.Net;
 using System.Net.Sockets;
-using Repositories;
 using TCPComm.Constants;
 using Utils;
 
@@ -23,7 +23,7 @@ namespace FileServer
             var listener = new TcpListener(ipEndPoint);
             listener.Start(100);
 
-            var server = new FileServer.Server(listener, new Service(new Repository()));
+            var server = new Server(listener, new Service(new Repository()));
 
             //var log = new Log();
             //Console.WriteLine("Enter Log Level:");
