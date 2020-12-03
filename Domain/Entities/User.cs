@@ -20,9 +20,7 @@ namespace Domain
         public bool IsConnected { get; set; }
         
         public override string ToString() => $"Nombre: {Name} - Email: {Email} - Fecha ultima conexion: {LastConnection.ToString("MM/dd/yy H:mm")}";
-
-        public string ToStringProtocol() => $"Name={Name}$Email={Email}$Conected={IsConnected}$LastConnection={LastConnection}";
-
+        
         public override bool Equals(object obj)
         {
             User other = obj as User;

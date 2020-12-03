@@ -9,6 +9,8 @@ namespace Contracts
         List<User> GetAllClients();
         List<User> GetConnectedClients();
         List<Photo> GetPhotosFromUser(User user);
+        List<Photo> GetPhotos();
+
         List<Comment> GetCommentsFromPhoto(Photo id);
         void AddUser(User user);
         void DeleteUser(User user);

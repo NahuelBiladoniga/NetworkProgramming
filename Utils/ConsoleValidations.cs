@@ -68,5 +68,11 @@ namespace Utils
                 return ip_addresses;
             }
         }
+
+        public static void ContinueHandler()
+        {
+            Console.WriteLine("\nPresione cualquier tecla para continuar >>");
+            Console.ReadLine();
+        }
     }
 }

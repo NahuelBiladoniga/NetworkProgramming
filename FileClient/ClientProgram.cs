@@ -2,14 +2,16 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
+using Domain;
 using TCPComm.Constants;
 using TCPComm.Protocol;
 using Utils;
 
 namespace FileClient
 {
-    public class ClientProgram
+    public static class ClientProgram
     {
+        private static Client _client;
         public static async Task Main(string[] args)
         {
             Console.Clear();
@@ -20,15 +22,24 @@ namespace FileClient
 
             var ipServer = ConsoleValidations.PromptIPsAvailablesOnPC("InstaPhoto");
             
-            var ipEndPoint = new IPEndPoint(IPAddress.Parse(ipServer), int.Parse(ServerConstants.SERVER_PORT.ToString()));
+            Console.WriteLine("\nPuerto: ");
+            var port = ClientUtils.ReadUntilIsNotEmpty(Console.ReadLine());
+
+            var ipEndPoint = new IPEndPoint(IPAddress.Parse(ipServer), 0);
             var client = new TcpClient(ipEndPoint);
+            var serverIpEndPoint = new IPEndPoint(IPAddress.Parse(ipServer), int.Parse(port));
+            client.Connect(serverIpEndPoint);
             var stream = client.GetStream();
-            var communication = new StreamCommunication(stream);
+
+            _client = new Client()
+            {
+                StreamCommunication = new StreamCommunication(stream)
+            };
             
-            EntryMenu(communication);
+            await EntryMenu();
         }
         
-        private static void EntryMenu(StreamCommunication communication)
+        private static async Task EntryMenu()
         {
             while (true)
             {
@@ -43,20 +54,19 @@ namespace FileClient
                     pattern: $"^[1-{options.Length}]$",
                     errorMsg: $"Ingrese un número entre 1 y {options.Length}");
 
-                ExecuteItemEntryMenu(option, communication);
-                Console.ReadLine();
+                await ExecuteItemEntryMenu(option);
             }
         }
 
-        private static void ExecuteItemEntryMenu(string option, StreamCommunication communication)
+        private static async Task ExecuteItemEntryMenu(string option)
         {
             switch (option)
             {
                 case "1":
-                    CreateUser(communication);
+                    await CreateUser();
                     break;
                 case "2":
-                    LoginUser(communication);
+                    await LoginUser();
                     break;
                 case "3":
                     Environment.Exit(Environment.ExitCode);
@@ -66,78 +76,220 @@ namespace FileClient
             }
         }
         
-        private static void CreateUser(StreamCommunication communication)
+        private static async Task CreateUser()
         {
-            throw new NotImplementedException();
-        }
+            Console.Clear();
+            Console.WriteLine("InstaPhoto" + "\nLogin");
 
-        private static void LoginUser(StreamCommunication communication)
-        {
-            var result = ClientHandler.HandleLogin(communication);
-            
-        }
+            Console.WriteLine("\nIngrese nombre (<<q>> para cancelar) >>");
+            var name = ClientUtils.ReadUntilIsNotEmpty(Console.ReadLine());
+            // Exit(name, server);
 
-        private static void MainMenu(StreamCommunication communication)
-        {
-            var options = new string[] { 
-                "Cargar Foto", 
-                "Listado de Usuarios", 
-                "Ver Comentarios" ,
-                "Agregar Comentarios",
-                "Cerrar Sesion"
+            Console.WriteLine("\nIngrese email (<<q>> para cancelar) >>");
+            var email = ClientUtils.ReadUntilIsNotEmpty(Console.ReadLine());
+            // Exit(email, server);
+
+            Console.WriteLine("\nIngrese contrasenia (<<q>> para cancelar) >>");
+            var password = ClientUtils.ReadUntilIsNotEmpty(Console.ReadLine());
+            // Exit(email, server);
+
+            var user = new User
+            {
+                Name = name,
+                Email = email,
+                Password = password
             };
             
-            ConsoleValidations.ListOperations($"{"InstaPhoto"}\n\nMENÚ PRINCIPAL:", options, true);
-
-            var option = ConsoleValidations.ReadUntilValid( prompt: "\nIngrese opción",
-                pattern: $"^[1-{options.Length}]$",
-                errorMsg: $"Ingrese un número entre 1 y {options.Length}");
-
-            ExecuteItemMainMenu(option, communication);
-            Console.ReadLine();
+            var respone = await ServerHandler.HandleRegister(_client,user);
+            _client.IsLoggedIn = true;
+            await MainMenu();
         }
 
-        private static void ExecuteItemMainMenu(string option, StreamCommunication communication)
+        private static async Task LoginUser()
+        {
+            Console.Clear();
+            Console.WriteLine("InstaPhoto" + "\nLogin");
+
+            Console.WriteLine("\nIngrese email (<<q>> para cancelar) >>");
+            var email = ClientUtils.ReadUntilIsNotEmpty(Console.ReadLine());
+
+            Console.WriteLine("\nIngrese contrasenia (<<q>> para cancelar) >>");
+            var password = ClientUtils.ReadUntilIsNotEmpty(Console.ReadLine());
+
+            var user = new User
+            {
+                Email = email,
+                Password = password
+            };
+            
+            var response = await ServerHandler.HandleLogin(_client,user);
+
+            if (response.responseCommands == ProtocolConstants.ResponseCommands.Ok)
+            {
+                Console.WriteLine("\nBienvenido!");
+                _client.IsLoggedIn = true;
+                await MainMenu();
+            }
+            else
+            {
+                Console.WriteLine("\nDatos invalidos, revise y pruebe de nuevo");
+            }
+        }
+
+        private static async Task MainMenu()
+        {
+            
+            while (_client.IsLoggedIn)
+            {
+                var options = new string[] {
+                "Cargar Foto",
+                "Listado de Usuarios",
+                "Ver Comentarios" ,
+                "Ver Fotos",
+                "Agregar Comentarios",
+                "Cerrar Sesion"
+                };
+
+                Console.Clear();
+                ConsoleValidations.ListOperations($"{"InstaPhoto"}\n\nMENÚ PRINCIPAL:", options, true);
+
+                var option = ConsoleValidations.ReadUntilValid(prompt: "\nIngrese opción",
+                    pattern: $"^[1-{options.Length}]$",
+                    errorMsg: $"Ingrese un número entre 1 y {options.Length}");
+
+                await ExecuteItemMainMenu(option);                
+            }
+
+            ConsoleValidations.ContinueHandler();
+        }
+
+        private static async Task ExecuteItemMainMenu(string option)
         {
             switch (option)
             {
                 case "1":
-                    UploadPhoto(communication);
+                    await UploadPhotoAsync();
                     break;
                 case "2":
-                    ListUsers(communication);
+                    await ViewUsers();
                     break;
                 case "3":
-                    ViewComments(communication);
-                    break;
+                    await ViewComments();
+                    break; 
                 case "4":
-                    AddComments(communication);
+                    await ViewPhotos();
                     break;
                 case "5":
+                    await AddCommentsAsync();
+                    break;
+                case "6":
+                    _client.IsLoggedIn = false;
                     break;
                 default:
                     throw new Exception($"Option: {option} is not a valid option.");
             }
         }
 
-        private static void AddComments(StreamCommunication communication)
+        private static async Task ViewPhotos()
         {
-            throw new NotImplementedException();
+            var response = await ServerHandler.HandleViewPhotos(_client);
+
+            foreach (var user in response)
+            {
+                Console.WriteLine(user.ToString());
+            }
+            
+            ConsoleValidations.ContinueHandler();
         }
 
-        private static void ViewComments(StreamCommunication communication)
+        private static async Task ViewUsers()
         {
-            throw new NotImplementedException();
+            var response = await ServerHandler.HandleViewUsers(_client);
+
+            foreach (var user in response)
+            {
+                Console.WriteLine(user.ToString());
+            }
+            
+            ConsoleValidations.ContinueHandler();
         }
 
-        private static void ListUsers(StreamCommunication communication)
+        private static async Task ViewComments()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("\nIngrese ID de foto");
+            var photoId = ClientUtils.ReadUntilIsNotEmpty(Console.ReadLine());
+
+            var photo = new Photo()
+            {
+                Id = long.Parse(photoId)
+            };
+
+            var response = await ServerHandler.HandleViewComments(_client, photo);
+
+            foreach (var comment in response)
+            {
+                Console.WriteLine(comment.ToString());
+            }
+            
+            ConsoleValidations.ContinueHandler();
         }
 
-        private static void UploadPhoto(StreamCommunication communication)
+        private static async Task AddCommentsAsync()
         {
-            throw new NotImplementedException();
+            Console.Clear();
+            Console.WriteLine("InstaPhoto" + "\nSubir Foto");
+
+            await ViewPhotos();
+
+            Console.WriteLine("\nIngrese ID de foto (<<q>> para cancelar) >>");
+            var photoId = ClientUtils.ReadUntilIsNotEmpty(Console.ReadLine());
+
+            Console.WriteLine("\nIngrese comentario (<<q>> para cancelar) >>");
+            var message = ClientUtils.ReadUntilIsNotEmpty(Console.ReadLine());
+
+            var comment = new Comment
+            {
+                Photo = new Photo()
+                {
+                    Id = long.Parse(photoId)
+                },
+                Message =message,
+            };
+            var response = await ServerHandler.HandleCommentCreation(_client, comment);
+
+            if (response.responseCommands == ProtocolConstants.ResponseCommands.Ok)
+            {
+                Console.WriteLine("\nUsuario Agregado Correctamente");
+            }
+            else
+            {
+                Console.WriteLine("\nDatos invalidos, revise y pruebe de nuevo");
+            }
+
+            ConsoleValidations.ContinueHandler();
+        }
+
+        private static async Task UploadPhotoAsync()
+        {
+            Console.Clear();
+            Console.WriteLine("InstaPhoto" + "\nSubir Foto");
+
+            Console.WriteLine("\nIngrese ruta de la foto (<<q>> para cancelar) >>");
+            var filePath = ClientUtils.ReadUntilIsNotEmpty(Console.ReadLine());
+
+            var response = await ServerHandler.HandleImageUpload(_client, filePath);
+
+            if (response.responseCommands == ProtocolConstants.ResponseCommands.Ok)
+            {
+                Console.WriteLine("\nImagen Agregada Correctamente");
+            }
+            else
+            {
+                Console.WriteLine("\nDatos invalidos, revise y pruebe de nuevo");
+            }
+
+            ConsoleValidations.ContinueHandler();
         }
     }
+    
 }

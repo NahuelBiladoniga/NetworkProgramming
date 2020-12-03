@@ -33,6 +33,8 @@ namespace Server
                 }
                 else
                 {
+                    client.User = user;
+
                     ProtocolHelpers.SendResponseCommand(ProtocolConstants.ResponseCommands.Error ,client.StreamCommunication);
                     client.StreamCommunication.Write(ConversionHandler.ConvertStringToBytes("Login Successfully", ProtocolConstants.ResponseMessageLength));
                 }
@@ -59,7 +61,8 @@ namespace Server
             };
             
             server.Service.AddUser(user);
-            
+            client.User = user;
+
             ProtocolHelpers.SendResponseCommand(ProtocolConstants.ResponseCommands.Ok ,client.StreamCommunication);
             client.StreamCommunication.Write(ConversionHandler.ConvertStringToBytes("Added Sucessfully", ProtocolConstants.ResponseMessageLength));
         }
@@ -79,7 +82,8 @@ namespace Server
             {
                 Name = name,
                 Extension = extension,
-                FileSize = fileSize
+                FileSize = fileSize,
+                User = client.User
             };
 
             server.Service.UploadPhoto(photo);
@@ -131,7 +135,7 @@ namespace Server
             });
         }
 
-        public static async Task HandleViewPhotos(Server server, CommunicationClient client)
+        public static void HandleViewPhotos(Server server, CommunicationClient client)
         {
             ProtocolHelpers.SendResponseCommand(ProtocolConstants.ResponseCommands.ListPhotos,
             client.StreamCommunication);
@@ -139,9 +143,11 @@ namespace Server
             var photos = server.Service.GetPhotos();
             var length = photos.Count() * (User.UserEmailLength + ProtocolConstants.LongTypeLength + Photo.PhotoNameLength + Photo.PhotoExtensionLength + ProtocolConstants.LongTypeLength);
 
+            var data = ConversionHandler.ConvertIntToBytes(length);
+            client.StreamCommunication.Write(data);
             photos.ForEach((elem) =>
             {
-                ProtocolHelpers.SendPhotoData(client.StreamCommunication,elem);
+                ProtocolHelpers.SendPhotoData(client.StreamCommunication, elem);
             });
         }
 

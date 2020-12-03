@@ -11,16 +11,11 @@ namespace DataAccess
 {
     public class Repository : IRepository
     {
-        public static List<User> Users { get; set; }
-        public static List<Photo> Photos { get; set; }
-        public static List<Comment> Comments { get; set; }
+        public static List<User> Users { get; set; } = new List<User>(); 
+        public static List<Photo> Photos { get; set; } = new List<Photo>();
+        public static List<Comment> Comments { get; set; } = new List<Comment>();
 
         private object lock_users = new object();
-
-        public Repository()
-        {
-            Users = new List<User>();
-        }
 
         public List<User> GetUsers()
         {
@@ -37,12 +32,12 @@ namespace DataAccess
 
         public List<Photo> GetPhotos()
         {
-            throw new NotImplementedException();
+            return Photos.ToList();
         }
 
         public List<Photo> GetPhotosFromUser(User user)
         {
-            throw new NotImplementedException();
+            return Photos.FindAll(p => p.User.Equals(user));
         }
 
         public void UpdateUser(User user)
@@ -69,12 +64,14 @@ namespace DataAccess
 
         public User GetUser(User user)
         {
-            throw new NotImplementedException();
+            return Users.Find(u => u.Equals(user));
         }
 
         public void CommentPhoto(Comment commentEntity)
         {
-            throw new NotImplementedException();
+            var photo = Photos.Find(p => p.User.Equals(commentEntity.Commentor));
+            commentEntity.Photo = photo;
+            Comments.Add(commentEntity);
         }
 
         public bool DeleteUser(User user)
@@ -83,6 +80,19 @@ namespace DataAccess
             {
                 return Users.Remove(user);
             }
+        }
+
+        public void UploadPhoto(Photo photo)
+        {
+            photo.UpdateId();
+            var user = Users.Find(u => u.Equals(photo.User));
+            photo.User = user;
+            Photos.Add(photo);
+        }
+
+        public List<Comment> GetCommentsFromPhoto(Photo photo)
+        {
+            return Photos.Find(p => p.Equals(photo)).Comments;
         }
     }
 

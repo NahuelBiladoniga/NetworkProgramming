@@ -11,15 +11,17 @@ namespace TCPComm.Protocol
             {
                 var data = new byte[length];
 
-                using var fs = new FileStream(path, FileMode.Open) { Position = offset };
-                var bytesRead = 0;
-                while (bytesRead < length)
+                using (var fs = new FileStream(path, FileMode.Open) { Position = offset })
                 {
-                    var read = fs.Read(data, bytesRead, length - bytesRead);
-                    if (read == 0)
-                        throw new Exception("Error reading file");
-                    bytesRead += read;
-                }
+                    var bytesRead = 0;
+                    while (bytesRead < length)
+                    {
+                        var read = fs.Read(data, bytesRead, length - bytesRead);
+                        if (read == 0)
+                            throw new Exception("Error reading file");
+                        bytesRead += read;
+                    }
+                };
 
                 return data;
             }
@@ -31,13 +33,17 @@ namespace TCPComm.Protocol
         {
             if (FileHandler.FileExists(fileName))
             {
-                using var fs = new FileStream(fileName, FileMode.Append);
-                fs.Write(data, 0, data.Length);
+                using (var fs = new FileStream(fileName, FileMode.Append))
+                {
+                    fs.Write(data, 0, data.Length);
+                };
             }
             else
             {
-                using var fs = new FileStream(fileName, FileMode.Create);
-                fs.Write(data, 0, data.Length);
+                using (var fs = new FileStream(fileName, FileMode.Create))
+                {
+                    fs.Write(data, 0, data.Length);
+                };
             }
         }
     }

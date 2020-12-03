@@ -14,13 +14,11 @@ namespace TCPComm
         public TcpClient ClientListener { get; }
         public User User { get; set; }
         public readonly StreamCommunication StreamCommunication;
-        public readonly FileCommsHandler FileCommsHandler;
 
         public CommunicationClient(TcpClient clientListener)
         {
             ClientListener = clientListener;
             StreamCommunication = new StreamCommunication(clientListener.GetStream());
-            FileCommsHandler = new FileCommsHandler(clientListener.GetStream());
         }
     }
 }

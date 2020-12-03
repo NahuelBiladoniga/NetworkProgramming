@@ -17,5 +17,8 @@ namespace Contracts
         void DisconnectUser(User user);
         User GetUser(User user);
         void CommentPhoto(Comment commentEntity);
+        void UploadPhoto(Photo photo);
+        List<Comment> GetCommentsFromPhoto(Photo id);
+        List<Photo> GetPhotos();
     }
 }

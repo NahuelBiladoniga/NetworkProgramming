@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.AccessControl;
 using System.Text;
 
 namespace TCPComm.Protocol
@@ -35,14 +36,15 @@ namespace TCPComm.Protocol
             return (ProtocolConstants.ResponseCommands)ConvertBytesToShort(data);
         }
 
-        public static byte[] ConvertStringToBytes(string value)
+        public static byte[] ConvertStringToBytes(string value, int length)
         {
-            return Encoding.UTF8.GetBytes(value);
+            length = length == 0 ? value.Length:length;
+            return Encoding.UTF8.GetBytes(value.PadLeft(length, '\0'));
         }
 
         public static string ConvertBytesToString(byte[] value)
         {
-            return Encoding.UTF8.GetString(value);
+            return Encoding.UTF8.GetString(value).Replace("\0", string.Empty);
         }
 
         public static byte[] ConvertIntToBytes(int value)

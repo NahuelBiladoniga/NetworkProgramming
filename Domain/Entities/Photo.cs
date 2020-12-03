@@ -18,7 +18,7 @@ namespace Domain
         public User User { get; set; }
         public List<Comment> Comments { get; set; }
 
-        public override string ToString() => $"Nombre: {Name} - Extension: {Extension} - Tamanio: : {FileSize} - Nombre Usuario: {User.Name}";
+        public override string ToString() => $"Id: {Id} - Nombre: {Name} - Extension: {Extension} - Tamanio: : {FileSize} - Nombre Usuario: {User.Name}";
 
         public string ToStringProtocol() => $"Name={Name}$Ext={Extension}$FileSize={FileSize}";
 
@@ -32,6 +32,5 @@ namespace Domain
             Photo other = obj as Photo;
             return other != null && (Id == other.Id);
         }
-
     }
 }

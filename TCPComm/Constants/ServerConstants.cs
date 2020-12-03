@@ -5,7 +5,7 @@ namespace TCPComm.Constants
 
     public class ServerConstants
     {
-        public static int SERVER_PORT = GetPort("ServerPort");
+        public static int SERVER_PORT = GetPort("SERVER_PORT");
         public const int COMMAND_LENGTH = 4;
         public const char PARSER_CHARACTER = '#';
 

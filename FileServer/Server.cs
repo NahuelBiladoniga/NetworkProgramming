@@ -100,7 +100,7 @@ namespace Server
                         ClientHandler.HandleViewUsers( this,client);
                         break;
                     case (short) ProtocolConstants.RequestCommands.VIEW_PHOTOS:
-                        await ClientHandler.HandleViewPhotos( this,client);
+                        ClientHandler.HandleViewPhotos( this,client);
                         break;
                     case (short) ProtocolConstants.RequestCommands.VIEW_COMMENTS:
                         await ClientHandler.HandleViewCommentsPhoto( this,client);

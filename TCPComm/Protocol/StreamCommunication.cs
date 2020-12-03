@@ -11,7 +11,7 @@ namespace TCPComm.Protocol
         public const int FixedNameSize = 4;
         public const int FixedFileSize = 8;
         public const int MaxPacketSize = 32768;
-        private readonly NetworkStream _networkStream;
+        public readonly NetworkStream _networkStream;
 
         public StreamCommunication(NetworkStream networkStream)
         {

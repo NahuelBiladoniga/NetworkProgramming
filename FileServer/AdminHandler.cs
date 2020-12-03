@@ -25,7 +25,6 @@ namespace Server
                 Name = name,
                 Email = email
             };
-            
             server.Service.AddUser(client);
         }
 
