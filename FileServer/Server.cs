@@ -8,11 +8,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Domain;
 using TCPComm.Protocol;
+using System.Text;
+using RabbitMQ.Client;
 
 namespace Server
 {
     public class Server
     {
+
         public IService Service { get; }
         private readonly TcpListener _listener;
         public bool AcceptClients { get; set; }
@@ -24,6 +27,13 @@ namespace Server
             Service = service;
 
             AcceptClients = true;
+
+            var channel = new ConnectionFactory() { HostName = "localhost" }.CreateConnection().CreateModel();
+            channel.QueueDeclare(queue: "log_queue",
+                durable: false,
+                exclusive: false,
+                autoDelete: false,
+                arguments: null);
 
             AcceptConnections();
         }

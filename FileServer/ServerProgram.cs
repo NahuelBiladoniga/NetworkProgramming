@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
+using System.Text.Json;
 using System.Threading.Tasks;
 using DataAccess;
 using Domain;
+using RabbitMQ.Client;
 using TCPComm.Constants;
 using TCPComm.Protocol;
 using Utils;
@@ -27,6 +29,14 @@ namespace Server
             listener.Start(100);
 
             var server = new Server(listener, new Service(new Repository()));
+
+            //var log = new Log();
+            //Console.WriteLine("Enter Log Level:");
+            //log.Level = Console.ReadLine();
+            //Console.WriteLine("Enter message:");
+            //log.Message = Console.ReadLine();
+            //var stringLog = JsonSerializer.Serialize(log);
+            //var result = await SendMessage(channel, stringLog);
 
             Menu(server);
         }
