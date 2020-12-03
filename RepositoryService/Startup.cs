@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Repositories;
+using RepositoryService.Interfaces;
 
 namespace RepositoryService
 {
@@ -17,7 +19,9 @@ namespace RepositoryService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddGrpc();
-
+            services.AddScoped<ICommentsRepository, CommentRepository>();
+            services.AddScoped<IPhotoRepository, PhotoRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

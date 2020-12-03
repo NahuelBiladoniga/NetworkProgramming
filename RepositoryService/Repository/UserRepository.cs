@@ -69,5 +69,15 @@ namespace Repositories
                 return repository.Users.Count();
             }
         }
+
+        public IEnumerable<User> GetUsersPaged(int offset, int size)
+        {
+            return repository.Users.GetRange(offset,size);
+        }
+
+        public bool ContainsUser(User user)
+        {
+            return repository.Users.Contains(user);
+        }
     }
 }
