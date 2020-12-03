@@ -16,6 +16,26 @@ namespace Domain
         public string Email { get; set; }        
         public string Password { get; set; }
         public DateTime LastConnection { get; set; }
+
+        public User()
+        {
+        }
+
+        public User(Socket socket)
+        {
+            LastConnection = DateTime.Now;
+        }
+
+
+        public User(string[] data)
+        {
+            string name = Array.Find(data, d => d.StartsWith("Name="));
+            string description = Array.Find(data, d => d.StartsWith("Email="));
+
+            Name = name != null ? name.Split('=')[1] : string.Empty;
+            Email = description != null ? description.Split('=')[1] : string.Empty;
+        }
+
         public List<Photo> Photos { get; set; }
         public bool IsConnected { get; set; }
         

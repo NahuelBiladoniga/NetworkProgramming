@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Threading;
-using Contracts;
-using TCPComm;
-using System.Linq;
 using System.Threading.Tasks;
 using Domain;
-using TCPComm.Protocol;
-using System.Text;
 using RabbitMQ.Client;
+using Services.Interfaces;
+using TCPComm;
+using TCPComm.Protocol;
 
-namespace Server
+namespace FileServer
 {
     public class Server
     {

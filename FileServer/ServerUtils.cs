@@ -1,6 +1,6 @@
 using System;
 
-namespace Server
+namespace FileServer
 {
     public static class ServerUtils
     {

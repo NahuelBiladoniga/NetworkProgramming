@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using Contracts;
 using Domain;
+using Repositories.Interfaces;
+using Services.Interfaces;
 using TCPComm;
 
-namespace Server
+namespace FileServer
 {
     public class Service : IService
     {

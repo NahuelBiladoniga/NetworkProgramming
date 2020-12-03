@@ -5,13 +5,13 @@ using Domain;
 using TCPComm;
 using TCPComm.Protocol;
 
-namespace Server
+namespace FileServer
 {
     public static class ClientHandler
     {
         private static readonly string PhotosPath = AppDomain.CurrentDomain.BaseDirectory + "Photos";
 
-        public static async Task ValidateLogin(Server server, CommunicationClient client)
+        public static async Task ValidateLogin(FileServer.Server server, CommunicationClient client)
         {
             var existUser = false;
             do
@@ -41,7 +41,7 @@ namespace Server
             } while (!existUser);
         }
         
-        public static async Task HandleCreateUser(Server server, CommunicationClient client)
+        public static async Task HandleCreateUser(FileServer.Server server, CommunicationClient client)
         {
             var name = ConversionHandler.ConvertBytesToString( await client.StreamCommunication.ReadAsync(User.UserNameLength));
             var email = ConversionHandler.ConvertBytesToString( await client.StreamCommunication.ReadAsync(User.UserEmailLength));
@@ -67,7 +67,7 @@ namespace Server
             client.StreamCommunication.Write(ConversionHandler.ConvertStringToBytes("Added Sucessfully", ProtocolConstants.ResponseMessageLength));
         }
 
-        public static async Task HandleUploadPhoto(Server server, CommunicationClient client)
+        public static async Task HandleUploadPhoto(FileServer.Server server, CommunicationClient client)
         {
             var name = ConversionHandler.ConvertBytesToString( await client.StreamCommunication.ReadAsync(Photo.PhotoNameLength));
             var extension = ConversionHandler.ConvertBytesToString( await client.StreamCommunication.ReadAsync(Photo.PhotoExtensionLength));
@@ -94,7 +94,7 @@ namespace Server
             ProtocolHelpers.SendMessageCommand(ProtocolConstants.ResponseCommands.Ok, client, "Added succesfully");
         }
 
-        public static async Task HandleCommentPhoto(Server server, CommunicationClient client)
+        public static async Task HandleCommentPhoto(FileServer.Server server, CommunicationClient client)
         {
             var photoIdParsed = ConversionHandler.ConvertBytesToInt( await client.StreamCommunication.ReadAsync(ProtocolConstants.IntegerTypeLength));
             var message = ConversionHandler.ConvertBytesToString( await client.StreamCommunication.ReadAsync(Comment.CommentLength));
@@ -119,7 +119,7 @@ namespace Server
             ProtocolHelpers.SendMessageCommand(ProtocolConstants.ResponseCommands.Ok,client, "Added Sucessfully");
         }
 
-        public static void HandleViewUsers(Server server, CommunicationClient client)
+        public static void HandleViewUsers(FileServer.Server server, CommunicationClient client)
         {
             ProtocolHelpers.SendResponseCommand(ProtocolConstants.ResponseCommands.ListUsers,
                 client.StreamCommunication);
@@ -135,7 +135,7 @@ namespace Server
             });
         }
 
-        public static void HandleViewPhotos(Server server, CommunicationClient client)
+        public static void HandleViewPhotos(FileServer.Server server, CommunicationClient client)
         {
             ProtocolHelpers.SendResponseCommand(ProtocolConstants.ResponseCommands.ListPhotos,
             client.StreamCommunication);
@@ -151,7 +151,7 @@ namespace Server
             });
         }
 
-        public static async Task HandleViewCommentsPhoto(Server server, CommunicationClient client)
+        public static async Task HandleViewCommentsPhoto(FileServer.Server server, CommunicationClient client)
         {
             var photoIdParsed = ConversionHandler.ConvertBytesToInt( await client.StreamCommunication.ReadAsync(ProtocolConstants.IntegerTypeLength));
     

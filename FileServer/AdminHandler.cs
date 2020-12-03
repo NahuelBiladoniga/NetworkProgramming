@@ -1,15 +1,13 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using Domain;
-using TCPComm.Protocol;
 using Utils;
 
-namespace Server
+namespace FileServer
 {
     public static class AdminHandler
     {
-        public static void CreateUser(Server server)
+        public static void CreateUser(FileServer.Server server)
         {
             Console.Clear();
             Console.WriteLine("ADMINISTRACIÓN DEL SERVIDOR" + "\n\nCREACIÓN DE CLIENTE");
@@ -28,7 +26,7 @@ namespace Server
             server.Service.AddUser(client);
         }
 
-        public static void DeleteUser(Server server)
+        public static void DeleteUser(FileServer.Server server)
         {
             var clients = server.Service.GetAllClients();
             if (!clients.Any())
@@ -49,7 +47,7 @@ namespace Server
             server.Service.DeleteUser(clientToDelete);
         }
 
-        public static void ModifyUser(Server server)
+        public static void ModifyUser(FileServer.Server server)
         {
             var clients = server.Service.GetAllClients();
             if (!clients.Any())

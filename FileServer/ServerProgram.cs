@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
-using System.Text.Json;
-using System.Threading.Tasks;
-using DataAccess;
-using Domain;
-using RabbitMQ.Client;
+using Repositories;
 using TCPComm.Constants;
-using TCPComm.Protocol;
 using Utils;
 
-namespace Server
+namespace FileServer
 {
     public class ServerProgram
     {
@@ -28,7 +23,7 @@ namespace Server
             var listener = new TcpListener(ipEndPoint);
             listener.Start(100);
 
-            var server = new Server(listener, new Service(new Repository()));
+            var server = new FileServer.Server(listener, new Service(new Repository()));
 
             //var log = new Log();
             //Console.WriteLine("Enter Log Level:");
@@ -41,7 +36,7 @@ namespace Server
             Menu(server);
         }
         
-        private static void Menu(Server server)
+        private static void Menu(FileServer.Server server)
         {
             while (true)
             {
@@ -62,7 +57,7 @@ namespace Server
             }
         }
 
-        private static void ExecuteItemMenu(string option, Server server)
+        private static void ExecuteItemMenu(string option, FileServer.Server server)
         {
             switch (option)
             {
@@ -80,7 +75,7 @@ namespace Server
             }
         }
 
-        private static void ListSelectedOption(Server server, string title, string[] list)
+        private static void ListSelectedOption(FileServer.Server server, string title, string[] list)
         {
             ConsoleValidations.ListOperations($"{"ADMINISTRACIÓN DEL SERVIDOR"}\n\n{title}:", list, true);
             string option = ConsoleValidations.ReadUntilValid(prompt: "\nPresione <<q>> para volver al menú principal",
@@ -93,7 +88,7 @@ namespace Server
             }
         }
         
-        private static void CrudClient(Server server)
+        private static void CrudClient(FileServer.Server server)
         {
             var menu_options = new []{
                 "Crear un cliente",
@@ -125,7 +120,7 @@ namespace Server
                     throw new Exception($"Option: {option} is not a valid option.");
             }
         }
-        private static void Exit(string input, Server server)
+        private static void Exit(string input, FileServer.Server server)
         {
             if (input.ToLower() == "q")
             {
