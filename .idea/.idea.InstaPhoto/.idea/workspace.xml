@@ -35,12 +35,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ba77854-2eb2-41b0-b9a8-ec91c94bcdd0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/FileClient/FileClient.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FileClient/FileClient.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileServer/FileServer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FileServer/FileServer.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RepositoryService/Repository/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RepositoryService/Repository/UserRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RepositoryService/Services/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RepositoryService/Services/UserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApiAdmin/WebApiAdmin.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiAdmin/WebApiAdmin.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApiLogs/WebApiLogs.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiLogs/WebApiLogs.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.InstaPhoto/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.InstaPhoto/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.InstaPhoto/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.InstaPhoto/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Photo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Photo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileServer/Server.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileServer/Server.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApiAdmin/Controllers/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiAdmin/Controllers/UserController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApiLogs/Controllers/LogController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiLogs/Controllers/LogController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApiLogs/Helpers/WebPaginationHelper.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApiLogs/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiLogs/Properties/launchSettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApiLogs/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApiLogs/Startup.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +117,6 @@
         <option value="$PROJECT_DIR$/FileServer/Service.cs" />
         <option value="$PROJECT_DIR$/FileServer/Server.cs" />
         <option value="$PROJECT_DIR$/FileServer/ServerProgram.cs" />
-        <option value="$PROJECT_DIR$/RepositoryService/Protos/user.proto" />
         <option value="$PROJECT_DIR$/FileClient/ServerHandler.cs" />
         <option value="$PROJECT_DIR$/FileServer/AdminHandler.cs" />
         <option value="$PROJECT_DIR$/FileServer/ClientHandler.cs" />
@@ -123,6 +126,7 @@
         <option value="$PROJECT_DIR$/WebApiLogs/Startup.cs" />
         <option value="$PROJECT_DIR$/WebApiLogs/Controllers/LogController.cs" />
         <option value="$PROJECT_DIR$/RepositoryService/Services/UserService.cs" />
+        <option value="$PROJECT_DIR$/RepositoryService/Protos/user.proto" />
       </list>
     </option>
   </component>
@@ -428,7 +432,7 @@
       <workItem from="1606992560791" duration="7406000" />
       <workItem from="1607013119509" duration="2242000" />
       <workItem from="1607015426321" duration="4814000" />
-      <workItem from="1607032774868" duration="597000" />
+      <workItem from="1607032774868" duration="623000" />
     </task>
     <task id="LOCAL-00001" summary="Added more operations for server program and added repo server">
       <created>1606718683219</created>

@@ -80,8 +80,8 @@ namespace FileClient
         {
             ProtocolHelpers.SendRequestCommand(ProtocolConstants.RequestCommands.VIEW_USERS, client.StreamCommunication);
 
-            var response = ConversionHandler.ConvertBytesToShort(await client.StreamCommunication.ReadAsync(ProtocolConstants.ShortTypeLength));
-            var responseCommand = ConversionHandler.ConvertBytesToShort(await client.StreamCommunication.ReadAsync(ProtocolConstants.ShortTypeLength));
+            ConversionHandler.ConvertBytesToShort(await client.StreamCommunication.ReadAsync(ProtocolConstants.ShortTypeLength));
+            ConversionHandler.ConvertBytesToShort(await client.StreamCommunication.ReadAsync(ProtocolConstants.ShortTypeLength));
 
             var data = await client.StreamCommunication.ReadAsync(ProtocolConstants.IntegerTypeLength);
             var dataLength = ConversionHandler.ConvertBytesToInt(data);
@@ -109,8 +109,12 @@ namespace FileClient
         {
             ProtocolHelpers.SendRequestCommand(ProtocolConstants.RequestCommands.VIEW_USERS, client.StreamCommunication);
             client.StreamCommunication.Write(ConversionHandler.ConvertLongToBytes(photo.Id));
-            
-            var dataLength = ConversionHandler.ConvertBytesToLong(await client.StreamCommunication.ReadAsync(ProtocolConstants.LongTypeLength));
+
+            ConversionHandler.ConvertBytesToShort(await client.StreamCommunication.ReadAsync(ProtocolConstants.ShortTypeLength));
+            ConversionHandler.ConvertBytesToShort(await client.StreamCommunication.ReadAsync(ProtocolConstants.ShortTypeLength));
+
+            var data = await client.StreamCommunication.ReadAsync(ProtocolConstants.LongTypeLength);
+            var dataLength = ConversionHandler.ConvertBytesToLong(data);
 
             var result = new List<Comment>();
             while (dataLength != 0)
@@ -122,6 +126,14 @@ namespace FileClient
                 dataLength -= User.UserNameLength + User.UserEmailLength + Comment.CommentLength;
                 result.Add(new Comment()
                 {
+                    Photo = new Photo
+                    {
+                        User = new User
+                        {
+                            Email = email,
+                            Name = name
+                        }
+                    },
                     Message = message,
                 });
             }

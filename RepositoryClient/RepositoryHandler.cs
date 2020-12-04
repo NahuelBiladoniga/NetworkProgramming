@@ -158,24 +158,6 @@ namespace RepositoryClient
             return result;
         }
         
-        // public async Task<List<UserDto>> GetUsersPagedAsync(int offset, int pageSize)
-        // {
-        //     var response = await _client.ViewUsers(new EmptyInput());
-        //     var result = new List<UserDto>();
-        //
-        //     foreach (var a in response.Results)
-        //     {
-        //         result.Add(new UserDto
-        //         {
-        //             Email = a.Email,
-        //             Name = a.Name,
-        //             //LastConnection = a.LastConnected
-        //         });
-        //     }
-        //
-        //     return result;
-        // }
-
         public async Task<bool> AutenticateUserAsync(UserDto user)
         {
             var input = new AutenticateUserInput() { 
@@ -187,17 +169,21 @@ namespace RepositoryClient
 
             return response.Status.Equals("OK");
         }
-        
-        // public async Task<bool> GetUserById(UserDto user)
-        // {
-        //     var input = new AutenticateUserInput() { 
-        //         Email = user.Email,
-        //         Password = user.Password
-        //     };
-        //
-        //     var response = await _client.AutenticateUserAsync(input);
-        //
-        //     return response.Status.Equals("OK");
-        // }
+
+        public async Task<ResponseDto> LogoutUser(UserDto user)
+        {
+            var input = new LogoutUserInput()
+            {
+                Email = user.Email
+            };
+
+            var response = await _client.LogoutUserAsync(input);
+
+            return new ResponseDto()
+            {
+                Message = response.Message,
+                Status = response.Status,
+            };
+        }
     }
 }

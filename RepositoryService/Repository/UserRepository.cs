@@ -25,6 +25,14 @@ namespace Repositories
             }
         }
 
+        public IEnumerable<User> GetAutenticatedUsers()
+        {
+            lock (lock_users)
+            {
+                return repository.Users.Where(u => u.IsConnected);
+            }
+        }
+
         public User GetUser(User user)
         {
             lock (lock_users)

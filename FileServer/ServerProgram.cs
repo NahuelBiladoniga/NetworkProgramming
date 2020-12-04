@@ -25,14 +25,6 @@ namespace FileServer
 
             var server = new Server(listener);
 
-            //var log = new Log();
-            //Console.WriteLine("Enter Log Level:");
-            //log.Level = Console.ReadLine();
-            //Console.WriteLine("Enter message:");
-            //log.Message = Console.ReadLine();
-            //var stringLog = JsonSerializer.Serialize(log);
-            //var result = await SendMessage(channel, stringLog);
-
             await Menu(server);
         }
         
@@ -120,11 +112,11 @@ namespace FileServer
                     throw new Exception($"Option: {option} is not a valid option.");
             }
         }
-        private static void Exit(string input, FileServer.Server server)
+        private static async Task ExitAsync(string input, FileServer.Server server)
         {
             if (input.ToLower() == "q")
             {
-                Menu(server);
+                await Menu(server);
             }
         }
     }

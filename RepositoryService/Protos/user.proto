@@ -5,6 +5,8 @@ option csharp_namespace = "RepositoryService";
 package userProto;
 
 service UserHandler {
+  rpc ViewAutenticatedUsers (EmptyInput) returns (ViewUserResponse);
+  rpc LogoutUser (LogoutUserInput) returns (ResponseMessage);
   rpc AutenticateUser (AutenticateUserInput) returns (ResponseMessage);
   rpc AddUser (AddUserInput) returns (ResponseMessage);
   rpc RemoveUser (RemoveUserInput) returns (ResponseMessage);
@@ -16,6 +18,10 @@ service UserHandler {
   rpc ViewUsers (EmptyInput) returns (ViewUserResponse);
 }
 
+message LogoutUserInput {
+  string email = 1;
+}
+
 message AutenticateUserInput {
   string email = 1;
   string password = 2;
@@ -25,6 +31,7 @@ message AddUserInput {
   string name = 1;
   string email = 2;
   string password = 3;
+  bool isLoggedIn = 4;
 }
 
 message EmptyInput{

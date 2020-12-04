@@ -48,6 +48,7 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="ClientHandler.cs" t="Include" />
         <e p="FileServer.csproj" t="IncludeRecursive" />
+        <e p="LoggerService.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
@@ -73,7 +74,6 @@
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
-              <e p="RepositoryClient.AssemblyInfo.cs" t="Include" />
               <e p="User.cs" t="Include" />
               <e p="UserGrpc.cs" t="Include" />
             </e>
@@ -89,7 +89,6 @@
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
-              <e p="RepositoryService.AssemblyInfo.cs" t="Include" />
               <e p="User.cs" t="Include" />
               <e p="UserGrpc.cs" t="Include" />
             </e>
@@ -172,9 +171,6 @@
         <e p="Controllers" t="Include">
           <e p="UserController.cs" t="Include" />
         </e>
-        <e p="Helpers" t="Include">
-          <e p="WebPaginationHelper.cs" t="Include" />
-        </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
@@ -186,8 +182,8 @@
         <e p="Properties" t="Include">
           <e p="launchSettings.json" t="Include" />
         </e>
-        <e p="Responses" t="Include">
-          <e p="WebPaginatedResponse.cs" t="Include" />
+        <e p="Services" t="Include">
+          <e p="LogService.cs" t="Include" />
         </e>
         <e p="Startup.cs" t="Include" />
         <e p="WebApiAdmin.csproj" t="IncludeRecursive" />
@@ -199,9 +195,6 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Controllers" t="Include">
           <e p="LogController.cs" t="Include" />
-        </e>
-        <e p="Helpers" t="Include">
-          <e p="WebPaginationHelper.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">

@@ -24,6 +24,24 @@ namespace RepositoryService
             _photoRepository = photoRepository;
         }
 
+        public override Task<ResponseMessage> LogoutUser(LogoutUserInput request, ServerCallContext context)
+        {
+            var user = new User()
+            {
+                Email = request.Email,
+            };
+
+            var savedUser = _userRepository.GetUser(user);
+
+            savedUser.IsConnected = false;
+
+            return Task.FromResult(new ResponseMessage
+            {
+                Status = "Ok",
+                Message = "Adios!",
+            });
+        }
+
         public override Task<ResponseMessage> AutenticateUser(AutenticateUserInput request, ServerCallContext context)
         {
             var user = new User()
@@ -53,7 +71,6 @@ namespace RepositoryService
                     Message = "Credenciales invalidas",
                 });
             }
-
         }
 
         public override Task<ResponseMessage> AddComment(AddCommentInput request, ServerCallContext context)
@@ -82,7 +99,8 @@ namespace RepositoryService
             {
                 Email = request.Email,
                 Name = request.Name,
-                Password = request.Password
+                Password = request.Password,
+                IsConnected = request.IsLoggedIn                
             };
 
             if (_userRepository.ContainsUser(user))
@@ -227,6 +245,25 @@ namespace RepositoryService
         }
 
         public override Task<ViewUserResponse> ViewUsers(EmptyInput request, ServerCallContext context)
+        {
+            var users = _userRepository.GetUsers().ToList();
+
+            var result = new ViewUserResponse();
+            users.ForEach((e) =>
+            {
+                result.Results.Add(new UserResponse()
+                {
+                    Email = e.Email,
+                    Name = e.Name,
+                    LastConnected = e.LastConnection.ToString(),
+                });
+            });
+
+            return Task.FromResult(result);
+        }
+
+
+        public override Task<ViewUserResponse> ViewAutenticatedUsers(EmptyInput request, ServerCallContext context)
         {
             var users = _userRepository.GetUsers().ToList();
 

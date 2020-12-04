@@ -260,7 +260,7 @@ namespace FileClient
 
             if (response.responseCommands == ProtocolConstants.ResponseCommands.Ok)
             {
-                Console.WriteLine("\nUsuario Agregado Correctamente");
+                Console.WriteLine("\nComentario Agregado Correctamente");
             }
             else
             {

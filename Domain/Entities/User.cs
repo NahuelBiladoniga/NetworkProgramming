@@ -16,7 +16,7 @@ namespace Domain
         public string Email { get; set; }        
         public string Password { get; set; }
         public DateTime LastConnection { get; set; }
-        public List<Photo> Photos { get; set; }
+        public List<Photo> Photos { get; set; } = new List<Photo>();
         public bool IsConnected { get; set; }
 
         public User()

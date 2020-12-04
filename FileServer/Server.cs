@@ -26,7 +26,6 @@ namespace FileServer
             Service = new RepositoryClient.RepositoryHandler();
 
             AcceptClients = true;
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 
             AcceptConnections();
         }
@@ -90,46 +89,38 @@ namespace FileServer
         private async Task ProcessCommands(CommunicationClient client)
         {
             var request = ConversionHandler.ConvertBytesToShort( await client.StreamCommunication.ReadAsync(ProtocolConstants.ShortTypeLength));
-            if (request == (short)ProtocolConstants.Commands.REQUEST )
-            {
-                var commandType = ConversionHandler.ConvertBytesToShort( await client.StreamCommunication.ReadAsync(ProtocolConstants.ShortTypeLength));
+            var commandType = ConversionHandler.ConvertBytesToShort( await client.StreamCommunication.ReadAsync(ProtocolConstants.ShortTypeLength));
                 
-                switch (commandType)
-                {
-                    case (short) ProtocolConstants.RequestCommands.LOGIN:
-                        await ClientHandler.HandleCreateUser( this,client);
-                        break;
-                    case (short) ProtocolConstants.RequestCommands.UPLOAD_PHOTO:
-                        await ClientHandler.HandleUploadPhoto( this,client);
-                        break;
-                    case (short) ProtocolConstants.RequestCommands.VIEW_USERS:
-                        await ClientHandler.HandleViewUsers( this,client);
-                        break;
-                    case (short) ProtocolConstants.RequestCommands.VIEW_PHOTOS:
-                        await ClientHandler.HandleViewPhotos( this,client);
-                        break;
-                    case (short) ProtocolConstants.RequestCommands.VIEW_COMMENTS:
-                        await ClientHandler.HandleViewCommentsPhoto( this,client);
-                        break;
-                    case (short) ProtocolConstants.RequestCommands.COMMENT_PHOTO:
-                        await ClientHandler.HandleCommentPhoto(this,client);
-                        break;
-                    default:
-                        ProtocolHelpers.SendResponseCommand(ProtocolConstants.ResponseCommands.Error ,client.StreamCommunication);
-                        client.StreamCommunication.Write(ConversionHandler.ConvertStringToBytes("Invalid User", ProtocolConstants.ResponseMessageLength));
-                        break;
-                }
-            }
-            else
+            switch (commandType)
             {
-                //TODO INVALID
+                case (short) ProtocolConstants.RequestCommands.LOGIN:
+                    await ClientHandler.HandleCreateUser( this,client);
+                    break;
+                case (short) ProtocolConstants.RequestCommands.UPLOAD_PHOTO:
+                    await ClientHandler.HandleUploadPhoto( this,client);
+                    break;
+                case (short) ProtocolConstants.RequestCommands.VIEW_USERS:
+                    await ClientHandler.HandleViewUsers( this,client);
+                    break;
+                case (short) ProtocolConstants.RequestCommands.VIEW_PHOTOS:
+                    await ClientHandler.HandleViewPhotos( this,client);
+                    break;
+                case (short) ProtocolConstants.RequestCommands.VIEW_COMMENTS:
+                    await ClientHandler.HandleViewCommentsPhoto( this,client);
+                    break;
+                case (short) ProtocolConstants.RequestCommands.COMMENT_PHOTO:
+                    await ClientHandler.HandleCommentPhoto(this,client);
+                    break;
+                default:
+                    ProtocolHelpers.SendResponseCommand(ProtocolConstants.ResponseCommands.Error ,client.StreamCommunication);
+                    client.StreamCommunication.Write(ConversionHandler.ConvertStringToBytes("Invalid User", ProtocolConstants.ResponseMessageLength));
+                    break;
             }
         }
 
         private void DisconnectUser(CommunicationClient client)
         {
-            // Console.WriteLine("\n\nSe ha desconectado: ", client.ToString());
-            // Service.DisconnectUser(client);
+            this.Service.
         }
 
         public async Task<string[]> GetConnectedClients()

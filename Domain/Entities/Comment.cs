@@ -6,7 +6,7 @@ namespace Domain
 {
     public class Comment
     {
-        public const int CommentLength = 8;
+        public const int CommentLength = 300;
 
         public string Message { get; set; }
         public DateTime CreationDate { get; set; }

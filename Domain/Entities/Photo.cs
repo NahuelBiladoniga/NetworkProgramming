@@ -15,7 +15,7 @@ namespace Domain
         public string Name { get; set; }
         public string Extension { get; set; }
         public long FileSize { get; set; }
-        public List<Comment> Comments { get; set; }        
+        public List<Comment> Comments { get; set; } = new List<Comment>();       
         public User User { get; set; }
 
         public override string ToString() => $"Id: {Id} - Nombre: {Name} - Extension: {Extension} - Tamanio: : {FileSize} - Nombre Usuario: {User.Name}";

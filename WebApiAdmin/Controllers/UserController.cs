@@ -25,13 +25,13 @@ namespace WebApiAdmin.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsersAsync()
+        public async Task<IActionResult> GetUsersAsync()
         {
             return Ok(await _repositoryClient.GetUsersAsync());
         }
 
         [HttpPost]
-        public async Task<ActionResult<User>> SaveUserAsync(User user)
+        public async Task<IActionResult> SaveUserAsync(User user)
         {
             var dto = new UserDto()
             {
@@ -46,7 +46,7 @@ namespace WebApiAdmin.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<User>> UpdateUserAsync(User user)
+        public async Task<IActionResult> UpdateUserAsync(User user)
         {
             var dto = new UserDto()
             {
@@ -67,6 +67,7 @@ namespace WebApiAdmin.Controllers
             {
                 Email = email
             };
+
             _logService.SendLogs("User " + user.Email + " was deleted");
             return Ok(await _repositoryClient.RemoveUserAsync(user));
         }

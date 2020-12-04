@@ -7,24 +7,21 @@ using WebApiLogs.Repository;
 
 namespace WebApiLogs.Controllers
 {
-    public class LogController
+    [ApiController]
+    [Route("logs")]
+    public class LogsController : ControllerBase
     {
-        [Route("logs")]
-        [ApiController]
-        public class LogsController : ControllerBase
+        private readonly LogRepository _logRepository;
+
+        public LogsController()
         {
-            private readonly LogRepository _logRepository;
+            _logRepository = LogRepository.GetInstance();
+        }
 
-            public LogsController()
-            {
-                _logRepository = LogRepository.GetInstance();
-            }
-
-            [HttpGet]
-            public async Task<IEnumerable<Log>> GetLogsAsync()
-            {
-                return (IEnumerable<Log>)Ok(_logRepository.GetLogEntries());
-            }
+        [HttpGet]
+        public async Task<IActionResult> GetLogsAsync()
+        {
+            return Ok(_logRepository.GetLogEntries());
         }
     }
 }
