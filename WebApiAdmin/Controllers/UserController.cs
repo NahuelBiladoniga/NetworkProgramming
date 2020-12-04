@@ -18,10 +18,11 @@ namespace WebApiAdmin.Controllers
         private readonly LogService _logService;
 
         public UsersController(
-            IHttpContextAccessor httpContextAccessor)
+            IHttpContextAccessor httpContextAccessor, LogService service)
         {
             _httpContextAccessor = httpContextAccessor;
             _repositoryClient = new RepositoryHandler();
+            _logService = service;
         }
 
         [HttpGet]
@@ -31,7 +32,7 @@ namespace WebApiAdmin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SaveUserAsync(User user)
+        public async Task<IActionResult> SaveUserAsync([FromBody] User user)
         {
             var dto = new UserDto()
             {
@@ -46,7 +47,7 @@ namespace WebApiAdmin.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateUserAsync(User user)
+        public async Task<IActionResult> UpdateUserAsync([FromBody] User user)
         {
             var dto = new UserDto()
             {

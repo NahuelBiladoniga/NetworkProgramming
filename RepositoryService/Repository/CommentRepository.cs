@@ -9,6 +9,7 @@ namespace Repositories
     public class CommentRepository : ICommentsRepository
     {
         private readonly Repository repository;
+        private object lock_comment = new object();
 
         public CommentRepository()
         {
@@ -17,15 +18,24 @@ namespace Repositories
 
         public void CommentPhoto(Photo photo,Comment commentEntity)
         {
-            var photoLinked = repository.Users.Find(x => x.Photos.Contains(photo)).Photos.First(x => x.Equals(photo));
-            commentEntity.Photo = photo;
-            commentEntity.CreationDate = DateTime.Now;
-            photoLinked.Comments.Add(commentEntity);
+            lock (lock_comment)
+            {
+                var photos = repository.Users.SelectMany(u => u.Photos);
+                var photoLinked = photos.First(p => p.Equals(photo));
+                commentEntity.Photo = photoLinked;
+                commentEntity.CreationDate = DateTime.Now;
+                photoLinked.Comments.Add(commentEntity);
+            }
         }
 
         public List<Comment> GetCommentsFromPhoto(Photo photo)
         {
-            return repository.Users.Find(x => x.Photos.Contains(photo)).Photos.First(x => x.Equals(photo)).Comments;
+            lock (lock_comment)
+            {
+                var user = repository.Users.Find(x => x.Photos.Contains(photo));
+                var comments = user.Photos.Find(x => x.Equals(photo)).Comments.ToList();
+                return comments;
+            }
         }
     }
 }

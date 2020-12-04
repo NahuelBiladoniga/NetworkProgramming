@@ -262,10 +262,9 @@ namespace RepositoryService
             return Task.FromResult(result);
         }
 
-
         public override Task<ViewUserResponse> ViewAutenticatedUsers(EmptyInput request, ServerCallContext context)
         {
-            var users = _userRepository.GetUsers().ToList();
+            var users = _userRepository.GetAutenticatedUsers().ToList();
 
             var result = new ViewUserResponse();
             users.ForEach((e) =>

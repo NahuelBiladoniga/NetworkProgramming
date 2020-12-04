@@ -3,7 +3,7 @@ using System.Text;
 
 namespace FileServer
 {
-    class LoggerService
+    public class LoggerService
     {
         public void SendMessages(string logToSend)
         {

@@ -28,7 +28,11 @@ namespace Repositories
 
         public List<Photo> GetPhotos()
         {
-            return repository.Users.SelectMany(m => m.Photos).ToList();
+            lock (lock_photo)
+            {
+                var photos = repository.Users.SelectMany(m => m.Photos).ToList();
+                return photos;
+            }
         }
     }
 }

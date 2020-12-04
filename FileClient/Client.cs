@@ -7,6 +7,5 @@ namespace FileClient
     {
         public StreamCommunication StreamCommunication { get; set; }
         public bool IsLoggedIn { get; set; } = false;
-        //public User User { get; set; }
     }
 }

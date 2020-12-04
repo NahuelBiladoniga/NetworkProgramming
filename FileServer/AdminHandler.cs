@@ -27,7 +27,8 @@ namespace FileServer
             {
                 Name = name,
                 Email = email,
-                Password = password
+                Password = password,
+                IsLogedIn = false
             };
             
             await server.Service.AddUserAsync(client);

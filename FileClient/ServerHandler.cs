@@ -13,8 +13,8 @@ namespace FileClient
         {
             ProtocolHelpers.SendRequestCommand(ProtocolConstants.RequestCommands.LOGIN, client.StreamCommunication);
             
-            var email = ConversionHandler.ConvertStringToBytes( user.Email, User.UserEmailLength);
-            var password = ConversionHandler.ConvertStringToBytes( user.Password, User.UserPasswordLength);
+            var email = ConversionHandler.ConvertStringToBytes(user.Email, User.UserEmailLength);
+            var password = ConversionHandler.ConvertStringToBytes(user.Password, User.UserPasswordLength);
                 
             client.StreamCommunication.Write(email);
             client.StreamCommunication.Write(password);
@@ -40,11 +40,11 @@ namespace FileClient
         
         public static async Task<MessageResponse> HandleCommentCreation(Client client, Comment comment)
         {
-            var photoIdData = ConversionHandler.ConvertLongToBytes( comment.Photo.Id);
-            var commentData = ConversionHandler.ConvertStringToBytes( comment.Message, Comment.CommentLength);
-         
             ProtocolHelpers.SendRequestCommand(ProtocolConstants.RequestCommands.COMMENT_PHOTO, client.StreamCommunication);
 
+            var photoIdData = ConversionHandler.ConvertLongToBytes(comment.Photo.Id);
+            var commentData = ConversionHandler.ConvertStringToBytes(comment.Message, Comment.CommentLength);
+         
             client.StreamCommunication.Write(photoIdData);
             client.StreamCommunication.Write(commentData);
 
@@ -107,14 +107,15 @@ namespace FileClient
 
         public static async Task<List<Comment>> HandleViewComments(Client client, Photo photo)
         {
-            ProtocolHelpers.SendRequestCommand(ProtocolConstants.RequestCommands.VIEW_USERS, client.StreamCommunication);
+            ProtocolHelpers.SendRequestCommand(ProtocolConstants.RequestCommands.VIEW_COMMENTS, client.StreamCommunication);
+
             client.StreamCommunication.Write(ConversionHandler.ConvertLongToBytes(photo.Id));
 
             ConversionHandler.ConvertBytesToShort(await client.StreamCommunication.ReadAsync(ProtocolConstants.ShortTypeLength));
             ConversionHandler.ConvertBytesToShort(await client.StreamCommunication.ReadAsync(ProtocolConstants.ShortTypeLength));
 
-            var data = await client.StreamCommunication.ReadAsync(ProtocolConstants.LongTypeLength);
-            var dataLength = ConversionHandler.ConvertBytesToLong(data);
+            var data = await client.StreamCommunication.ReadAsync(ProtocolConstants.IntegerTypeLength);
+            var dataLength = ConversionHandler.ConvertBytesToInt(data);
 
             var result = new List<Comment>();
             while (dataLength != 0)
@@ -126,13 +127,10 @@ namespace FileClient
                 dataLength -= User.UserNameLength + User.UserEmailLength + Comment.CommentLength;
                 result.Add(new Comment()
                 {
-                    Photo = new Photo
+                    Commentator = new User
                     {
-                        User = new User
-                        {
-                            Email = email,
-                            Name = name
-                        }
+                        Email = email,
+                        Name = name
                     },
                     Message = message,
                 });

@@ -13,6 +13,8 @@ namespace Domain
         public Photo Photo { get; set; }
         public User Commentator { get; set; }
 
+        public override string ToString() => $"Nombre de usuario: {Commentator.Name} - Email de usuario: {Commentator.Email} - Mensaje: {Message}";
+
         public string ToStringProtocol() => $"Comment={Message}$CreateDate={CreationDate.ToLocalTime()}";
     }
 }

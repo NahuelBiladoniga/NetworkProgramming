@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -8,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Domain;
 using RabbitMQ.Client;
+using RepositoryClient.Dto;
 using TCPComm;
 using TCPComm.Protocol;
 
@@ -31,14 +33,13 @@ namespace FileServer
         }
         private void AcceptConnections()
         {
-            new Thread(() => {
-            while (AcceptClients)
+            new Thread(() =>
             {
-                AddClient();
-            }
-            
-            }).Start();
-            
+                while (AcceptClients)
+                {
+                    AddClient();
+                }
+            }).Start();            
         }
 
         private void AddClient()
@@ -56,7 +57,8 @@ namespace FileServer
             }
             catch (Exception)
             {
-                DisconnectUser(client);
+                
+                await DisconnectUserAsync(client);
                 client.ClientListener.Close();
             } 
         }
@@ -94,19 +96,19 @@ namespace FileServer
             switch (commandType)
             {
                 case (short) ProtocolConstants.RequestCommands.LOGIN:
-                    await ClientHandler.HandleCreateUser( this,client);
+                    await ClientHandler.HandleCreateUser(this,client);
                     break;
                 case (short) ProtocolConstants.RequestCommands.UPLOAD_PHOTO:
-                    await ClientHandler.HandleUploadPhoto( this,client);
+                    await ClientHandler.HandleUploadPhoto(this,client);
                     break;
                 case (short) ProtocolConstants.RequestCommands.VIEW_USERS:
-                    await ClientHandler.HandleViewUsers( this,client);
+                    await ClientHandler.HandleViewUsers(this,client);
                     break;
                 case (short) ProtocolConstants.RequestCommands.VIEW_PHOTOS:
-                    await ClientHandler.HandleViewPhotos( this,client);
+                    await ClientHandler.HandleViewPhotos(this,client);
                     break;
                 case (short) ProtocolConstants.RequestCommands.VIEW_COMMENTS:
-                    await ClientHandler.HandleViewCommentsPhoto( this,client);
+                    await ClientHandler.HandleViewCommentsPhoto(this,client);
                     break;
                 case (short) ProtocolConstants.RequestCommands.COMMENT_PHOTO:
                     await ClientHandler.HandleCommentPhoto(this,client);
@@ -118,17 +120,30 @@ namespace FileServer
             }
         }
 
-        private void DisconnectUser(CommunicationClient client)
+        private async Task DisconnectUserAsync(CommunicationClient client)
         {
-            this.Service.
+            if(client.User != null)
+            {
+                var user = new UserDto()
+                {
+                    Email = client.User.Email
+                };
+
+                await Service.LogoutUser(user);
+            }
         }
 
         public async Task<string[]> GetConnectedClients()
         {
-            // var connectedClients = new List<string>();
-            // (await Service.ViewUsers()).ForEach(c => connectedClients.Add(c.ToString()));
-            // return connectedClients.ToArray();
-            return (new List<string>()).ToArray();
+            var users = await Service.GetAutenticatedUserAsync();
+            var parsedUsers = users.Select((elem) => new User()
+            {
+                Email = elem.Email,
+                Name = elem.Name,
+                LastConnection = elem.LastConnection
+            }.ToString()).ToArray();
+
+            return parsedUsers;
         }    
     }
 }

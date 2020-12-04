@@ -38,7 +38,8 @@ namespace RepositoryClient
             var input = new AddUserInput() { 
                 Email = user.Email,
                 Name = user.Name,
-                Password = user.Password
+                Password = user.Password,
+                IsLoggedIn = user.IsLogedIn
             };
 
             var response = await _client.AddUserAsync(input);
@@ -133,7 +134,7 @@ namespace RepositoryClient
                 {
                     Message = a.Comment,
                     UserEmail = a.Email,
-                    UserName = a.Name
+                    UserName = a.Name,
                 });
             }
 
@@ -157,7 +158,25 @@ namespace RepositoryClient
 
             return result;
         }
-        
+
+
+        public async Task<List<UserDto>> GetAutenticatedUserAsync()
+        {
+            var response = await _client.ViewAutenticatedUsersAsync(new EmptyInput());
+            var result = new List<UserDto>();
+
+            foreach (var a in response.Results)
+            {
+                result.Add(new UserDto
+                {
+                    Email = a.Email,
+                    Name = a.Name,
+                    //LastConnection = a.LastConnected
+                });
+            }
+
+            return result;
+        }
         public async Task<bool> AutenticateUserAsync(UserDto user)
         {
             var input = new AutenticateUserInput() { 
@@ -167,7 +186,7 @@ namespace RepositoryClient
 
             var response = await _client.AutenticateUserAsync(input);
 
-            return response.Status.Equals("OK");
+            return response.Status.Equals("Ok");
         }
 
         public async Task<ResponseDto> LogoutUser(UserDto user)

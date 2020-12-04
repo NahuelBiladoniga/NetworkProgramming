@@ -15,7 +15,6 @@ namespace FileServer
 
         public static async Task<bool> ValidateLogin(Server server, CommunicationClient client)
         {
-            var existUser = false;
             var email = ConversionHandler.ConvertBytesToString( await client.StreamCommunication.ReadAsync(User.UserEmailLength));
             var password = ConversionHandler.ConvertBytesToString( await client.StreamCommunication.ReadAsync(User.UserPasswordLength));
             var user = new UserDto()
@@ -23,8 +22,8 @@ namespace FileServer
                 Email = email,
                 Password = password
             };
-                
-            existUser = await server.Service.AutenticateUserAsync(user);
+
+            var existUser = await server.Service.AutenticateUserAsync(user);
                 
             if (!existUser)
             {
@@ -41,7 +40,7 @@ namespace FileServer
 
                 loggerService.SendMessages("Login Successfully, mail: " + email);
 
-                ProtocolHelpers.SendResponseCommand(ProtocolConstants.ResponseCommands.Error ,client.StreamCommunication);
+                ProtocolHelpers.SendResponseCommand(ProtocolConstants.ResponseCommands.Ok ,client.StreamCommunication);
                 client.StreamCommunication.Write(ConversionHandler.ConvertStringToBytes("Login Successfully", ProtocolConstants.ResponseMessageLength));
             }
             return existUser;
@@ -64,6 +63,7 @@ namespace FileServer
                 Email = email,
                 Name = name,
                 Password = password,
+                IsLogedIn = true
             };
             
             var response = await server.Service.AddUserAsync(user);
@@ -118,7 +118,7 @@ namespace FileServer
 
         public static async Task HandleCommentPhoto(Server server, CommunicationClient client)
         {
-            var photoIdParsed = ConversionHandler.ConvertBytesToInt( await client.StreamCommunication.ReadAsync(ProtocolConstants.IntegerTypeLength));
+            var photoIdParsed = ConversionHandler.ConvertBytesToLong( await client.StreamCommunication.ReadAsync(ProtocolConstants.LongTypeLength));
             var message = ConversionHandler.ConvertBytesToString( await client.StreamCommunication.ReadAsync(Comment.CommentLength));
             
             if (string.IsNullOrWhiteSpace(message))
@@ -193,19 +193,27 @@ namespace FileServer
 
         public static async Task HandleViewCommentsPhoto(FileServer.Server server, CommunicationClient client)
         {
-            var photoIdParsed = ConversionHandler.ConvertBytesToInt( await client.StreamCommunication.ReadAsync(ProtocolConstants.IntegerTypeLength));
-    
+            var photoIdParsed = ConversionHandler.ConvertBytesToLong( await client.StreamCommunication.ReadAsync(ProtocolConstants.LongTypeLength));
+
+            ProtocolHelpers.SendResponseCommand(ProtocolConstants.ResponseCommands.ListComments,
+                client.StreamCommunication);
+
             var photo = new PhotoDto()
             {
                 Id = photoIdParsed
             };
+            var comments = await server.Service.GetCommentsAsync(photo);
 
-            (await server.Service.GetCommentsAsync(photo)).ToList().ForEach((elem) =>
+            var length = comments.Count() * (User.UserEmailLength + User.UserNameLength + Comment.CommentLength);
+
+            var data = ConversionHandler.ConvertIntToBytes(length);
+            client.StreamCommunication.Write(data);
+
+            comments.ToList().ForEach((elem) =>
             {
                 var comment = new Comment()
                 {
                     Message = elem.Message,
-                    CreationDate = elem.CreationDate,
                     Commentator = new User()
                     {
                         Email = elem.UserEmail,

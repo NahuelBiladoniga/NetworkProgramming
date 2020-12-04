@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Configuration;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
-using TCPComm.Constants;
 using Utils;
 
 namespace FileServer
@@ -14,12 +14,12 @@ namespace FileServer
             Console.Clear();
             Console.Title = "ADMINISTRACIÓN DEL SERVIDOR";
             Console.WriteLine("ADMINISTRACIÓN DEL SERVIDOR\n\nPresione una tecla para continuar...\n");
-
             Console.ReadLine();
 
-            var ipServer = ConsoleValidations.PromptIPsAvailablesOnPC("ADMINISTRACIÓN DEL SERVIDOR");
-            
-            var ipEndPoint = new IPEndPoint(IPAddress.Parse(ipServer), int.Parse(ServerConstants.SERVER_PORT.ToString()));
+            var ipAddress = ConfigurationManager.AppSettings["SERVER_IP"];
+            var port = ConfigurationManager.AppSettings["SERVER_PORT"];
+
+            var ipEndPoint = new IPEndPoint(IPAddress.Parse(ipAddress), int.Parse(port));
             var listener = new TcpListener(ipEndPoint);
             listener.Start(100);
 

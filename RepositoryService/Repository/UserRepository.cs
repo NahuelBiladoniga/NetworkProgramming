@@ -37,7 +37,7 @@ namespace Repositories
         {
             lock (lock_users)
             {
-                return repository.Users.FirstOrDefault(u => u.Equals(user));
+                return repository.Users.Find(u => u.Equals(user));
             }
         }
 
@@ -57,9 +57,8 @@ namespace Repositories
                 var userLocated = repository.Users.First(u => u.Equals(user));
                 userLocated.Name = user.Name;
                 userLocated.Password = user.Password;
+                return user;
             }
-
-            return user;
         }
 
         public void DeleteUser(User user)
@@ -80,12 +79,18 @@ namespace Repositories
 
         public IEnumerable<User> GetUsersPaged(int offset, int size)
         {
-            return repository.Users.GetRange(offset,size);
+            lock (lock_users)
+            {
+                return repository.Users.GetRange(offset, size);
+            }
         }
 
         public bool ContainsUser(User user)
         {
-            return repository.Users.Contains(user);
+            lock (lock_users)
+            {
+                return repository.Users.Contains(user);
+            }
         }
     }
 }

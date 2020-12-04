@@ -16,17 +16,19 @@ namespace FileClient
             Console.Clear();
             Console.Title = "InstaPhoto";
             Console.WriteLine("InstaPhoto\n\nPresione una tecla para continuar...\n");
-
             Console.ReadLine();
 
-            var ipServer = ConsoleValidations.PromptIPsAvailablesOnPC("InstaPhoto");
+            var clientIp = ConsoleValidations.PromptIPsAvailablesOnPC("InstaPhoto");
             
-            Console.WriteLine("\nPuerto: ");
-            var port = ClientUtils.ReadUntilIsNotEmpty(Console.ReadLine());
-
-            var ipEndPoint = new IPEndPoint(IPAddress.Parse(ipServer), 0);
+            var ipEndPoint = new IPEndPoint(IPAddress.Parse(clientIp), 0);
             var client = new TcpClient(ipEndPoint);
-            var serverIpEndPoint = new IPEndPoint(IPAddress.Parse(ipServer), int.Parse(port));
+
+            Console.WriteLine("\nIndique ip del serivdor:\n");
+            var serverIp = Console.ReadLine();
+            Console.WriteLine("\nIndique puerto del serivdor:\n");
+            var port = Console.ReadLine();
+            
+            var serverIpEndPoint = new IPEndPoint(IPAddress.Parse(serverIp), int.Parse(port));
             client.Connect(serverIpEndPoint);
             var stream = client.GetStream();
 
@@ -80,17 +82,14 @@ namespace FileClient
             Console.Clear();
             Console.WriteLine("InstaPhoto" + "\nLogin");
 
-            Console.WriteLine("\nIngrese nombre (<<q>> para cancelar) >>");
+            Console.WriteLine("\nIngrese nombre");
             var name = ClientUtils.ReadUntilIsNotEmpty(Console.ReadLine());
-            // Exit(name, server);
 
-            Console.WriteLine("\nIngrese email (<<q>> para cancelar) >>");
+            Console.WriteLine("\nIngrese email");
             var email = ClientUtils.ReadUntilIsNotEmpty(Console.ReadLine());
-            // Exit(email, server);
 
-            Console.WriteLine("\nIngrese contrasenia (<<q>> para cancelar) >>");
+            Console.WriteLine("\nIngrese contrasenia");
             var password = ClientUtils.ReadUntilIsNotEmpty(Console.ReadLine());
-            // Exit(email, server);
 
             var user = new User
             {
@@ -99,7 +98,7 @@ namespace FileClient
                 Password = password
             };
             
-            var respone = await ServerHandler.HandleRegister(_client,user);
+            await ServerHandler.HandleRegister(_client,user);
             _client.IsLoggedIn = true;
             await MainMenu();
         }
@@ -139,18 +138,17 @@ namespace FileClient
 
         private static async Task MainMenu()
         {
-            
-            while (_client.IsLoggedIn)
-            {
-                var options = new string[] {
+            var options = new string[] {
                 "Cargar Foto",
                 "Listado de Usuarios",
                 "Ver Comentarios" ,
                 "Ver Fotos",
                 "Agregar Comentarios",
                 "Salir"
-                };
+            };
 
+            while (_client.IsLoggedIn)
+            {
                 Console.Clear();
                 ConsoleValidations.ListOperations($"{"InstaPhoto"}\n\nMENÚ PRINCIPAL:", options, true);
 
@@ -195,9 +193,9 @@ namespace FileClient
         {
             var response = await ServerHandler.HandleViewPhotos(_client);
 
-            foreach (var user in response)
+            foreach (var photo in response)
             {
-                Console.WriteLine(user.ToString());
+                Console.WriteLine(photo.ToString());
             }
             
             ConsoleValidations.ContinueHandler();
@@ -207,11 +205,18 @@ namespace FileClient
         {
             var response = await ServerHandler.HandleViewUsers(_client);
 
-            foreach (var user in response)
+            if(response.Count == 0)
             {
-                Console.WriteLine(user.ToString());
+                Console.WriteLine("No hay usuarios en el sistema");
             }
-            
+            else
+            {
+                foreach (var user in response)
+                {
+                    Console.WriteLine(user.ToString());
+                }
+            }
+
             ConsoleValidations.ContinueHandler();
         }
 
@@ -242,10 +247,10 @@ namespace FileClient
 
             await ViewPhotos();
 
-            Console.WriteLine("\nIngrese ID de foto (<<q>> para cancelar) >>");
+            Console.WriteLine("\nIngrese ID de foto");
             var photoId = ClientUtils.ReadUntilIsNotEmpty(Console.ReadLine());
 
-            Console.WriteLine("\nIngrese comentario (<<q>> para cancelar) >>");
+            Console.WriteLine("\nIngrese comentario");
             var message = ClientUtils.ReadUntilIsNotEmpty(Console.ReadLine());
 
             var comment = new Comment
@@ -275,7 +280,7 @@ namespace FileClient
             Console.Clear();
             Console.WriteLine("InstaPhoto" + "\nSubir Foto");
 
-            Console.WriteLine("\nIngrese ruta de la foto (<<q>> para cancelar) >>");
+            Console.WriteLine("\nIngrese ruta de la foto");
             var filePath = ClientUtils.ReadUntilIsNotEmpty(Console.ReadLine());
 
             var response = await ServerHandler.HandleImageUpload(_client, filePath);
