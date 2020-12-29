@@ -49,7 +49,7 @@ namespace TCPComm.Protocol
         {
             var nameData = ConversionHandler.ConvertStringToBytes(user.Name, User.UserNameLength);
             var emailData = ConversionHandler.ConvertStringToBytes(user.Email, User.UserEmailLength);
-            var lastConnectionData = ConversionHandler.ConvertLongToBytes(user.LastConnection.ToBinary());
+            var lastConnectionData = ConversionHandler.ConvertStringToBytes(user.LastConnection.ToString("dd-MM-yyyy HH:mm"), ProtocolConstants.DateTimeTypeLength);
 
             streamCommunication.Write(nameData);
             streamCommunication.Write(emailData);

@@ -152,7 +152,7 @@ namespace RepositoryClient
                 {
                     Email = a.Email,
                     Name = a.Name,
-                    //LastConnection = a.LastConnected
+                    LastConnection = DateTime.ParseExact(a.LastConnected, "dd-MM-yyyy HH:mm", null)
                 });
             }
 
@@ -171,7 +171,7 @@ namespace RepositoryClient
                 {
                     Email = a.Email,
                     Name = a.Name,
-                    //LastConnection = a.LastConnected
+                    LastConnection = DateTime.ParseExact(a.LastConnected, "dd-MM-yyyy HH:mm", null)
                 });
             }
 

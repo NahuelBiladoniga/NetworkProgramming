@@ -9,7 +9,7 @@ namespace TCPComm.Protocol
         public const int ShortTypeLength = 2;
         public const int IntegerTypeLength = 4;
         public const int LongTypeLength = 8;
-        public const int DateTimeTypeLength = 8;
+        public const int DateTimeTypeLength = 16;
         public const int ResponseMessageLength = 40;
         
         public const int MaxPacketSize = 32768;

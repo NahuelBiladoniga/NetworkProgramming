@@ -40,7 +40,7 @@ namespace FileServer
             {
                 Name = c.Name,
                 Email = c.Email,
-                //LastConnection = c.LastConnection
+                LastConnection = c.LastConnection
             });
 
             if (!clients.Any())
@@ -62,7 +62,9 @@ namespace FileServer
             {
                 Email = clientToDelete.Email
             };
-            await server.Service.RemoveUserAsync(clientDto);
+            var response = await server.Service.RemoveUserAsync(clientDto);
+
+            Console.WriteLine(response.Message);
         }
 
         public static async Task ModifyUser(Server server)
@@ -71,7 +73,7 @@ namespace FileServer
             {
                 Name = c.Name,
                 Email = c.Email,
-                //LastConnection = c.LastConnection
+                LastConnection = c.LastConnection
             });
             if (!clients.Any())
             {

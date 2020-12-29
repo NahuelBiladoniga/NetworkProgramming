@@ -193,9 +193,16 @@ namespace FileClient
         {
             var response = await ServerHandler.HandleViewPhotos(_client);
 
-            foreach (var photo in response)
+            if (response.Count != 0)
             {
-                Console.WriteLine(photo.ToString());
+                foreach (var photo in response)
+                {
+                    Console.WriteLine(photo.ToString());
+                }
+            }
+            else
+            {
+                Console.WriteLine("No existen fotos aun");
             }
             
             ConsoleValidations.ContinueHandler();
@@ -222,21 +229,32 @@ namespace FileClient
 
         private static async Task ViewComments()
         {
-            Console.WriteLine("\nIngrese ID de foto");
-            var photoId = ClientUtils.ReadUntilIsNotEmpty(Console.ReadLine());
+            var responsePhotos = await ServerHandler.HandleViewPhotos(_client);
 
-            var photo = new Photo()
+            if (responsePhotos.Count != 0)
             {
-                Id = long.Parse(photoId)
-            };
+                var photoId = ConsoleValidations.ReadUntilValid(prompt: "\nnIngrese ID de foto",
+                    pattern: $"^[0-{responsePhotos.Count - 1}]$",
+                    errorMsg: $"Ingrese un número entre 0 y {responsePhotos.Count - 1}");
 
-            var response = await ServerHandler.HandleViewComments(_client, photo);
+                var photo = new Photo()
+                {
+                    Id = long.Parse(photoId)
+                };
 
-            foreach (var comment in response)
-            {
-                Console.WriteLine(comment.ToString());
+                var response = await ServerHandler.HandleViewComments(_client, photo);
+
+                foreach (var comment in response)
+                {
+                    Console.WriteLine(comment.ToString());
+                }
+
             }
-            
+            else
+            {
+                Console.WriteLine("No existen comentarios aun");
+            }
+
             ConsoleValidations.ContinueHandler();
         }
 
@@ -247,32 +265,37 @@ namespace FileClient
 
             await ViewPhotos();
 
-            Console.WriteLine("\nIngrese ID de foto");
-            var photoId = ClientUtils.ReadUntilIsNotEmpty(Console.ReadLine());
+            var responsePhotos = await ServerHandler.HandleViewPhotos(_client);
 
-            Console.WriteLine("\nIngrese comentario");
-            var message = ClientUtils.ReadUntilIsNotEmpty(Console.ReadLine());
-
-            var comment = new Comment
+            if (responsePhotos.Count != 0)
             {
-                Photo = new Photo()
+                Console.WriteLine("\nIngrese ID de foto");
+                var photoId = ClientUtils.ReadUntilIsNotEmpty(Console.ReadLine());
+
+                Console.WriteLine("\nIngrese comentario");
+                var message = ClientUtils.ReadUntilIsNotEmpty(Console.ReadLine());
+
+                var comment = new Comment
                 {
-                    Id = long.Parse(photoId)
-                },
-                Message =message,
-            };
-            var response = await ServerHandler.HandleCommentCreation(_client, comment);
+                    Photo = new Photo()
+                    {
+                        Id = long.Parse(photoId)
+                    },
+                    Message = message,
+                };
+                var response = await ServerHandler.HandleCommentCreation(_client, comment);
 
-            if (response.responseCommands == ProtocolConstants.ResponseCommands.Ok)
-            {
-                Console.WriteLine("\nComentario Agregado Correctamente");
-            }
-            else
-            {
-                Console.WriteLine("\nDatos invalidos, revise y pruebe de nuevo");
-            }
+                if (response.responseCommands == ProtocolConstants.ResponseCommands.Ok)
+                {
+                    Console.WriteLine("\nComentario Agregado Correctamente");
+                }
+                else
+                {
+                    Console.WriteLine("\nDatos invalidos, revise y pruebe de nuevo");
+                }
 
-            ConsoleValidations.ContinueHandler();
+                ConsoleValidations.ContinueHandler();   
+            }
         }
 
         private static async Task UploadPhotoAsync()

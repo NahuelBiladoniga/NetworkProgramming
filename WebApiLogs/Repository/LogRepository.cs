@@ -10,8 +10,6 @@ namespace WebApiLogs.Repository
         
         protected LogRepository() {
             _logs = new List<string>();
-            _logs.Add("test");
-            _logs.Add("test22");
         }
 
         public static LogRepository GetInstance()

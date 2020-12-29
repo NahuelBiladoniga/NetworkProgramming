@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using RepositoryClient;
 using Domain;
 using RepositoryClient.Dto;
-using System.Collections.Generic;
 using WebApiAdmin.Services;
 
 namespace WebApiAdmin.Controllers
@@ -43,7 +42,14 @@ namespace WebApiAdmin.Controllers
             var responseUser = await _repositoryClient.AddUserAsync(dto);
             _logService.SendLogs("User " + user.Email + " was saved");
 
-            return new CreatedResult(string.Empty, responseUser);
+            if (responseUser.Status == "OK")
+            {
+                return Ok(responseUser.Message);
+            }
+            else
+            {
+                return BadRequest(responseUser.Message);
+            }
         }
 
         [HttpPut]
@@ -58,7 +64,15 @@ namespace WebApiAdmin.Controllers
             
             var responseUser = await _repositoryClient.ModifyUserAsync(dto);
             _logService.SendLogs("User " + user.Email + " was updated");
-            return Ok(responseUser);
+
+            if (responseUser.Status == "OK")
+            {
+                return Ok(responseUser.Message);
+            }
+            else
+            {
+                return BadRequest(responseUser.Message);
+            }
         }
 
         [HttpDelete]
@@ -70,7 +84,15 @@ namespace WebApiAdmin.Controllers
             };
 
             _logService.SendLogs("User " + user.Email + " was deleted");
-            return Ok(await _repositoryClient.RemoveUserAsync(user));
+            var response = await _repositoryClient.RemoveUserAsync(user);
+
+            if (response.Status == "OK") {
+                return Ok(response.Message);
+            }
+            else
+            {
+                return BadRequest(response.Message);
+            }
         }
     }
 }

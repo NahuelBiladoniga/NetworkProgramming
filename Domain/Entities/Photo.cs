@@ -10,7 +10,7 @@ namespace Domain
         public const int PhotoExtensionLength = 10;
         public const int PhotoNameLength = 40;
 
-        private static long _idCounter = 0;
+        public static long IdCounter { get; private set; } = 0;
         public long Id { get; set; } 
         public string Name { get; set; }
         public string Extension { get; set; }
@@ -24,7 +24,8 @@ namespace Domain
 
         public void UpdateId()
         {
-            Id = _idCounter++;
+            Id = IdCounter;
+            IdCounter++;
         }
         
         public override bool Equals(object obj)

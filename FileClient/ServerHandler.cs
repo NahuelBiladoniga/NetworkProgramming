@@ -94,12 +94,11 @@ namespace FileClient
                 var lastConnectionDate = ConversionHandler.ConvertBytesToString(await client.StreamCommunication.ReadAsync(ProtocolConstants.DateTimeTypeLength));
 
                 dataLength -= User.UserNameLength + User.UserEmailLength + ProtocolConstants.DateTimeTypeLength;
-                result.Add(new User
-                    {
+                result.Add(new User {
                         Name = name,
                         Email = email,
-                        //LastConnection = DateTime.Parse(lastConnectionDate)
-                    });
+                        LastConnection = DateTime.ParseExact(lastConnectionDate, "dd-MM-yyyy HH:mm", null)
+                });
             }
             
             return result;

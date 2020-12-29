@@ -1,12 +1,19 @@
-﻿{
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:57828/",
+      "sslPort": 0
+    }
+  },
   "profiles": {
     "RepositoryService": {
       "commandName": "Project",
-      "launchBrowser": false,
-      "applicationUrl": "https://localhost:6001",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "applicationUrl": "https://localhost:6001"
     }
   }
 }
